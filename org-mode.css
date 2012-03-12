@@ -37,7 +37,7 @@ h1.title {
 
 /* 目次 */
 div#table-of-contents h2 {
-    display: none;  /* 目次なのは見れば分かるし、デフォルトでは "Table of Contents" という見出しで分かりにくい */
+    display: none; /* 目次なのは見れば分かる */
 }
 div#table-of-contents {
     margin: 1em 30% 1em 2em;
@@ -166,6 +166,7 @@ caption {
 ol, ul {
     padding-left: 2em;
 }
+
 ol li {
     /* レベル 1 の数付きリストには数字の横に線を付けてみる */
     border-left: 1px solid #d0d0d0;
