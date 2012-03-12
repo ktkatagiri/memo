@@ -1,0 +1,134 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 2012年3月の記録
+#+LANGUAGE: ja
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+
+* 10日
+** EmacsにHaskellモード導入した
+#@emacs
+
+参考: 
+Haskell-mode for Emacs\\
+ http://projects.haskell.org/haskellmode-emacs/
+
+以下のソースを.emacsに
+#+begin_src emacs-lisp
+;; haskell
+(add-to-list 'load-path "~/.emacs.d/elisp/haskell-mode-2.8.0/")
+;; (load-library "haskell-site-file")
+
+;; enscript scheme
+(setq auto-mode-alist
+  (append auto-mode-alist
+    '(("\\.[hg]s$"  . haskell-mode)    
+      ("\\.hi$"     . haskell-mode)
+      ("\\.l[hg]s$" . literate-haskell-mode))))
+
+(autoload 'haskell-mode "haskell-mode"
+          "Major mode for editing Haskell scripts." t)
+(autoload 'literate-haskell-mode "haskell-mode"
+          "Major mode for editing literate Haskell scripts." t)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+#+end_src
+
+** Emacs org-modeのTips
+#@emacs
+
+*** C-u×3 Tabで全展開
+
+*** org-modeからのHTMLなどへのエクスポートのオプション
+http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i12
+
+C-c C-e t	エクスポートのオプションのテンプレートを挿入します。
+
+無効化の仕方が分からないため2回 # を挿入している
+#+begin_example
+# #+TITLE:     the title to be shown (default is the buffer name)
+# #+AUTHOR:    the author (default taken from user-full-name)
+# #+EMAIL:     his/her email address (default from user-mail-address)
+# #+LANGUAGE:  language for HTML, e.g. `en' (org-export-default-language)
+# #+TEXT:      Some descriptive text to be inserted at the beginning.
+# #+TEXT:      Several lines may be given.
+# #+OPTIONS:   H:2  num:t  toc:t  \n:nil  @:t  ::t  |:t  ^:t  *:nil  TeX:t LaTeX:t
+
+# #+TITLE:    表示されているタイトル（デフォルトはバッファ名）
+# #+AUTHOR:   作成者（デフォルトはユーザーのフルネーム）
+# #+EMAIL:    Ｅメールアドレス（デフォルトはユーザーメールアドレス）
+# #+LANGUAGE: ＨＴＭＬの言語。例"en"（デフォルトはorg-export-default-language)
+# #+TEXT:     文頭に挿入する何らかの記述
+# #+TEXT:     複数行つける場合は各行につける
+# #+OPTIONS:  H:2  num:t  toc:t  \n:nil  @:t  ::t  |:t  ^:t  *:nil  TeX:t LaTeX:t
+#            というオプション（次項で説明）
+#+end_example
+
+*** About code highlight by org-mode
+<s Tab でbegin\_srcを挿入することができる．
+
+*** org-modeでのHTML出力
+本ページはemacs org-modeによって生成されたHTMLを使っている．
+ショートカットは"C-c C-e b"．
+
+** AOJメモ
+#@AOJ
+AOJのJavaでSubmitするときにはMainというクラス名で
+
+*** Scannerクラスの振る舞いまとめ
+#@java
+
+
+#+begin_example
+- java.lang.Object
+  +- java.util.Scanner
+
+- public final class Scanner extends Object implements Iterator<String>
+#+end_example
+キーボードからの入力を受け付けるときは以下のように記述する
+
+#+begin_src java
+import java.util.Scanner;
+// ...
+Scanner scan = new Scanner(System.in);
+#+end_src
+
+** 自作コマンドを~/local/...のディレクトリで管理している
+
+* 11日
+** 雑記
+朝まではorg-modeの使い方やHaskellについて調べていた．
+昼過ぎからVBを書く予定であったが，起きると月曜であった．
+良くないことをしてしまったと思う．
+
+* 12日
+** Emacsのorg-mode
+相変わらず，ソースコードへの色の着け方が分からないため，
+begin\_srcではなbegin\_exampleを使っている．
+この辺，どういう風にemacslispいじれば良いかなど分かる人がいらっしゃったらhelp．
+\\
+\\
+
+あとはやはりorg-modeで生成されたHTMLだけでは見づらいため早くCSSに手をつける．
+具体的には今日の夕方に．
+
+** 雑記
+女装用品を少し買った．ウィッグや，つけまつげ，スカートやスポーツブラなど．
+試着してみるがかわいいとはほど遠くて，まぁ予想通りなのだけど，まぁがっかりした．
+まぁこっちはわりとどうでも良いことである．
+
+*** 休学を考えている
+まず気になるのは金のことだ．奨学金は当然止まるし，復活できるとも限らない(下記URL参照\\
+http://www.jasso.go.jp/taiyochu/idou/kyuusi.html
+
+当然，一年間はバイト漬けになるわけだが，バイトをするために休学するのでは本末転倒である．
+休学カードもあまり良くないのなら途方に暮れる．\\
+現状で何かこれっていえる製作ソフトウェアの無い私ではロクな就職先は期待できない．
+
+あと，仕事で書いているVBプログラムの方も手をつけなければならない．進捗が遅い．
+
+
+
+
