@@ -1,0 +1,8 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 索引
+#+LANGUAGE: ja
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+
+[[./date12-03.org][3月の記録]] \\
+
