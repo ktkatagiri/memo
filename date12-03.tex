@@ -1,30 +1,68 @@
-#+AUTHOR: Yuuhi
-#+TITLE: 2012年3月の記録
-#+LANGUAGE: ja
-#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+% Created 2012-03-16 金 09:50
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
 
-* 9日
-はぁ．
+\title{2012年3月の記録}
+\author{Yuuhi}
+\date{\today}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.03}}
 
-** Webサービス，Webアプリケーションなどの利用構成？
-- 外向け
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+
+\section{9日}
+\label{sec-1}
+\subsection{Webサービス，Webアプリケーションなどの利用構成？}
+\label{sec-1-1}
+
+\begin{itemize}
+\item 外向け
+\end{itemize}
 メイン: sinatra + haml + sequel
 GithubPages: Emacs org-mode + CSS(this)
-- 内向け
+\begin{itemize}
+\item 内向け
+\end{itemize}
 部屋用: Emacs org-mode + CSS
 bitbuckets: Emacs org-mode + CSS
+\section{10日}
+\label{sec-2}
 
-* 10日
 8時起床．旅先で
-** EmacsにHaskellモード導入した
-#@emacs
+\subsection{EmacsにHaskellモード導入した}
+\label{sec-2-1}
+
 
 参考: 
 Haskell-mode for Emacs\\
- http://projects.haskell.org/haskellmode-emacs/
+ \href{http://projects.haskell.org/haskellmode-emacs/}{http://projects.haskell.org/haskellmode-emacs/}
 
 以下のソースを.emacsに
-#+begin_src emacs-lisp
+
+\begin{verbatim}
 ;; haskell
 (add-to-list 'load-path "~/.emacs.d/elisp/haskell-mode-2.8.0/")
 ;; (load-library "haskell-site-file")
@@ -45,22 +83,25 @@ Haskell-mode for Emacs\\
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-#+end_src
+\end{verbatim}
+\subsection{Emacs org-modeのTips}
+\label{sec-2-2}
 
-** Emacs org-modeのTips
-#@emacs
 今日調べたorg-modeなどのことを記録しておく．
+\subsubsection{org-modeで全展開するには？}
+\label{sec-2-2-1}
 
-*** org-modeで全展開するには？
 C-u×3 Tabで
+\subsubsection{org-modeからのHTMLなどへのエクスポートのオプション}
+\label{sec-2-2-2}
 
-*** org-modeからのHTMLなどへのエクスポートのオプション
-http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i12
+\href{http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i12}{http://hpcgi1.nifty.com/spen/index.cgi?OrgMode\%2FManual4\#i12}
 
-C-c C-e t	エクスポートのオプションのテンプレートを挿入します。
+C-c C-e t       エクスポートのオプションのテンプレートを挿入します。
 
-無効化の仕方が分からないため2回 # を挿入している
-#+begin_example
+無効化の仕方が分からないため2回 \# を挿入している
+
+\begin{verbatim}
 # #+TITLE:     the title to be shown (default is the buffer name)
 # #+AUTHOR:    the author (default taken from user-full-name)
 # #+EMAIL:     his/her email address (default from user-mail-address)
@@ -77,43 +118,49 @@ C-c C-e t	エクスポートのオプションのテンプレートを挿入し�
 # #+TEXT:     複数行つける場合は各行につける
 # #+OPTIONS:  H:2  num:t  toc:t  \n:nil  @:t  ::t  |:t  ^:t  *:nil  TeX:t LaTeX:t
 #            というオプション（次項で説明）
-#+end_example
+\end{verbatim}
+\subsubsection{About code highlight by org-mode}
+\label{sec-2-2-3}
 
-*** About code highlight by org-mode
 <s Tab でbegin\_srcを挿入することができる．
+\subsubsection{org-modeでのHTML出力}
+\label{sec-2-2-4}
 
-*** org-modeでのHTML出力
 本ページはemacs org-modeによって生成されたHTMLを使っている．
-ショートカットは"C-c C-e b"．
+ショートカットは''C-c C-e b''．
+\subsection{AOJメモ}
+\label{sec-2-3}
 
-** AOJメモ
-#@AOJ
 AOJのJavaでSubmitするときにはMainというクラス名で
+\subsubsection{Scannerクラスの振る舞いまとめ}
+\label{sec-2-3-1}
 
-*** Scannerクラスの振る舞いまとめ
-#@java
 
 
-#+begin_example
+
+\begin{verbatim}
 - java.lang.Object
   +- java.util.Scanner
 
 - public final class Scanner extends Object implements Iterator<String>
-#+end_example
+\end{verbatim}
 キーボードからの入力を受け付けるときは以下のように記述する
 
-#+begin_src java
+
+\begin{verbatim}
 import java.util.Scanner;
 // ...
 Scanner scan = new Scanner(System.in);
-#+end_src
+\end{verbatim}
+\subsection{自作コマンドを\~{}/local/\ldots{}のディレクトリで管理している}
+\label{sec-2-4}
+\section{11日}
+\label{sec-3}
 
-** 自作コマンドを~/local/...のディレクトリで管理している
-
-* 11日
 前日から9時くらいまでは意識があった．その後意識を失い12日に至る．
+\subsection{雑記}
+\label{sec-3-1}
 
-** 雑記
 朝まではorg-modeの使い方やHaskellについて調べていた．
 昼過ぎからVBを書く予定であったが，起きると月曜であった．
 良くないことをしてしまったと思う．
@@ -121,12 +168,14 @@ Scanner scan = new Scanner(System.in);
 午前中，佐川やクロネコで女装用品がいくつか届いた．ウィッグや，つけまつげ，スカートやスポーツブラなど．
 試着してみるがかわいいとはほど遠くて，まぁ予想通りなのだけど，まぁがっかりした．
 まぁこっちはわりとどうでも良いことである．
+\section{12日}
+\label{sec-4}
 
-* 12日
 5時起床．
 22時に帰宅開始．
+\subsection{Emacsのorg-mode}
+\label{sec-4-1}
 
-** Emacsのorg-mode
 相変わらず，ソースコードへの色の着け方が分からないため，
 begin\_srcではなbegin\_exampleを使っている．
 この辺，どういう風にemacslispいじれば良いかなど分かる人がいらっしゃったらhelp．
@@ -135,48 +184,43 @@ begin\_srcではなbegin\_exampleを使っている．
 
 あとはやはりorg-modeで生成されたHTMLだけでは見づらいため早くCSSに手をつける．
 具体的には今日の夕方に．
+\subsubsection{休学を考えている}
+\label{sec-4-1-1}
 
-
-*** 休学を考えている
 まず気になるのは金のことだ．奨学金は当然止まるし，復活できるとも限らない(下記URL参照\\
-http://www.jasso.go.jp/taiyochu/idou/kyuusi.html
+\href{http://www.jasso.go.jp/taiyochu/idou/kyuusi.html}{http://www.jasso.go.jp/taiyochu/idou/kyuusi.html}
 
 当然，一年間はバイト漬けになるわけだが，バイトをするために休学するのでは本末転倒である．
 休学カードもあまり良くないのなら途方に暮れる．\\
 現状で何かこれっていえる製作ソフトウェアの無い私ではロクな就職先は期待できない．
 
 あと，仕事で書いているVBプログラムの方も手をつけなければならない．進捗が遅い．
+\subsection{Github-Pagesの追加}
+\label{sec-4-2}
 
-
-
-** Github-Pagesの追加
 現在書いている，org-modeでのメモ公開用のGithubのWebページを創設した．URLは以下に\\
-http://yuuhik.github.com/memo/
+\href{http://yuuhik.github.com/memo/}{http://yuuhik.github.com/memo/}
 
 インデックスのページはやっつけ．CSSもあとからがっつり書きなおす．
+\subsection{\textbf{TODO} にゃあにゃあな発表用の原稿作成(03/14日まで)}
+\label{sec-4-3}
 
-
-** TODO にゃあにゃあな発表用の原稿作成(03/14日まで)
 今週中に完成させる．
+\subsection{\textbf{TODO} 今月の家賃(03/15まで)}
+\label{sec-4-4}
 
-** TODO 今月の家賃(03/15まで)
 払っていたかを確認
+\subsection{rubyからのGrowlの使い方}
+\label{sec-4-5}
 
-
-
-
-
-
-
-
-** rubyからのGrowlの使い方
 以下にように書ける．
 次のMacOSXでは必要無くなりそうだが．．
 
 perlだと
-http://d.hatena.ne.jp/sugyan/20120222/1329906680
+\href{http://d.hatena.ne.jp/sugyan/20120222/1329906680}{http://d.hatena.ne.jp/sugyan/20120222/1329906680}
 
-#+begin_src ruby
+
+\begin{verbatim}
 # -*- coding: utf-8 -*-
 require 'rubygems'
 require 'ruby_gntp'
@@ -195,138 +239,193 @@ growl.notify(
   :icon  => "http://www.hatena.ne.jp/users/sn/snaka72/profile.gif",
   :sticky=> true,
 )
-#+end_src
 
-** rubyでirbを使った対話式の開発を行いたい
+# callback
+growl.notify( :name => "hotify" ) do |context|
+  puts "callback-result: #{context[:callback_result]}"
+end
+
+# -- Instant notification
+GNTP.notify(
+  :app_name => "Instant notify",
+  :title    => "Instant notification",
+  :text     => "Instant notification available now.",
+  :icon     => "http://www.hatena.ne.jp/users/sn/snaka72/profile.gif",
+)
+\end{verbatim}
+\subsection{rubyでirbを使った対話式の開発を行いたい}
+\label{sec-4-6}
+
 ここに書いてある？\\
-http://blog.kiftwi.net/2011/05/31/emacs%E3%81%A7irb%E3%81%97%E3%81%AA%E3%81%8C%E3%82%89%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%82%8B/
+\href{http://blog.kiftwi.net/2011/05/31/emacs%E3%81%A7irb%E3%81%97%E3%81%AA%E3%81%8C%E3%82%89%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%82%8B/}{http://blog.kiftwi.net/2011/05/31/emacs\%E3\%81\%A7irb\%E3\%81\%97\%E3\%81\%AA\%E3\%81\%8C\%E3\%82\%89\%E3\%82\%B3\%E3\%83\%BC\%E3\%83\%89\%E3\%82\%92\%E6\%9B\%B8\%E3\%81\%84\%E3\%81\%A6\%E3\%81\%BF\%E3\%82\%8B/}
+\section{13日}
+\label{sec-5}
 
-* 13日
 前の日から起きていたが，特にプログラムなどを書いていたわけではなく，これだからボクは．．と後悔がわいてきそうになる．\\
 起きたら16時であった絶望．．．もういかなければならないが，その前に洗濯物を片付ける．\\
 リリースの予定が早まったらしい，ヤバい．
+\subsection{TwitterのWebのバグ}
+\label{sec-5-1}
 
-
-** TwitterのWebのバグ
 まとめは以下に\\
-http://blog.konn-san.com/article/20120312/Twitter%20%E6%B3%A2%E6%8B%AC%E5%BC%A7%E4%BA%8B%E4%BB%B6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BF%E3%82%8B
+\href{http://blog.konn-san.com/article/20120312/Twitter%20%E6%B3%A2%E6%8B%AC%E5%BC%A7%E4%BA%8B%E4%BB%B6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BF%E3%82%8B}{http://blog.konn-san.com/article/20120312/Twitter\%20\%E6\%B3\%A2\%E6\%8B\%AC\%E5\%BC\%A7\%E4\%BA\%8B\%E4\%BB\%B6\%E3\%81\%AB\%E3\%81\%A4\%E3\%81\%84\%E3\%81\%A6\%E3\%81\%BE\%E3\%81\%A8\%E3\%82\%81\%E3\%81\%A6\%E3\%81\%BF\%E3\%82\%8B}
 \\
-http://togetter.com/li/272021
+\href{http://togetter.com/li/272021}{http://togetter.com/li/272021}
 \\
 みんな好き放題やっていた．思わず時間を使ってしまい頭をもたげる．
+\subsection{SQLのメモ１}
+\label{sec-5-2}
 
-** SQLのメモ１
 Webアプリケーション作成において特に重要なのがDBだが，SQLもまともに書けないことを先日思い知ったため，
 勉強とその記録を取っていく．非常に簡単な説明で済ますので，厳密な意味で言葉が違うこともあるので目をつぶるかTwitterのアカウントにでもリプ飛ばしてやってほしい．
-|--------------+------------------------------------------------------------------------------|
-| データベース | 大量の情報を保存し計算機から効率良くアクセスできるように加工したデータの集合 |
-| DBMS         | データベースを管理する計算機のシステム                                       |
-| SQL          | リレーショナルデータベースを操作するための言語？                             |
-|--------------+------------------------------------------------------------------------------|
 
-** 生活習慣
+\begin{center}
+\begin{tabular}{ll}
+\hline
+ データベース  &  大量の情報を保存し計算機から効率良くアクセスできるように加工したデータの集合  \\
+ DBMS          &  データベースを管理する計算機のシステム                                        \\
+ SQL           &  リレーショナルデータベースを操作するための言語？                              \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{生活習慣}
+\label{sec-5-3}
+
 3時までに寝るか．せめて，おふとんに入って寝るべきだなぁと思う．
+\subsection{Emacsのsql-modeが良いらしいという話を聞き導入}
+\label{sec-5-4}
 
-** Emacsのsql-modeが良いらしいという話を聞き導入
 
 
-参考： [[http://www.sixnine.net/roadside/sqlmode.html]["Trumps by the roadside" - sql-mode: Emacs から SQL 文を実行する]] \\
+参考： \href{http://www.sixnine.net/roadside/sqlmode.html}{``Trumps by the roadside'' - sql-mode: Emacs から SQL 文を実行する} \\
 以下の5つのelispファイルがあれば良いらしい
-|------------------+------------+--------------------------------------------------|
-| 名前             | バージョン | 説明                                             |
-|------------------+------------+--------------------------------------------------|
-| sql.el           |      1.6.3 | SQL インタプリタ用の comint                      |
-| sql-indent.el    |      1.1.2 | SQL 文のインデント                               |
-| sql-transform.el |      2.2.0 | SQL 文の変換                                     |
-| sql-complete.el  |      0.0.1 | テーブル / カラムの補完機能                      |
-| master.el        |      1.0.2 | 現在のバッファから他のバッファのスクロールを行う |
-|------------------+------------+--------------------------------------------------|
+
+\begin{center}
+\begin{tabular}{lrl}
+\hline
+ 名前              &  バージョン  &  説明                                              \\
+\hline
+ sql.el            &       1.6.3  &  SQL インタプリタ用の comint                       \\
+ sql-indent.el     &       1.1.2  &  SQL 文のインデント                                \\
+ sql-transform.el  &       2.2.0  &  SQL 文の変換                                      \\
+ sql-complete.el   &       0.0.1  &  テーブル / カラムの補完機能                       \\
+ master.el         &       1.0.2  &  現在のバッファから他のバッファのスクロールを行う  \\
+\hline
+\end{tabular}
+\end{center}
+
+
 
 sql.elとmaster.elはbrewから導入したEmacs23には最初から入っていたので，中3つだけインストールした．
 今回のインストールでは久々にauto-installを利用した．
 M-x auto-install-from-emacswikiで起動し，それぞれのelispファイル名を入れて，C-c C-cするだけ．
+\subsubsection{Emacs から各種 SQL クライアントを起動する方法}
+\label{sec-5-4-1}
 
-*** Emacs から各種 SQL クライアントを起動する方法
 基本的には「 M-x sql-XX 」とすれば良いらしい
+\subsubsection{このMBAにmysqlが入っていなかったため}
+\label{sec-5-4-2}
 
-*** このMBAにmysqlが入っていなかったため
-#+begin_example
+
+\begin{verbatim}
 brew install mysql
-#+end_example
+\end{verbatim}
 cmake-2.8.7-bottle.tar.gzがmd5のなんとかでインストールできなかったため．
-#+begin_example
+
+\begin{verbatim}
 sudo brew update
 brew install mysql
-#+end_example
+\end{verbatim}
+\subsubsection{tmuxで上の方に戻るには？}
+\label{sec-5-4-3}
 
-*** tmuxで上の方に戻るには？
 Ctrl-Up, Ctrl-DownでできるらしいがLionでは既に割り当てられている．．
-- あれ？外したけどできないよ？\\
-  - Cmdでいけた
-# MBAではCtrl-fn-↑，Ctrl-fn-↓でもスクロールできる
+\begin{itemize}
+\item あれ？外したけどできないよ？
+\begin{itemize}
+\item Cmdでいけた
+\end{itemize}
+\end{itemize}
+\section{14日}
+\label{sec-6}
 
-* 14日
 時間が経つのがはやすぎる．．
-今日はずっと起きて，様々な課題を一気に片付ける <2012-03-14 水 10:25>
+今日はずっと起きて，様々な課題を一気に片付ける \textit{2012-03-14 水 10:25}
 \\
-タスクをswitchする <2012-03-14 水 10:59> 
+タスクをswitchする \textit{2012-03-14 水 10:59} 
 \\
-昼ご飯食べた．お腹いっぱい <2012-03-14 水 12:57>
+昼ご飯食べた．お腹いっぱい \textit{2012-03-14 水 12:57}
 \\
-シャワー浴びて仮眠します．誰か起こして，やさしく <2012-03-14 水 19:27>
+シャワー浴びて仮眠します．誰か起こして，やさしく \textit{2012-03-14 水 19:27}
 \\
-** Emacs org-mode メモ
+\subsection{Emacs org-mode メモ}
+\label{sec-6-1}
+
 [Ctrl-c .]や[Ctrl-u Ctrl-c .]でタイムスタンプを挿入することができる．
 正確にはここに\\
-http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual2#i22 \\
+\href{http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual2#i22}{http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual2\#i22} \\
 
 org-modeはいろんな機能とショートカットがあるので早く必要となる部分を網羅したい．
+\subsection{\textbf{TODO} TOEIC申し込み}
+\label{sec-6-2}
 
-** TODO TOEIC申し込み
 TOEIC申し込みが，
 2012年3月5日（月）10：00～4月17日（火）12：00（正午）締切 
 となっている．締切に注意されたし．勉強も着実にこなせ．\\
 
-http://www.toeic.or.jp/toeic/guide01/guide01_01.html?eno=1134
+\href{http://www.toeic.or.jp/toeic/guide01/guide01_01.html?eno=1134}{http://www.toeic.or.jp/toeic/guide01/guide01\_01.html?eno=1134}
+\subsection{beamerをorg-modeから利用する方法について}
+\label{sec-6-3}
 
-** beamerをorg-modeから利用する方法について
 ドキュメント作成もプレゼン作成もはやさが肝だ！
 そう，今のボクには速さがっ足りない！！
+\subsubsection{beamerとは}
+\label{sec-6-3-1}
 
-*** beamerとは
-Beamerはプレゼン用のLaTeXのクラスファイル．
+Beamerはプレゼン用の\LaTeX{}のクラスファイル．
 
-#+begin_quote
-Beamer は Till Tantau 氏によって作られた，プレゼンテーション用の LaTeX クラスファイルです。
-#+end_quote
-http://imi.kyushu-u.ac.jp/~ssaito/jpn/tex/beamer.html より引用
+\begin{quote}
+Beamer は Till Tantau 氏によって作られた，プレゼンテーション用の \LaTeX{} クラスファイルです。
+\end{quote}
 
-**** 今使っているTeX
+\href{http://imi.kyushu-u.ac.jp/~ssaito/jpn/tex/beamer.html}{http://imi.kyushu-u.ac.jp/\~ssaito/jpn/tex/beamer.html} より引用
+\begin{itemize}
+
+\item 今使っている\TeX{}\\
+\label{sec-6-3-1-1}%
 私のメイン環境はMBAでOSX10.7 Lionで小川版をインストールしている．\\
-JIS X0212 for pTeX http://www2.kumagaku.ac.jp/teacher/herogw/ \\
+JIS X0212 for pTeX \href{http://www2.kumagaku.ac.jp/teacher/herogw/}{http://www2.kumagaku.ac.jp/teacher/herogw/} \\
 私の環境の場合，/Applications/UpTeX.app/teTeX/share/texmf/web2c/texmf.cnfに
 スタイルファイルの置き場所の検索パスの設定などがあった．
 もし，ここに書き込んだ場合
-#+begin_example
+
+\begin{verbatim}
 mktexlsr
-#+end_example
+\end{verbatim}
 とすることでスタイルファイルの導入が済むらしい．
 
-**** 導入
-LaTeX Beamer 入門 http://www.ms.u-tokyo.ac.jp/~tado/beamer/
+
+\item 導入\\
+\label{sec-6-3-1-2}%
+\LaTeX{} Beamer 入門 \href{http://www.ms.u-tokyo.ac.jp/~tado/beamer/}{http://www.ms.u-tokyo.ac.jp/\~tado/beamer/}
 \\
 今回は/Applications/UpTeX.app/teTeX/share/texmf-localというディレクトリを増やしてそこに設定
 
-**** サンプルファイルのコンパイル
+
+\item サンプルファイルのコンパイル\\
+\label{sec-6-3-1-3}%
 SJISだったのでUTF-8に変換．
-#+begin_example
+
+\begin{verbatim}
 nkf -w8 sample.tex > hoge.tex
-#+end_example
+\end{verbatim}
 いい加減，nkfのオプションくらい覚えたい．
 
 
-**** サンプルコード
-#+begin_src tex
+
+\item サンプルコード\\
+\label{sec-6-3-1-4}%
+\begin{verbatim}
 \documentclass[dvipdfm]{beamer}
 \AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
 \usetheme{Madrid}
@@ -345,13 +444,15 @@ nkf -w8 sample.tex > hoge.tex
 数式：$1+1=2$
 \end{frame}
 \end{document}
-#+end_src
+\end{verbatim}
 
-**** ここまでは動いた
+
+\item ここまでは動いた\\
+\label{sec-6-3-1-5}%
 org-modeで動いてくれれば良い
 
 ここにだいたいのことは書いている\\
-http://d.hatena.ne.jp/tamura70/20100219/org \\
+\href{http://d.hatena.ne.jp/tamura70/20100219/org}{http://d.hatena.ne.jp/tamura70/20100219/org} \\
 
 のだが，org→texのエキスポートが上手くいっていないようだ．
 
@@ -359,72 +460,40 @@ http://d.hatena.ne.jp/tamura70/20100219/org \\
 texのファイルは上手くpdfまで変換できるので，tex直書きで進めていくか？beamerの設定見なおすか．．？
 
 これが必要
-#+begin_example
+
+\begin{verbatim}
 # #+BEAMER_HEADER_EXTRA: \usepackage[compress,dvipdfm]{orgbeamer}
-#+end_example
+\end{verbatim}
 
 どうやって付け足すんだ？
 
-** Emacsのorg-modeのショートカットなどがまとまっている？
-http://pastelwill.jp/wiki/doku.php?id=org-test
+\end{itemize} % ends low level
+\subsection{Emacsのorg-modeのショートカットなどがまとまっている？}
+\label{sec-6-4}
 
-* 15日
+\href{http://pastelwill.jp/wiki/doku.php?id=org-test}{http://pastelwill.jp/wiki/doku.php?id=org-test}
+\section{15日}
+\label{sec-7}
+
 とても忙しかった．辛い．
 あとorg-modeを使ったbeamerの使い方を覚えた．
 こういう感じのヘッダが必要．
-#+begin_example
- # #+TITLE: にゃにゃにゃーん！
- # #+AUTHOR: にゃあ
- # #+DATE: 2012年3月15日
- # #+OPTIONS: toc:nil
- # #+STARTUP: beamer
- # #+LATEX_CLASS: beamer
- # #+LATEX_CLASS_OPTIONS: [compress,dvipdfm]
- # #+BEAMER_FRAME_LEVEL: 2
- # #+BEAMER_HEADER_EXTRA: \usepackage{orgbeamer}
-#+end_example
 
-* 16日
-ふと気づけば歩みを止めている．絶望した．記録し続けろ．
-一日中寝続けた．照明もエアコンもつけっぱなしのまま，変な姿勢で絨毯の上に放り出されるように眠っていたため，
-長い睡眠時間の割に疲れがとれていない．残念．明日も仕事があるのに．．
+\begin{verbatim}
+# #+TITLE: にゃにゃにゃーん！
+# #+AUTHOR: にゃあ
+# #+DATE: 2012年3月15日
+# #+OPTIONS: toc:nil
+# #+STARTUP: beamer
+# #+LATEX_CLASS: beamer
+# #+LATEX_CLASS_OPTIONS: [compress,dvipdfm]
+# #+BEAMER_FRAME_LEVEL: 2
+# #+BEAMER_HEADER_EXTRA: \usepackage{orgbeamer}
+\end{verbatim}
+\section{16日}
+\label{sec-8}
 
-* 17日
-gntp経由でgrowl通知を叩く方法を試していた．
-- 上手くアイコンが表示されない．
-当分は以下のようなコマンドを直接叩く方法でなんとかする．
-#+begin_example
-growlnotify -t hello -m "ほげ" --image "[dirpath]/maid.png"
-#+end_example
+ふと気づけば歩みを止めている．絶望した．
+あと考えたことを記録し続けろ．
 
-** 魂を奮い立たせろ
-＼('ω')／うねうねぇえええええうねうねぇえええええ？＼('ω')／うおおおおおおおおおうごおおおおおおおおおおおぐおおおおお
-
-** TeXからpdfを生成するシェルスクリプト
-
-#+begin_example
-#!/bin/sh
-
-# このスクリプトは"./build.sh ファイル名 とすることでpdfを吐く"
-# ファイル名には拡張子を含めない
-
-name=$1
-(platex $name".tex" && platex $name".tex" && dvipdfmx $name".dvi" && open $name".pdf") || echo 'error!'
-
-rm *~
-rm *.aux
-rm *.bbl
-rm *.blg
-rm *.dvi
-# rm *.log
-rm *.lot
-rm *.lof
-rm *.toc
-# rm \#*\#
-#+end_example
-
-をemacsから叩けるようにする
-
-** CSS弄った
-
-* 18日
+\end{document}

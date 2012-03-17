@@ -17,7 +17,7 @@ a:link {
     color: #a01000;
 }
 a:visited {
-    color: #301000;
+    color: #952000;
 }
 a:active {
     color: #ff0200;
@@ -29,22 +29,22 @@ a:hover {
 /* タイトル */
 h1.title {
     color: #eeeeee;
-    background-color: #555555;
+    background-color: #505050;
     text-align: left;
     border: 3px solid black;
-    padding: 0.1em 0.3em;
+    padding: 0.3em 1.0em;
 }
 
 /* 目次 */
 div#table-of-contents h2 {
-    display: none; /* 目次なのは見れば分かる */
+    display: none; /* 消す */
 }
 div#table-of-contents {
-    margin: 1em 30% 1em 2em;
+    margin: 0.1em 30% 0.5em 1.5em;
 }
 div#text-table-of-contents {
     background-color: #c0c0c0;
-    padding: 0.5em;
+    padding: 0.1em;
     border: 1px dotted black;
 }
 
@@ -59,7 +59,7 @@ h5, h6 {
     margin: 0.5em;
 }
 h2 {
-    border-bottom: 3px solid #c00000;
+    border-bottom: 3px solid #c05050;
 }
 h3 {
     border-bottom: 2px dotted black;
@@ -99,22 +99,21 @@ del {
     color: #608080;
 }
 
-/* 画像 */
 a img {
     border: none;
 }
-img.figure {  /* 図としての画像 */
+img.figure {
     display: block;
     margin: 1em auto;
-    border: 1px dotted #c00000;
+    border: 1px dotted #c05050;
 }
 
 /* ソース、例文 */
 pre {
     font-family: "ＭＳ ゴシック", "Osaka-Mono", monospace;
     font-size: medium;
-    margin: 0.5em;
-    padding: 0.5em;
+    margin: 0.3em;
+    padding: 0.3em;
 }
 
 pre.src {
@@ -128,9 +127,9 @@ pre.src {
 
 pre.example {
     color: #202020;
-    background-color: #f0d0d0;
-    border-top: 2px solid #804040;
-    border-left: 2px solid #804040;
+    background-color: #e0e0e0;
+    border-top: 2px solid #705050;
+    border-left: 2px solid #705050;
     border-bottom: 2px solid #d0a0a0;
     border-right: 2px solid #d0a0a0;
 }
@@ -141,13 +140,13 @@ table {
 }
 thead {
     color: white;
-    background-color: #c00000;
+    background-color: #333333;
 }
 tbody {
-    background-color: #f0f0f0;
+    background-color: #111111;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid white;
 }
 th, td {
     padding: 0.5em;
@@ -156,7 +155,7 @@ th {
     font-weight: bold;
 }
 caption {
-    color: #c00000;
+    color: #a05050;
     font-weight: bold;
     font-size: smaller;
     white-space: nowrap;
@@ -168,12 +167,10 @@ ol, ul {
 }
 
 ol li {
-    /* レベル 1 の数付きリストには数字の横に線を付けてみる */
     border-left: 1px solid #d0d0d0;
     padding-left: 0.5em;
 }
 ol li ol li{
-    /* レベル 2 以下の数付きリストには数字の横に線を付けない */
     border: none;
     padding-left: 0em;
 }
@@ -182,30 +179,30 @@ ul li {
 }
 dt {
     font-weight: normal;
-    border-left: 0.5em solid #c00000;
+    border-left: 0.5em solid #c05050;
     border-bottom: 1px dotted #c00000;
     padding-left: 0.3em;
     margin: 0.3em 0em;
     width: 50%;
 }
 
-/* 水平線 */
+/* 横線 */
 hr {
     height: 1px;
-    background-color: #c00000;
+    background-color: #c05050;
     border-style: none;
 }
 
-/* フッタ */
+/* footer */
 div#postamble {
     text-align: right;
-    font-size: smaller;
-    border-top: 2px solid #808080;
+    font-size: 0.8em;
+    border-top: 3px solid #a0a0a0;
     padding: 1em 0em;
 }
 div#postamble p {
     margin: 0.2em 0em;
 }
 p.creator {
-    color: #a0a0a0;
+    color: #b0a0a0;
 }
