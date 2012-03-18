@@ -1,6 +1,7 @@
-#+AUTHOR: Yuuhi
+#+AUTHOR: YuuhiK
 #+TITLE: 2012年3月の記録
 #+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
 * 9日
@@ -427,4 +428,24 @@ rm *.toc
 
 ** CSS弄った
 
+** emacsマイナーモード書くときに参考にする
+https://github.com/toshia/mikutter-mode
+
+** VMとDropBoxの組み合わせは恐ろしい
+というかVMが恐ろしい．
+あと他人にPC渡すときはDropBoxのヒモ付切る．
+
+- 追記: 何も問題なかった．勘違い．でもVM上にはDropBoxインストールしないようにする．
+その手軽さがこわいんだァ！！
+
 * 18日
+起床． <2012-03-18 日 04:26>
+
+** GithubにEOPLの読んだ感想と書いたプログラムをアップする用のリポジトリ作る
+gh-pagesのブランチも作ろうと思ったけど．masterからgh-pagesへのマージ？仕方分からないの．
+
+*** mergeの簡単の仕方(コンフリクトが発生した場合)
+git pull とかでコンフリクトが起こったときの対処 - Mattari Memo
+ http://d.hatena.ne.jp/piropati/20090122/1232604189
+
+

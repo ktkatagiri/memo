@@ -1,0 +1,208 @@
+/* Org-mode の HTML 出力用スタイルシート */
+
+/* 文書全体 */
+html {
+    font-family: sans-serif;
+    font-size: medium;
+}
+body {
+    color: #eeeeee;
+    background-color: #333333;
+    line-height: 1.3;  /* IE 8 では "1.3" と "130%" と "1.3em" とで <h1> などの出力が異なるので注意 */
+    margin: 2%;
+}
+
+/* リンク */
+a:link {
+    color: #a01000;
+}
+a:visited {
+    color: #952000;
+}
+a:active {
+    color: #ff0200;
+}
+a:hover {
+    color: #ff0000;
+}
+
+/* タイトル */
+h1.title {
+    color: #eeeeee;
+    background-color: #505050;
+    text-align: left;
+    border: 3px solid black;
+    padding: 0.3em 1.0em;
+}
+
+/* 目次 */
+div#table-of-contents h2 {
+    display: none; /* 消す */
+}
+div#table-of-contents {
+    margin: 0.1em 30% 0.5em 1.5em;
+}
+div#text-table-of-contents {
+    background-color: #c0c0c0;
+    padding: 0.1em;
+    border: 1px dotted black;
+}
+
+/* 見出し */
+h2, h3, h4, h5, h6 {
+    padding: 0.2em 0.3em;
+}
+h4, h5, h6 {
+    font-size: 1em;  /* ブラウザによっては本文よりも小さくなってしまうので */
+}
+h5, h6 {
+    margin: 0.5em;
+}
+h2 {
+    border-bottom: 3px solid #c05050;
+}
+h3 {
+    border-bottom: 2px dotted black;
+}
+h4 {
+    border-bottom: 1px solid black;
+}
+h5 {
+    border-bottom: 1px solid #c0c0c0;
+}
+h6 {
+    border-bottom: 1px dotted #c0c0c0;
+}
+span.section-number-2, span.section-number-3, span.section-number-4, span.section-number-5, span.section-number-6 {
+    color: #c00000;
+}
+
+/* 本文 */
+div.outline-text-2, div.outline-text-3, div.outline-text-4 {
+    margin: 1em;
+}
+div.outline-text-5, div.outline-text-6 {
+    margin: 1em 1.5em;
+}
+
+/* 文字装飾 */
+b {
+    color: #c00000;
+}
+i {
+    color: #600000;
+}
+code {
+    color: #600000;
+}
+del {
+    color: #608080;
+}
+
+a img {
+    border: none;
+}
+img.figure {
+    display: block;
+    margin: 1em auto;
+    border: 1px dotted #c05050;
+}
+
+/* ソース、例文 */
+pre {
+    font-family: "ＭＳ ゴシック", "Osaka-Mono", monospace;
+    font-size: medium;
+    margin: 0.3em;
+    padding: 0.3em;
+}
+
+pre.src {
+    color: #f0f0d0;
+    background-color: #111111;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    border-right: 2px solid #404040;
+}
+
+pre.example {
+    color: #202020;
+    background-color: #e0e0e0;
+    border-top: 2px solid #705050;
+    border-left: 2px solid #705050;
+    border-bottom: 2px solid #d0a0a0;
+    border-right: 2px solid #d0a0a0;
+}
+
+/* テーブル */
+table {
+    margin: auto;
+}
+thead {
+    color: white;
+    background-color: #333333;
+}
+tbody {
+    background-color: #111111;
+}
+table, th, td {
+    border: 1px solid white;
+}
+th, td {
+    padding: 0.5em;
+}
+th {
+    font-weight: bold;
+}
+caption {
+    color: #a05050;
+    font-weight: bold;
+    font-size: smaller;
+    white-space: nowrap;
+}
+
+/* リスト */
+ol, ul {
+    padding-left: 2em;
+}
+
+ol li {
+    border-left: 1px solid #d0d0d0;
+    padding-left: 0.5em;
+}
+ol li ol li{
+    border: none;
+    padding-left: 0em;
+}
+ul li {
+    border: none;
+}
+dt {
+    font-weight: normal;
+    border-left: 0.5em solid #c05050;
+    border-bottom: 1px dotted #c00000;
+    padding-left: 0.3em;
+    margin: 0.3em 0em;
+    width: 50%;
+}
+
+/* 横線 */
+hr {
+    height: 1px;
+    background-color: #c05050;
+    border-style: none;
+}
+
+/* footer */
+div#postamble {
+    text-align: right;
+    font-size: 0.8em;
+    border-top: 3px solid #a0a0a0;
+    padding: 1em 0em;
+}
+div#postamble p {
+    margin: 0.2em 0em;
+}
+p.creator {
+    color: #b0a0a0;
+}
