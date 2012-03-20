@@ -449,3 +449,49 @@ git pull とかでコンフリクトが起こったときの対処 - Mattari Mem
  http://d.hatena.ne.jp/piropati/20090122/1232604189
 
 
+
+* 19日
+ほぼ徹夜．会社泊まりこみじゃなくて本当に良かった．TODO管理の決定版が思いつかない．
+
+** TODO 家賃の支払忘れるな
+一応通帳記入して確かめる
+
+** TODO 3月末に中四国に滞在するように予定をたてる
+ドラクリオットの発売とかぶっているので注意．
+
+
+* 20日
+はやすぎる．
+** Schemeのdo構文
+非常に使いづらい，覚えづらい．
+#+begin_src scheme
+(do ((変数1 初期値1 ステップ1)
+     (変数2 初期値2 ステップ2)
+     (・・・ ・・・ ・・・)
+     (変数n 初期値n ステップn))
+  (ループ終了条件 終了後に返す値)
+  式・・・)
+#+end_src
+
+まじ，見づらすぎる滅べ．
+
+** 並行処理
+コルーチン，マルチスレッドについて調べて厳密に定義
+
+** GravaterのAPIの使い方
+http://ja.gravatar.com/site/implement/images/ruby/
+#+begin_src ruby
+# include MD5 gem, should be part of standard ruby install
+require 'digest/md5'
+
+# get the email from URL-parameters or what have you and make lowercase
+email_address = "yuuhi@example.com"
+
+# create the md5 hash
+hash = Digest::MD5.hexdigest(email_address)
+
+# compile URL which can be used in <img src="RIGHT_HERE"...
+image_src = "http://www.gravatar.com/avatar/#{hash}"
+#+end_src
+
+でいける．そもそもこのサービスがなんなのかよく分からない．Githubのアイコンを表示させるときに登録させられたけど．．

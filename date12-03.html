@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="2012年3月の記録"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-18 04:31:18 JST"/>
+<meta name="generated" content="2012-03-20 12:24:19 JST"/>
 <meta name="author" content="YuuhiK"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -181,7 +181,27 @@
 <li><a href="#sec-9-5">9.5 VMとDropBoxの組み合わせは恐ろしい</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10 18日</a></li>
+<li><a href="#sec-10">10 18日</a>
+<ul>
+<li><a href="#sec-10-1">10.1 GithubにEOPLの読んだ感想と書いたプログラムをアップする用のリポジトリ作る</a>
+<ul>
+<li><a href="#sec-10-1-1">10.1.1 mergeの簡単の仕方(コンフリクトが発生した場合)</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-11">11 19日</a>
+<ul>
+<li><a href="#sec-11-1">11.1 家賃の支払忘れるな</a></li>
+<li><a href="#sec-11-2">11.2 3月末に中四国に滞在するように予定をたてる</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12 20日</a>
+<ul>
+<li><a href="#sec-12-1">12.1 Schemeのdo構文</a></li>
+<li><a href="#sec-12-2">12.2 並行処理</a></li>
+<li><a href="#sec-12-3">12.3 GravaterのAPIの使い方</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1053,14 +1073,136 @@ rm *.toc
 <p>起床． <span class="timestamp-wrapper"> <span class="timestamp">2012-03-18 日 04:26</span></span>
 </p>
 
+</div>
+
+<div id="outline-container-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> GithubにEOPLの読んだ感想と書いたプログラムをアップする用のリポジトリ作る</h3>
+<div class="outline-text-3" id="text-10-1">
+
+<p>gh-pagesのブランチも作ろうと思ったけど．masterからgh-pagesへのマージ？仕方分からないの．
+</p>
+
+</div>
+
+<div id="outline-container-10-1-1" class="outline-4">
+<h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span> mergeの簡単の仕方(コンフリクトが発生した場合)</h4>
+<div class="outline-text-4" id="text-10-1-1">
+
+<p>git pull とかでコンフリクトが起こったときの対処 - Mattari Memo
+ <a href="http://d.hatena.ne.jp/piropati/20090122/1232604189">http://d.hatena.ne.jp/piropati/20090122/1232604189</a>
+</p>
 
 
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 19日</h2>
+<div class="outline-text-2" id="text-11">
+
+<p>ほぼ徹夜．会社泊まりこみじゃなくて本当に良かった．TODO管理の決定版が思いつかない．
+</p>
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> <span class="todo TODO"> TODO</span> 家賃の支払忘れるな</h3>
+<div class="outline-text-3" id="text-11-1">
+
+<p>一応通帳記入して確かめる
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> <span class="todo TODO"> TODO</span> 3月末に中四国に滞在するように予定をたてる</h3>
+<div class="outline-text-3" id="text-11-2">
+
+<p>ドラクリオットの発売とかぶっているので注意．
+</p>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> 20日</h2>
+<div class="outline-text-2" id="text-12">
+
+<p>はやすぎる．
+</p>
+</div>
+
+<div id="outline-container-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> Schemeのdo構文</h3>
+<div class="outline-text-3" id="text-12-1">
+
+<p>非常に使いづらい，覚えづらい．
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">do</span> ((&#22793;&#25968;1 &#21021;&#26399;&#20516;1 &#12473;&#12486;&#12483;&#12503;1)
+     (&#22793;&#25968;2 &#21021;&#26399;&#20516;2 &#12473;&#12486;&#12483;&#12503;2)
+     (&#12539;&#12539;&#12539; &#12539;&#12539;&#12539; &#12539;&#12539;&#12539;)
+     (&#22793;&#25968;n &#21021;&#26399;&#20516;n &#12473;&#12486;&#12483;&#12503;n))
+  (&#12523;&#12540;&#12503;&#32066;&#20102;&#26465;&#20214; &#32066;&#20102;&#24460;&#12395;&#36820;&#12377;&#20516;)
+  &#24335;&#12539;&#12539;&#12539;)
+</pre>
+
+
+<p>
+まじ，見づらすぎる滅べ．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-2" class="outline-3">
+<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 並行処理</h3>
+<div class="outline-text-3" id="text-12-2">
+
+<p>コルーチン，マルチスレッドについて調べて厳密に定義
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-3" class="outline-3">
+<h3 id="sec-12-3"><span class="section-number-3">12.3</span> GravaterのAPIの使い方</h3>
+<div class="outline-text-3" id="text-12-3">
+
+<p><a href="http://ja.gravatar.com/site/implement/images/ruby/">http://ja.gravatar.com/site/implement/images/ruby/</a>
+</p>
+
+
+<pre class="src src-ruby"><span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">include MD5 gem, should be part of standard ruby install</span>
+require <span style="color: #ffa07a;">'digest/md5'</span>
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">get the email from URL-parameters or what have you and make lowercase</span>
+email_address = <span style="color: #ffa07a;">"yuuhi@example.com"</span>
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">create the md5 hash</span>
+hash = <span style="color: #98fb98;">Digest</span>::<span style="color: #98fb98;">MD5</span>.hexdigest(email_address)
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">compile URL which can be used in &lt;img src="RIGHT_HERE"...</span>
+image_src = <span style="color: #ffa07a;">"http://www.gravatar.com/avatar/</span><span style="color: #eedd82;">#{hash}</span><span style="color: #ffa07a;">"</span>
+</pre>
+
+
+<p>
+でいける．そもそもこのサービスがなんなのかよく分からない．Githubのアイコンを表示させるときに登録させられたけど．．
+</p></div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-18 04:31:18 JST</p>
+<p class="date">Date: 2012-03-20 12:24:19 JST</p>
 <p class="author">Author: YuuhiK</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

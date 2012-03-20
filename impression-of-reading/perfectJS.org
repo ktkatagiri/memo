@@ -4,7 +4,30 @@
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
+* jQueryに対して記憶が吹き飛んでいたのでいろいろとメモ
+#+begin_src javascript
+windows.onload = function(){
+  alert('hello world!');
+}
+#+end_src
+の代わりに，
+#+begin_src javascript
+jQuery(function(){
+  alert('hello world!');
+});
+#+end_src
+を使う．これは，
+#+begin_src javascript
+jQuery(document).ready(function(){
+  alert('hello world!');
+});
+#+end_src
+と同じもの．
+
+#+begin_src html
+<script type="javascript/worker">...</script>
+#+end_src
+
 * パーフェクトJavaScriptのメモ
 
-
-
+* canvas要素のこと

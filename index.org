@@ -1,5 +1,5 @@
 #+AUTHOR: Yuuhi
-#+TITLE: 深淵の索引
+#+TITLE: 索引
 #+LANGUAGE: ja
 
 #+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
