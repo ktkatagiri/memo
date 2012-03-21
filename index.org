@@ -14,7 +14,7 @@
 - [[http://d.hatena.ne.jp/yuuhi10/][はてブ]]
 
 * 個別の記録
-**  [[./impression-of-reading/486.html][486のこと]]
-**  [[/impression-of-reading/perfectJS.html][JavaScriptのこと]]
-**  [[./impression-of-reading/sicp.html][SICP]]
-**  [[./impression-of-reading/eopl.html][EOPL]]
+- [[./impression-of-reading/486.html][486のこと]]
+- [[/impression-of-reading/perfectJS.html][JavaScriptのこと]]
+- [[./impression-of-reading/sicp.html][SICP]]
+- [[./impression-of-reading/eopl.html][EOPL]]
