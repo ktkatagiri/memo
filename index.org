@@ -1,14 +1,20 @@
 #+AUTHOR: Yuuhi
 #+TITLE: 索引
 #+LANGUAGE: ja
-
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
 #+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
 
-* 日記みたいなの
-  [[./date12-03.org][3月の記録]] \\
+* 記録
+** 最近はこっちを更新している
+- [[./date12-03.org][3月の記録]]
+- 4月の記録
+- 5月の記録
+ 
+** 過去の記録(今はほとんど更新していない)
+- [[http://d.hatena.ne.jp/yuuhi10/][はてブ]]
 
-* 個別メモ
-  [[./impression-of-reading/486.html][486のこと]] \\
-  [[/impression-of-reading/perfectJS.html][JavaScriptのこと]] \\
-  [[./impression-of-reading/sicp.html][SICP]] \\
-  [[./impression-of-reading/eopl.html][EOPL]] \\
+* 個別の記録
+**  [[./impression-of-reading/486.html][486のこと]]
+**  [[/impression-of-reading/perfectJS.html][JavaScriptのこと]]
+**  [[./impression-of-reading/sicp.html][SICP]]
+**  [[./impression-of-reading/eopl.html][EOPL]]
