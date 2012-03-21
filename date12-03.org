@@ -475,8 +475,15 @@ git pull とかでコンフリクトが起こったときの対処 - Mattari Mem
 
 まじ，見づらすぎる滅べ．
 
-** 並行処理
+** 並行処理のまとめ
 コルーチン，マルチスレッドについて調べて厳密に定義
+
+*** マルチタスキング
+アプリケーションのコンパイル中に，インターネットで株価を調べたりしない．．
+
+*** プロセス
+
+*** スレッド
 
 ** GravaterのAPIの使い方
 http://ja.gravatar.com/site/implement/images/ruby/
@@ -495,3 +502,111 @@ image_src = "http://www.gravatar.com/avatar/#{hash}"
 #+end_src
 
 でいける．そもそもこのサービスがなんなのかよく分からない．Githubのアイコンを表示させるときに登録させられたけど．．
+
+
+** A Normal Fromとは？
+
+
+** Ajaxとは？
+再確認．
+ウェブブラウザ内で非同期通信とインターフェイスの構築などを行う技術の総称．
+主にXMLHttpRequestという組み込みオブジェクトを利用して非同期通信を使って，
+通信のレスポンスによってHTML(DOM)を動的に書き換え，見た目などに反映させること．
+AJAXはAsynchronous JavaScript + XMLの略らしいが，最近はXMLよりJSONの方が多く使われていそうだし，
+AJAJだよなぁ．
+
+*** そもそも非同期(Asynchronous)とは何か？
+
+XHRのこと https://developer.mozilla.org/ja/XMLHttpRequest \\
+#+begin_src javascript
+// XMLHttpRequestの
+var req = new XMLHttpRequest();
+req.open('GET', 'http://www.zitoo-me.net/hoge.json', true);
+req.onreadystatechange = function (e) {
+  if (req.readyState == 4)
+     alert('ひどうき！')
+  }
+};
+req.send(null);
+alert('にゃあ');
+#+end_src
+
+onreadystatechangeプロパティはreadyState 属性が変更する都度呼び出されるJavaScriptの関数オブジェクト．
+コールバック関数はユーザーインターフェーススレッドから呼び出される．
+- readyState
+| 値 | 状態             | 詳細                                                            |
+|----+------------------+-----------------------------------------------------------------|
+|  0 | UNSENT           | open() がまだ呼び出されていない。                               |
+|  1 | OPENED           | send() がまだ呼び出されていない。                               |
+|  2 | HEADERS_RECEIVED | send() が呼び出され、ヘッダーとステータスが通った。             |
+|  3 | LOADING          | ダウンロード中；　responseText は断片的なデータを保持している。 |
+|  4 | DONE             | 一連の動作が完了した。                                          |
+
+#+begin_src javascript
+// setTimeoutの
+var sid = setTimeout(function () {
+  alert('ひどうき！');
+}, 0);
+alert('にゃあ');
+#+end_src
+
+#+begin_src javascript
+// イベントの
+document.body.onclick = function (e) {
+  alert('ひどうき！');
+};
+alert('にゃあ！');
+#+end_src
+
+上記のコードは全て「にゃあ」の後に「ひどうき！」がalertされる．
+
+- JavaScriptはシングルスレッド
+非同期的に呼ばれるコールバックを登録する関数を呼び出した時は，
+その呼び出した側の関数の実行が終わってから，トップレベルまで制御が帰ったあとじゃないと，
+コールバックは呼び出されない．
+
+*** コールバックとは？
+コールバック (情報工学) \\
+http://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF_%28%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6%29 \\
+
+- JavaScriptにおいてはイベント駆動型のプログラミングにおいてもちいられるため
+オブザーバパターンの用途．
+
+- マルチキャスト型のコールバック(一つのイベントで複数のコールバックで登録された関数を呼び出すことができる？)
+
+*** 非同期だとプログラミングの難易度があがる
+どういうところが問題なのか？
+- コードの見た目順に実行されるわけではない
+  - JavaScriptではコールバックを用いる
+  - これらは全てコールバックをとりそれをあとで実行
+
+* 21日
+君とうねうねしたい．
+
+** org-modeにおける画像の表示方法
+http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i5
+#+begin_example
+ ［［file:highres.jpg］［file:thumb.jpg］］
+#+end_example
+例えば↓の例みたいに表示される．begin\_htmlで書いたほうが良さげ？
+
+ [[file:sc1.png][file:sc1.png]]
+
+#+begin_src html
+<img src="sc1.png" alt="イベント駆動型の図" height=250>
+#+end_src
+
+#+begin_html
+<img src="sc1.png" alt="イベント駆動型の図" height=250>
+#+end_html
+
+** Botの問題点まとめ
+- リプライが止まらない
+確率を入れるか．最大値を設定するか．
+- リツイートに反応する
+数行書くだけ．
+- ツイートの生成元のソースが少ない
+クローラーを組み込んでいろんなところから情報収集する．データベースをもう少しマジメに設計する．
+- 32bitOSでのmongoDBの問題
+MySQLに移行予定
+

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="2012年3月の記録"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-20 12:24:19 JST"/>
+<meta name="generated" content="2012-03-21 16:41:20 JST"/>
 <meta name="author" content="YuuhiK"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -198,8 +198,27 @@
 <li><a href="#sec-12">12 20日</a>
 <ul>
 <li><a href="#sec-12-1">12.1 Schemeのdo構文</a></li>
-<li><a href="#sec-12-2">12.2 並行処理</a></li>
+<li><a href="#sec-12-2">12.2 並行処理のまとめ</a>
+<ul>
+<li><a href="#sec-12-2-1">12.2.1 マルチタスキング</a></li>
+<li><a href="#sec-12-2-2">12.2.2 プロセス</a></li>
+<li><a href="#sec-12-2-3">12.2.3 スレッド</a></li>
+</ul>
+</li>
 <li><a href="#sec-12-3">12.3 GravaterのAPIの使い方</a></li>
+<li><a href="#sec-12-4">12.4 A Normal Fromとは？</a></li>
+<li><a href="#sec-12-5">12.5 Ajaxとは？</a>
+<ul>
+<li><a href="#sec-12-5-1">12.5.1 そもそも非同期(Asynchronous)とは何か？</a></li>
+<li><a href="#sec-12-5-2">12.5.2 コールバックとは？</a></li>
+<li><a href="#sec-12-5-3">12.5.3 非同期だとプログラミングの難易度があがる</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-13">13 21日</a>
+<ul>
+<li><a href="#sec-13-1">13.1 org-modeにおける画像の表示方法</a></li>
+<li><a href="#sec-13-2">13.2 Botの問題点まとめ</a></li>
 </ul>
 </li>
 </ul>
@@ -1163,11 +1182,39 @@ rm *.toc
 </div>
 
 <div id="outline-container-12-2" class="outline-3">
-<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 並行処理</h3>
+<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 並行処理のまとめ</h3>
 <div class="outline-text-3" id="text-12-2">
 
 <p>コルーチン，マルチスレッドについて調べて厳密に定義
 </p>
+
+</div>
+
+<div id="outline-container-12-2-1" class="outline-4">
+<h4 id="sec-12-2-1"><span class="section-number-4">12.2.1</span> マルチタスキング</h4>
+<div class="outline-text-4" id="text-12-2-1">
+
+<p>アプリケーションのコンパイル中に，インターネットで株価を調べたりしない．．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-2-2" class="outline-4">
+<h4 id="sec-12-2-2"><span class="section-number-4">12.2.2</span> プロセス</h4>
+<div class="outline-text-4" id="text-12-2-2">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-12-2-3" class="outline-4">
+<h4 id="sec-12-2-3"><span class="section-number-4">12.2.3</span> スレッド</h4>
+<div class="outline-text-4" id="text-12-2-3">
+
+
+</div>
 </div>
 
 </div>
@@ -1196,13 +1243,243 @@ image_src = <span style="color: #ffa07a;">"http://www.gravatar.com/avatar/</span
 
 <p>
 でいける．そもそもこのサービスがなんなのかよく分からない．Githubのアイコンを表示させるときに登録させられたけど．．
-</p></div>
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-12-4" class="outline-3">
+<h3 id="sec-12-4"><span class="section-number-3">12.4</span> A Normal Fromとは？</h3>
+<div class="outline-text-3" id="text-12-4">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-12-5" class="outline-3">
+<h3 id="sec-12-5"><span class="section-number-3">12.5</span> Ajaxとは？</h3>
+<div class="outline-text-3" id="text-12-5">
+
+<p>再確認．
+ウェブブラウザ内で非同期通信とインターフェイスの構築などを行う技術の総称．
+主にXMLHttpRequestという組み込みオブジェクトを利用して非同期通信を使って，
+通信のレスポンスによってHTML(DOM)を動的に書き換え，見た目などに反映させること．
+AJAXはAsynchronous JavaScript + XMLの略らしいが，最近はXMLよりJSONの方が多く使われていそうだし，
+AJAJだよなぁ．
+</p>
+
+</div>
+
+<div id="outline-container-12-5-1" class="outline-4">
+<h4 id="sec-12-5-1"><span class="section-number-4">12.5.1</span> そもそも非同期(Asynchronous)とは何か？</h4>
+<div class="outline-text-4" id="text-12-5-1">
+
+
+<p>
+XHRのこと <a href="https://developer.mozilla.org/ja/XMLHttpRequest">https://developer.mozilla.org/ja/XMLHttpRequest</a> <br/>
+</p>
+
+
+<pre class="src src-javascript"><span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">XMLHttpRequest&#12398;</span>
+<span style="color: #00ffff;">var</span> <span style="color: #eedd82;">req</span> = <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">XMLHttpRequest</span>();
+req.open(<span style="color: #ffa07a;">'GET'</span>, <span style="color: #ffa07a;">'http://www.zitoo-me.net/hoge.json'</span>, <span style="color: #7fffd4;">true</span>);
+req.onreadystatechange = <span style="color: #00ffff;">function</span> (<span style="color: #eedd82;">e</span>) {
+  <span style="color: #00ffff;">if</span> (req.readyState == 4)
+     alert(<span style="color: #ffa07a;">'&#12402;&#12393;&#12358;&#12365;&#65281;'</span>)
+  }
+};
+req.send(<span style="color: #7fffd4;">null</span>);
+alert(<span style="color: #ffa07a;">'&#12395;&#12419;&#12354;'</span>);
+</pre>
+
+
+<p>
+onreadystatechangeプロパティはreadyState 属性が変更する都度呼び出されるJavaScriptの関数オブジェクト．
+コールバック関数はユーザーインターフェーススレッドから呼び出される．
+</p><ul>
+<li>readyState
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">値</th><th scope="col" class="left">状態</th><th scope="col" class="left">詳細</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">0</td><td class="left">UNSENT</td><td class="left">open() がまだ呼び出されていない。</td></tr>
+<tr><td class="right">1</td><td class="left">OPENED</td><td class="left">send() がまだ呼び出されていない。</td></tr>
+<tr><td class="right">2</td><td class="left">HEADERS<sub>RECEIVED</sub></td><td class="left">send() が呼び出され、ヘッダーとステータスが通った。</td></tr>
+<tr><td class="right">3</td><td class="left">LOADING</td><td class="left">ダウンロード中；　responseText は断片的なデータを保持している。</td></tr>
+<tr><td class="right">4</td><td class="left">DONE</td><td class="left">一連の動作が完了した。</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<pre class="src src-javascript"><span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">setTimeout&#12398;</span>
+<span style="color: #00ffff;">var</span> <span style="color: #eedd82;">sid</span> = setTimeout(<span style="color: #00ffff;">function</span> () {
+  alert(<span style="color: #ffa07a;">'&#12402;&#12393;&#12358;&#12365;&#65281;'</span>);
+}, 0);
+alert(<span style="color: #ffa07a;">'&#12395;&#12419;&#12354;'</span>);
+</pre>
+
+
+
+<pre class="src src-javascript"><span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#12452;&#12505;&#12531;&#12488;&#12398;</span>
+document.body.onclick = <span style="color: #00ffff;">function</span> (<span style="color: #eedd82;">e</span>) {
+  alert(<span style="color: #ffa07a;">'&#12402;&#12393;&#12358;&#12365;&#65281;'</span>);
+};
+alert(<span style="color: #ffa07a;">'&#12395;&#12419;&#12354;&#65281;'</span>);
+</pre>
+
+
+<p>
+上記のコードは全て「にゃあ」の後に「ひどうき！」がalertされる．
+</p>
+<ul>
+<li>JavaScriptはシングルスレッド
+</li>
+</ul>
+
+<p>非同期的に呼ばれるコールバックを登録する関数を呼び出した時は，
+その呼び出した側の関数の実行が終わってから，トップレベルまで制御が帰ったあとじゃないと，
+コールバックは呼び出されない．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-5-2" class="outline-4">
+<h4 id="sec-12-5-2"><span class="section-number-4">12.5.2</span> コールバックとは？</h4>
+<div class="outline-text-4" id="text-12-5-2">
+
+<p>コールバック (情報工学) <br/>
+<a href="http://ja.wikipedia.org/wiki/コールバック_(情報工学)">http://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF_%28%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6%29</a> <br/>
+</p>
+<ul>
+<li>JavaScriptにおいてはイベント駆動型のプログラミングにおいてもちいられるため
+</li>
+</ul>
+
+<p>オブザーバパターンの用途．
+</p>
+<ul>
+<li>マルチキャスト型のコールバック(一つのイベントで複数のコールバックで登録された関数を呼び出すことができる？)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-12-5-3" class="outline-4">
+<h4 id="sec-12-5-3"><span class="section-number-4">12.5.3</span> 非同期だとプログラミングの難易度があがる</h4>
+<div class="outline-text-4" id="text-12-5-3">
+
+<p>どういうところが問題なのか？
+</p><ul>
+<li>コードの見た目順に実行されるわけではない
+<ul>
+<li>JavaScriptではコールバックを用いる
+</li>
+<li>これらは全てコールバックをとりそれをあとで実行
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> 21日</h2>
+<div class="outline-text-2" id="text-13">
+
+<p>君とうねうねしたい．
+</p>
+
+</div>
+
+<div id="outline-container-13-1" class="outline-3">
+<h3 id="sec-13-1"><span class="section-number-3">13.1</span> org-modeにおける画像の表示方法</h3>
+<div class="outline-text-3" id="text-13-1">
+
+<p><a href="http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual4#i5">http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i5</a>
+</p>
+
+
+<pre class="example">［［file:highres.jpg］［file:thumb.jpg］］
+</pre>
+
+<p>
+例えば↓の例みたいに表示される．begin_htmlで書いたほうが良さげ？
+</p>
+<p>
+ <img src="sc1.png"  alt="sc1.png" />
+</p>
+
+
+
+<pre class="src src-html">&lt;<span style="color: #87cefa;">img</span> <span style="color: #eedd82;">src</span>=<span style="color: #ffa07a;">"sc1.png"</span> <span style="color: #eedd82;">alt</span>=<span style="color: #ffa07a;">"&#12452;&#12505;&#12531;&#12488;&#39366;&#21205;&#22411;&#12398;&#22259;"</span> height=250&gt;
+</pre>
+
+
+<img src="sc1.png" alt="イベント駆動型の図" height=250>
+
+</div>
+
+</div>
+
+<div id="outline-container-13-2" class="outline-3">
+<h3 id="sec-13-2"><span class="section-number-3">13.2</span> Botの問題点まとめ</h3>
+<div class="outline-text-3" id="text-13-2">
+
+<ul>
+<li>リプライが止まらない
+</li>
+</ul>
+
+<p>確率を入れるか．最大値を設定するか．
+</p><ul>
+<li>リツイートに反応する
+</li>
+</ul>
+
+<p>数行書くだけ．
+</p><ul>
+<li>ツイートの生成元のソースが少ない
+</li>
+</ul>
+
+<p>クローラーを組み込んでいろんなところから情報収集する．データベースをもう少しマジメに設計する．
+</p><ul>
+<li>32bitOSでのmongoDBの問題
+</li>
+</ul>
+
+<p>MySQLに移行予定
+</p>
+</div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-20 12:24:19 JST</p>
+<p class="date">Date: 2012-03-21 16:41:20 JST</p>
 <p class="author">Author: YuuhiK</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
