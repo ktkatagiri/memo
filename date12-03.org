@@ -448,7 +448,6 @@ gh-pagesのブランチも作ろうと思ったけど．masterからgh-pagesへ�
 git pull とかでコンフリクトが起こったときの対処 - Mattari Memo
  http://d.hatena.ne.jp/piropati/20090122/1232604189
 
-
 * 19日
 ほぼ徹夜．会社泊まりこみじゃなくて本当に良かった．TODO管理の決定版が思いつかない．
 
@@ -607,4 +606,15 @@ http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i5
 クローラーを組み込んでいろんなところから情報収集する．データベースをもう少しマジメに設計する．
 - 32bitOSでのmongoDBの問題
 MySQLに移行予定
+
+
+** convertコマンドを思い出せ
+#+begin_example
+convert [ options ... ] input_file output_file
+#+end_example
+
+* 22日
+寝た．
+
+
 
