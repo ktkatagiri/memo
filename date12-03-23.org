@@ -1,0 +1,14 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 3月の記録２
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 23日
+# プログラマの数学の説明をJSで書きながら再読しようと思う．
+
+* 一つタスクを食べた
+* もう少し急げ
+
+
+
