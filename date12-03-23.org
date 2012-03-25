@@ -7,8 +7,29 @@
 * 23日
 # プログラマの数学の説明をJSで書きながら再読しようと思う．
 
-* 一つタスクを食べた
-* もう少し急げ
+** 一つタスクを食べた
+** もう少し急げ
 
+* 24日
+あへあへ
 
+* 25日
+買った．
+
+Emacs実践入門　~思考を直感的にコード化し、開発を加速する (WEB+DB PRESS plus) [単行本（ソフトカバー）]\\
+http://www.amazon.co.jp/gp/product/4774150029/
+
+機能は
+
+#+begin_src emacs-lisp
+;;; revive.el の設定
+(add-to-list 'load-path "~/.emacs.d/elisp/revive/")
+(autoload 'save-current-configuration "revive" "Save status" t)
+(autoload 'resume "revive" "Resume Emacs" t)
+(autoload 'wipe "revive" "Wipe emacs" t)
+(define-key ctl-x-map "F" 'resume) ;; C-x F で復元
+(define-key ctl-x-map "K" 'wipe) ;; C-x K で Kill
+(add-hook 'kill-emacs-hook 'save-current-configuration) ;; 終了時に保存
+(resume) ; 起動時に復元
+#+end_src
 
