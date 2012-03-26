@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="3月の記録２"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-26 05:53:53 JST"/>
+<meta name="generated" content="2012-03-26 15:24:52 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -110,6 +110,11 @@
 </li>
 <li><a href="#sec-2">2 24日</a></li>
 <li><a href="#sec-3">3 25日</a></li>
+<li><a href="#sec-4">4 26日</a>
+<ul>
+<li><a href="#sec-4-1">4.1 Rubyのeachとeach<sub>with</sub><sub>index</sub></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -179,11 +184,45 @@ Emacs実践入門　~思考を直感的にコード化し、開発を加速す�
 
 
 </div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 26日</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>今日もうねうね
+</p>
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Rubyのeachとeach<sub>with</sub><sub>index</sub></h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+
+
+<pre class="src src-ruby"><span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">0&#12363;&#12425;10&#12414;&#12391;&#12434;&#34920;&#31034;&#12377;&#12427;&#12503;&#12525;&#12464;&#12521;&#12512;</span>
+(0..10).each{|e|
+  puts e
+}
+
+(0..10).each_with_index{|e,index|
+  puts <span style="color: #ffa07a;">"</span><span style="color: #eedd82;">#{index}</span><span style="color: #ffa07a;">&#30058;&#30446;&#12364;</span><span style="color: #eedd82;">#{e}</span><span style="color: #ffa07a;">"</span>
+}
+</pre>
+
+<p>
+インデックスも引数で受け取れる
+</p>
+</div>
+</div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-26 05:53:53 JST</p>
+<p class="date">Date: 2012-03-26 15:24:52 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

@@ -34,4 +34,18 @@ http://www.amazon.co.jp/gp/product/4774150029/
 #+end_src
 
 * 26日
+今日もうねうね
+
+** Rubyのeachとeach_with_index
+#+begin_src ruby
+#0から10までを表示するプログラム
+(0..10).each{|e|
+  puts e
+}
+
+(0..10).each_with_index{|e,index|
+  puts "#{index}番目が#{e}"
+}
+#+end_src
+インデックスも引数で受け取れる
 
