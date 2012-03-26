@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="3月の記録２"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-26 15:24:52 JST"/>
+<meta name="generated" content="2012-03-27 07:13:01 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -94,6 +94,7 @@
 <div id="content">
 <h1 class="title">3月の記録２</h1>
 
+
 <meta content='no-cache' http-equiv='Pragma' />
 
 
@@ -111,7 +112,16 @@
 <li><a href="#sec-3">3 25日</a></li>
 <li><a href="#sec-4">4 26日</a>
 <ul>
-<li><a href="#sec-4-1">4.1 Rubyのeachとeach<sub>with</sub><sub>index</sub></a></li>
+<li><a href="#sec-4-1">4.1 Rubyのeachとeach_with_index</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 27日</a>
+<ul>
+<li><a href="#sec-5-1">5.1 Emacsに今さらegg.el導入</a>
+<ul>
+<li><a href="#sec-5-1-1">5.1.1 リファレンス</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -196,7 +206,7 @@ Emacs実践入門　~思考を直感的にコード化し、開発を加速す�
 </div>
 
 <div id="outline-container-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Rubyのeachとeach<sub>with</sub><sub>index</sub></h3>
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Rubyのeachとeach_with_index</h3>
 <div class="outline-text-3" id="text-4-1">
 
 
@@ -217,11 +227,77 @@ Emacs実践入門　~思考を直感的にコード化し、開発を加速す�
 </p>
 </div>
 </div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 27日</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>DTIのVPSに日記も引っ越し．
+githubのリポジトリのpushにhookして，postがなげられ，それに反応してこっちが更新される仕組み．
+</p>
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Emacsに今さらegg.el導入</h3>
+<div class="outline-text-3" id="text-5-1">
+
+
+
+
+<pre class="src src-emacs_lisp">;; egg.el
+(add-to-list 'load-path <span style="color: #ffa07a;">"~/.emacs.d/elisp/egg/"</span>)
+(when (executable-find <span style="color: #ffa07a;">"git"</span>)
+  (require 'egg nil t))
+</pre>
+
+<p>
+<a href="https://github.com/bogolisk/egg/wiki">https://github.com/bogolisk/egg/wiki</a>
+</p>
+</div>
+
+<div id="outline-container-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> リファレンス</h4>
+<div class="outline-text-4" id="text-5-1-1">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">key</th><th scope="col" class="left">lisp</th><th scope="col" class="left">description</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">C-x v d</td><td class="left">egg-status</td><td class="left">shows the repo’s current status. git status &amp;&amp; git diff &amp;&amp; git diff &ndash;cached &amp;&amp; &hellip;</td></tr>
+<tr><td class="left">C-x v c</td><td class="left">egg-commit-log-edit</td><td class="left">start editing the commit message for the current staged changes. With a prefix (C-u C-x v c), amend HEAD instead. git commit -e …</td></tr>
+<tr><td class="left">C-x v i</td><td class="left">egg-file-stage-current-file</td><td class="left">stage new changes of the current file. git add</td></tr>
+<tr><td class="left">C-x v l</td><td class="left">egg-log</td><td class="left">shows HEAD’s history . With a prefix (C-u C-x v l), show history of all refs.  git log</td></tr>
+<tr><td class="left">C-x v o</td><td class="left">egg-file-checkout-other-version</td><td class="left">checkout another version of the current file. git checkout REV file</td></tr>
+<tr><td class="left">C-x v u</td><td class="left">egg-file-cancel-modifications</td><td class="left">unconditionally delete unstaged modifications in the current file. git checkout …</td></tr>
+<tr><td class="left">C-x v v</td><td class="left">egg-next-action</td><td class="left">perform the next logical action. git dwim</td></tr>
+<tr><td class="left">C-x v =</td><td class="left">egg-file-diff</td><td class="left">compare file with index or other commits.git diff…</td></tr>
+<tr><td class="left">C-x v ~</td><td class="left">egg-file-version-other-window</td><td class="left">show other version of the current file. git checkout…</td></tr>
+<tr><td class="left">C-x v b</td><td class="left">egg-start-new-branch</td><td class="left">start a new branch from the current HEAD.git checkout -b new<sub>branch</sub></td></tr>
+<tr><td class="left">C-x v a</td><td class="left">egg-file-toggle-blame-mode</td><td class="left">enable/disable blame attributions (using overlays) in the current buffer.git blame</td></tr>
+</tbody>
+</table>
+
+
+
+<p>
+んんん，使い方分からん．
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-26 15:24:52 JST</p>
+<p class="date">Date: 2012-03-27 07:13:01 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

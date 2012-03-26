@@ -36,7 +36,7 @@ http://www.amazon.co.jp/gp/product/4774150029/
 * 26日
 今日もうねうね
 
-** Rubyのeachとeach_with_index
+** Rubyのeachとeach\_with\_index
 #+begin_src ruby
 #0から10までを表示するプログラム
 (0..10).each{|e|
@@ -48,4 +48,35 @@ http://www.amazon.co.jp/gp/product/4774150029/
 }
 #+end_src
 インデックスも引数で受け取れる
+
+* 27日
+DTIのVPSに日記も引っ越し．
+githubのリポジトリのpushにhookして，postがなげられ，それに反応してこっちが更新される仕組み．
+
+** Emacsに今さらegg.el導入
+#+begin_src emacs_lisp
+;; egg.el
+(add-to-list 'load-path "~/.emacs.d/elisp/egg/")
+(when (executable-find "git")
+  (require 'egg nil t))
+#+end_src
+https://github.com/bogolisk/egg/wiki
+*** リファレンス
+
+| key     | lisp                            | description                                                                                                                        |
+|---------+---------------------------------+------------------------------------------------------------------------------------------------------------------------------------|
+| C-x v d | egg-status                      | shows the repo’s current status. git status && git diff && git diff --cached && ...                                               |
+| C-x v c | egg-commit-log-edit             | start editing the commit message for the current staged changes. With a prefix (C-u C-x v c), amend HEAD instead. git commit -e … |
+| C-x v i | egg-file-stage-current-file     | stage new changes of the current file. git add                                                                                     |
+| C-x v l | egg-log                         | shows HEAD’s history . With a prefix (C-u C-x v l), show history of all refs.  git log                                            |
+| C-x v o | egg-file-checkout-other-version | checkout another version of the current file. git checkout REV file                                                                |
+| C-x v u | egg-file-cancel-modifications   | unconditionally delete unstaged modifications in the current file. git checkout …                                                 |
+| C-x v v | egg-next-action                 | perform the next logical action. git dwim                                                                                          |
+| C-x v = | egg-file-diff                   | compare file with index or other commits.git diff…                                                                                |
+| C-x v ~ | egg-file-version-other-window   | show other version of the current file. git checkout…                                                                             |
+| C-x v b | egg-start-new-branch            | start a new branch from the current HEAD.git checkout -b new_branch                                                                |
+| C-x v a | egg-file-toggle-blame-mode      | enable/disable blame attributions (using overlays) in the current buffer.git blame                                                 |
+
+
+んんん，使い方分からん．
 
