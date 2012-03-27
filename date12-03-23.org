@@ -77,7 +77,8 @@ https://github.com/bogolisk/egg/wiki
 | C-x v b | egg-start-new-branch            | start a new branch from the current HEAD.git checkout -b new_branch                                                                |
 | C-x v a | egg-file-toggle-blame-mode      | enable/disable blame attributions (using overlays) in the current buffer.git blame                                                 |
 
-
-んんん，使い方分からん．
-ほげ
 *** githubのhookのpost recieve動かん
+Githubへのpush時に一緒に更新ができなくなった．．
+
+分からん
+．
