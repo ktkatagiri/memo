@@ -53,7 +53,7 @@ http://www.amazon.co.jp/gp/product/4774150029/
 DTIのVPSに日記も引っ越し．
 githubのリポジトリのpushにhookして，postがなげられ，それに反応してこっちが更新される仕組み．
 
-** Emacsに今さらegg.el導入
+** Emacsにegg.el導入
 #+begin_src emacs_lisp
 ;; egg.el
 (add-to-list 'load-path "~/.emacs.d/elisp/egg/")
@@ -80,5 +80,92 @@ https://github.com/bogolisk/egg/wiki
 *** githubのhookのpost recieve動かん
 Githubへのpush時に一緒に更新ができなくなった．．
 
-分からん
-．
+分からん．
+
+
+
+** Emacsからirb使えるようにした
+[Ctrl-c Ctrl-s]でirb起動．
+基本はリージョンで範囲指定して[Ctrl-c r]でirbへ送る．
+#+begin_src lisp
+(require 'ruby-electric nil t)
+(when (require 'ruby-block nil t)
+  (setq ruby-block-highlight-toggle t))
+(autoload 'run-ruby "inf-ruby"
+  "Ruby an inferior Ruby process")
+(autoload 'inf-ruby-keys "inf-ruby"
+  "Set local key defs for inf-ruby in ruby-mode")
+(setq ruby-mode-hooks
+      (lambda ()
+	(inf-ruby-keys)
+	(ruby-electric-mode t)
+	(ruby-block-mode t)))
+(add-hook 'ruby-mode-hook ruby-mode-hooks)
+#+end_src
+
+
+** brewからMySQLインストール
+#+begin_example
+mysql 5.5.20
+http://dev.mysql.com/doc/refman/5.5/en/
+Depends on: cmake, readline, pidof
+/usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
+
+Set up databases to run AS YOUR USER ACCOUNT with:
+    unset TMPDIR
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+
+To set up base tables in another folder, or use a different user to run
+mysqld, view the help for mysqld_install_db:
+    mysql_install_db --help
+
+and view the MySQL documentation:
+  * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
+  * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
+
+To run as, for instance, user "mysql", you may need to `sudo`:
+    sudo mysql_install_db ...options...
+
+Start mysqld manually with:
+    mysql.server start
+
+    Note: if this fails, you probably forgot to run the first two steps up above
+
+A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+server starting up correctly.
+
+To connect:
+    mysql -uroot
+
+To launch on startup:
+* if this is your first install:
+    mkdir -p ~/Library/LaunchAgents
+    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+* if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
+    launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+You may also need to edit the plist to use the correct "UserName".
+
+http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
+#+end_example
+http://d.hatena.ne.jp/littlebuddha/20111109/1320851331
+#+begin_example
+unset TMPDIR
+mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+mysql.server start
+mysql -u root
+# でログイン
+#+end_example
+らしい
+
+** call/cc，Fiber，並行処理(concurrent processing)，coroutine
+- Luaの本にcoroutine(協調スレッド)の話がのっていたのを覚えている．
+  - Luaやってみたい！
+    - ゲームも作りたい！
+#+begin_example
+しあわせは歩いてこない．だから歩いて行くんだね．一日一歩，三日で三歩，三歩さがって，そして絶望して死ぬ
+#+end_example

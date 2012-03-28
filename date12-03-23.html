@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="3月の記録２"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-27 09:32:59 JST"/>
+<meta name="generated" content="2012-03-27 14:53:56 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -117,12 +117,15 @@
 </li>
 <li><a href="#sec-5">5 27日</a>
 <ul>
-<li><a href="#sec-5-1">5.1 Emacsに今さらegg.el導入</a>
+<li><a href="#sec-5-1">5.1 Emacsにegg.el導入</a>
 <ul>
 <li><a href="#sec-5-1-1">5.1.1 リファレンス</a></li>
 <li><a href="#sec-5-1-2">5.1.2 githubのhookのpost recieve動かん</a></li>
 </ul>
 </li>
+<li><a href="#sec-5-2">5.2 Emacsからirb使えるようにした</a></li>
+<li><a href="#sec-5-3">5.3 brewからMySQLインストール</a></li>
+<li><a href="#sec-5-4">5.4 call/cc，Fiber，並行処理(concurrent processing)，coroutine</a></li>
 </ul>
 </li>
 </ul>
@@ -242,7 +245,7 @@ githubのリポジトリのpushにhookして，postがなげられ，それに�
 </div>
 
 <div id="outline-container-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Emacsに今さらegg.el導入</h3>
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Emacsにegg.el導入</h3>
 <div class="outline-text-3" id="text-5-1">
 
 
@@ -298,16 +301,148 @@ githubのリポジトリのpushにhookして，postがなげられ，それに�
 <p>Githubへのpush時に一緒に更新ができなくなった．．
 </p>
 <p>
-分からん
-．
-</p></div>
+分からん．
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Emacsからirb使えるようにした</h3>
+<div class="outline-text-3" id="text-5-2">
+
+<p>[Ctrl-c Ctrl-s]でirb起動．
+基本はリージョンで範囲指定して[Ctrl-c r]でirbへ送る．
+</p>
+
+
+<pre class="src src-lisp">(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">ruby-electric</span> nil t)
+(<span style="color: #00ffff;">when</span> (<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">ruby-block</span> nil t)
+  (setq ruby-block-highlight-toggle t))
+(autoload 'run-ruby <span style="color: #ffa07a;">"inf-ruby"</span>
+  <span style="color: #ffa07a;">"Ruby an inferior Ruby process"</span>)
+(autoload 'inf-ruby-keys <span style="color: #ffa07a;">"inf-ruby"</span>
+  <span style="color: #ffa07a;">"Set local key defs for inf-ruby in ruby-mode"</span>)
+(setq ruby-mode-hooks
+      (<span style="color: #00ffff;">lambda</span> ()
+        (inf-ruby-keys)
+        (ruby-electric-mode t)
+        (ruby-block-mode t)))
+(add-hook 'ruby-mode-hook ruby-mode-hooks)
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> brewからMySQLインストール</h3>
+<div class="outline-text-3" id="text-5-3">
+
+
+
+
+<pre class="example">mysql 5.5.20
+http://dev.mysql.com/doc/refman/5.5/en/
+Depends on: cmake, readline, pidof
+/usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
+
+Set up databases to run AS YOUR USER ACCOUNT with:
+    unset TMPDIR
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+
+To set up base tables in another folder, or use a different user to run
+mysqld, view the help for mysqld_install_db:
+    mysql_install_db --help
+
+and view the MySQL documentation:
+  * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
+  * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
+ORG-LIST-END-MARKER
+
+To run as, for instance, user "mysql", you may need to `sudo`:
+    sudo mysql_install_db ...options...
+
+Start mysqld manually with:
+    mysql.server start
+
+    Note: if this fails, you probably forgot to run the first two steps up above
+
+A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+server starting up correctly.
+
+To connect:
+    mysql -uroot
+
+To launch on startup:
+* if this is your first install:
+    mkdir -p ~/Library/LaunchAgents
+    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+* if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
+    launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+You may also need to edit the plist to use the correct "UserName".
+
+
+http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
+</pre>
+
+<p>
+<a href="http://d.hatena.ne.jp/littlebuddha/20111109/1320851331">http://d.hatena.ne.jp/littlebuddha/20111109/1320851331</a>
+</p>
+
+
+<pre class="example">unset TMPDIR
+mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+mysql.server start
+mysql -u root
+# でログイン
+</pre>
+
+<p>
+らしい
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> call/cc，Fiber，並行処理(concurrent processing)，coroutine</h3>
+<div class="outline-text-3" id="text-5-4">
+
+<ul>
+<li>Luaの本にcoroutine(協調スレッド)の話がのっていたのを覚えている．
+<ul>
+<li>Luaやってみたい！
+<ul>
+<li>ゲームも作りたい！
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
 </div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-27 09:32:59 JST</p>
+<p class="date">Date: 2012-03-27 14:53:56 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
