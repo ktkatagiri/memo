@@ -1,0 +1,39 @@
+#+AUTHOR: Yuuhi
+#+TITLE: ４月の記録１
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 1日
+うわあああああああ
+** A Normal Formとは
+
+* 2日
+** 英文法
+- 時制
+  - 現在形
+  - 進行形
+  - 現在形の特殊な用法
+  - 現在完了形
+
+- 仮定法
+  - 見抜き方
+  - 倒置
+
+- 助動詞
+  - will
+  - 代用表現
+  - may
+
+- 不定詞
+  - 未来
+
+- 動名詞
+
+- 分詞構文
+* 3日
+* 4日
+* 5日
+** Emacsのフォントサイズ変更
+"C-x C-+"と"C-x C--"でフォントサイズを変更できる
+

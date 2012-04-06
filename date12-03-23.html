@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="3月の記録２"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-03-28 11:25:54 JST"/>
+<meta name="generated" content="2012-04-01 11:29:54 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -126,6 +126,22 @@
 <li><a href="#sec-5-2">5.2 Emacsからirb使えるようにした</a></li>
 <li><a href="#sec-5-3">5.3 brewからMySQLインストール</a></li>
 <li><a href="#sec-5-4">5.4 call/cc，Fiber，並行処理(concurrent processing)，coroutine</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6 28日</a></li>
+<li><a href="#sec-7">7 29日</a>
+<ul>
+<li><a href="#sec-7-1">7.1 Bot修正</a></li>
+<li><a href="#sec-7-2">7.2 beamerの設定がよく分からん</a></li>
+<li><a href="#sec-7-3">7.3 今日中にStreamのことを調べる</a></li>
+<li><a href="#sec-7-4">7.4 MySQLのインストール</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8 30日</a></li>
+<li><a href="#sec-9">9 31日</a>
+<ul>
+<li><a href="#sec-9-1">9.1 ドラクリオットとは</a></li>
+<li><a href="#sec-9-2">9.2 帰省</a></li>
 </ul>
 </li>
 </ul>
@@ -347,52 +363,51 @@ githubのリポジトリのpushにhookして，postがなげられ，それに�
 
 
 
-<pre class="example">mysql 5.5.20
-http://dev.mysql.com/doc/refman/5.5/en/
-Depends on: cmake, readline, pidof
-/usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
+<pre class="example"># mysql 5.5.20
+# http://dev.mysql.com/doc/refman/5.5/en/
+# Depends on: cmake, readline, pidof
+# /usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
 
-Set up databases to run AS YOUR USER ACCOUNT with:
-    unset TMPDIR
-    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+# Set up databases to run AS YOUR USER ACCOUNT with:
+#     unset TMPDIR
+#     mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
 
-To set up base tables in another folder, or use a different user to run
-mysqld, view the help for mysqld_install_db:
-    mysql_install_db --help
+# To set up base tables in another folder, or use a different user to run
+# mysqld, view the help for mysqld_install_db:
+#     mysql_install_db --help
 
-and view the MySQL documentation:
-  * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
-  * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
-ORG-LIST-END-MARKER
+# and view the MySQL documentation:
+#   * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
+#   * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
 
-To run as, for instance, user "mysql", you may need to `sudo`:
-    sudo mysql_install_db ...options...
+# To run as, for instance, user "mysql", you may need to `sudo`:
+#     sudo mysql_install_db ...options...
 
-Start mysqld manually with:
-    mysql.server start
+# Start mysqld manually with:
+#     mysql.server start
 
-    Note: if this fails, you probably forgot to run the first two steps up above
+#     Note: if this fails, you probably forgot to run the first two steps up above
 
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.
+# A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+# server starting up correctly.
 
-To connect:
-    mysql -uroot
+# To connect:
+#     mysql -uroot
 
-To launch on startup:
-* if this is your first install:
-    mkdir -p ~/Library/LaunchAgents
-    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# To launch on startup:
+# * if this is your first install:
+#     mkdir -p ~/Library/LaunchAgents
+#     cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+#     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-* if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
-    launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# * if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
+#     launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+#     cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+#     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-You may also need to edit the plist to use the correct "UserName".
+# You may also need to edit the plist to use the correct "UserName".
 
-http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
+# http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
 </pre>
 
 <p>
@@ -439,13 +454,160 @@ mysql -u root
 <pre class="example">しあわせは歩いてこない．だから歩いて行くんだね．一日一歩，三日で三歩，三歩さがって，そして絶望して死ぬ
 </pre>
 
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 28日</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>熱っぽい
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 29日</h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Bot修正</h3>
+<div class="outline-text-3" id="text-7-1">
+
+<ul>
+<li>自分のリツイートに反応しないように
+</li>
+<li>yuuhi111からの命令を日本語に
+<ul>
+<li>おねがい.*(yuuhi111)を(そこそこ|すごい|すっごい)ふぁぼって？
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> beamerの設定がよく分からん</h3>
+<div class="outline-text-3" id="text-7-2">
+
+<p>2-&gt;5でなんかおかしくなる．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> 今日中にStreamのことを調べる</h3>
+<div class="outline-text-3" id="text-7-3">
+
+<p><a href="http://www.geocities.jp/m_hiroi/func/abcscm23.html">http://www.geocities.jp/m_hiroi/func/abcscm23.html</a>
+</p>
+
+
+
+<pre class="src src-scheme"><span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">&#36933;&#24310;&#12473;&#12488;&#12522;&#12540;&#12512;&#12398;&#29983;&#25104;</span>
+(<span style="color: #00ffff;">define-syntax</span> <span style="color: #eedd82;">stream-cons</span>
+  (<span style="color: #00ffff;">syntax-rules</span> ()
+    ((_ a b) (cons a (<span style="color: #00ffff;">delay</span> b)))))
+
+<span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">&#35201;&#32032;&#12434;&#21462;&#12426;&#20986;&#12377;</span>
+(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">stream-car</span> s) (car s))
+
+<span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">&#27425;&#12398;&#35201;&#32032;&#12434;&#21462;&#12426;&#20986;&#12377;</span>
+(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">stream-cdr</span> s) (<span style="color: #00ffff;">force</span> (cdr s)))
+
+<span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">&#12473;&#12488;&#12522;&#12540;&#12512;&#12398;&#32066;&#31471;</span>
+(<span style="color: #00ffff;">define</span> <span style="color: #87cefa;">nil</span> '())
+(<span style="color: #00ffff;">define</span> <span style="color: #87cefa;">empty?</span> null?)
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> MySQLのインストール</h3>
+<div class="outline-text-3" id="text-7-4">
+
+<p>mysql<sub>install</sub><sub>db</sub>
+</p>
+
+
+
+
+<pre class="example">/usr/bin/mysql -u root mysql
+
+</pre>
+
+<ul>
+<li>大学入 13:00
+</li>
+<li>大学出 16:00
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 30日</h2>
+<div class="outline-text-2" id="text-8">
+
+<p>みうみうみうみうみうみうみうみうみうみう
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 31日</h2>
+<div class="outline-text-2" id="text-9">
+
+
+</div>
+
+<div id="outline-container-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> ドラクリオットとは</h3>
+<div class="outline-text-3" id="text-9-1">
+
+<p>えろげ．みうがかわいい．みうみう
+<a href="http://yuzu-soft.com/">http://yuzu-soft.com/</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> 帰省</h3>
+<div class="outline-text-3" id="text-9-2">
+
+<p>東京 09:40～13:04 岡山，ＪＲ新幹線のぞみ159号
+</p>
+
+
 </div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-03-28 11:25:54 JST</p>
+<p class="date">Date: 2012-04-01 11:29:54 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

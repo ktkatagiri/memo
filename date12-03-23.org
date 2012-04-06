@@ -106,51 +106,51 @@ Githubへのpush時に一緒に更新ができなくなった．．
 
 ** brewからMySQLインストール
 #+begin_example
-mysql 5.5.20
-http://dev.mysql.com/doc/refman/5.5/en/
-Depends on: cmake, readline, pidof
-/usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
+# mysql 5.5.20
+# http://dev.mysql.com/doc/refman/5.5/en/
+# Depends on: cmake, readline, pidof
+# /usr/local/Cellar/mysql/5.5.20 (6336 files, 221M)
 
-Set up databases to run AS YOUR USER ACCOUNT with:
-    unset TMPDIR
-    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+# Set up databases to run AS YOUR USER ACCOUNT with:
+#     unset TMPDIR
+#     mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
 
-To set up base tables in another folder, or use a different user to run
-mysqld, view the help for mysqld_install_db:
-    mysql_install_db --help
+# To set up base tables in another folder, or use a different user to run
+# mysqld, view the help for mysqld_install_db:
+#     mysql_install_db --help
 
-and view the MySQL documentation:
-  * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
-  * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
+# and view the MySQL documentation:
+#   * http://dev.mysql.com/doc/refman/5.5/en/mysql-install-db.html
+#   * http://dev.mysql.com/doc/refman/5.5/en/default-privileges.html
 
-To run as, for instance, user "mysql", you may need to `sudo`:
-    sudo mysql_install_db ...options...
+# To run as, for instance, user "mysql", you may need to `sudo`:
+#     sudo mysql_install_db ...options...
 
-Start mysqld manually with:
-    mysql.server start
+# Start mysqld manually with:
+#     mysql.server start
 
-    Note: if this fails, you probably forgot to run the first two steps up above
+#     Note: if this fails, you probably forgot to run the first two steps up above
 
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.
+# A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+# server starting up correctly.
 
-To connect:
-    mysql -uroot
+# To connect:
+#     mysql -uroot
 
-To launch on startup:
-* if this is your first install:
-    mkdir -p ~/Library/LaunchAgents
-    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# To launch on startup:
+# * if this is your first install:
+#     mkdir -p ~/Library/LaunchAgents
+#     cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+#     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-* if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
-    launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-    cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# * if this is an upgrade and you already have the homebrew.mxcl.mysql.plist loaded:
+#     launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+#     cp /usr/local/Cellar/mysql/5.5.20/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+#     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-You may also need to edit the plist to use the correct "UserName".
+# You may also need to edit the plist to use the correct "UserName".
 
-http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
+# http://github.com/mxcl/homebrew/commits/master/Library/Formula/mysql.rb
 #+end_example
 http://d.hatena.ne.jp/littlebuddha/20111109/1320851331
 #+begin_example
@@ -169,3 +169,60 @@ mysql -u root
 #+begin_example
 しあわせは歩いてこない．だから歩いて行くんだね．一日一歩，三日で三歩，三歩さがって，そして絶望して死ぬ
 #+end_example
+
+* 28日
+熱っぽい
+
+* 29日
+** Bot修正
+- 自分のリツイートに反応しないように
+- yuuhi111からの命令を日本語に
+  - おねがい.*(yuuhi111)を(そこそこ|すごい|すっごい)ふぁぼって？
+
+** beamerの設定がよく分からん
+2->5でなんかおかしくなる．
+
+** 今日中にStreamのことを調べる
+http://www.geocities.jp/m_hiroi/func/abcscm23.html
+
+#+begin_src scheme
+; 遅延ストリームの生成
+(define-syntax stream-cons
+  (syntax-rules ()
+    ((_ a b) (cons a (delay b)))))
+
+; 要素を取り出す
+(define (stream-car s) (car s))
+
+; 次の要素を取り出す
+(define (stream-cdr s) (force (cdr s)))
+
+; ストリームの終端
+(define nil '())
+(define empty? null?)
+#+end_src
+
+** MySQLのインストール
+mysql_install_db
+
+
+#+begin_example
+/usr/bin/mysql -u root mysql
+
+#+end_example
+- 大学入 13:00
+- 大学出 16:00
+
+* 30日
+みうみうみうみうみうみうみうみうみうみう
+
+* 31日
+** ドラクリオットとは
+えろげ．みうがかわいい．みうみう
+http://yuzu-soft.com/
+
+** 帰省
+東京 09:40～13:04 岡山，ＪＲ新幹線のぞみ159号
+
+
+
