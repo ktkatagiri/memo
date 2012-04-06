@@ -14,17 +14,19 @@ body {
 
 /* リンク */
 a:link {
-    color: #a01000;
+    color: #a03030;
 }
 a:visited {
-    color: #952000;
+    color: #955050;
 }
 a:active {
-    color: #ff0200;
+    color: #cc0200;
 }
 a:hover {
-    color: #ff0000;
+    color: #cc0000;
 }
+
+.todo   { color: #a02020; }
 
 /* タイトル */
 h1.title {
@@ -59,7 +61,7 @@ h5, h6 {
     margin: 0.5em;
 }
 h2 {
-    border-bottom: 3px solid #c05050;
+    border-bottom: 3px solid #c07070;
 }
 h3 {
     border-bottom: 2px dotted black;
@@ -74,7 +76,7 @@ h6 {
     border-bottom: 1px dotted #c0c0c0;
 }
 span.section-number-2, span.section-number-3, span.section-number-4, span.section-number-5, span.section-number-6 {
-    color: #c00000;
+    color: #c05050;
 }
 
 /* 本文 */
@@ -87,7 +89,7 @@ div.outline-text-5, div.outline-text-6 {
 
 /* 文字装飾 */
 b {
-    color: #c00000;
+    color: #c05050;
 }
 i {
     color: #600000;
@@ -107,6 +109,7 @@ img.figure {
     margin: 1em auto;
     border: 1px dotted #c05050;
 }
+
 
 /* ソース、例文 */
 pre {
@@ -180,7 +183,7 @@ ul li {
 dt {
     font-weight: normal;
     border-left: 0.5em solid #c05050;
-    border-bottom: 1px dotted #c00000;
+    border-bottom: 1px dotted #c0c050;
     padding-left: 0.3em;
     margin: 0.3em 0em;
     width: 50%;
