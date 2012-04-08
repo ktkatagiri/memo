@@ -6,8 +6,8 @@ html {
     font-size: medium;
 }
 body {
-    color: #eeeeee;
-    background-color: #333333;
+    color: #dfdfdf;
+    background-color: #404743;
     line-height: 1.3;  /* IE 8 では "1.3" と "130%" と "1.3em" とで <h1> などの出力が異なるので注意 */
     margin: 2%;
 }
@@ -30,10 +30,10 @@ a:hover {
 
 /* タイトル */
 h1.title {
-    color: #eeeeee;
+    color: #eaeae7;
     background-color: #505050;
     text-align: left;
-    border: 3px solid black;
+    border: 3px solid #303030;
     padding: 0.3em 1.0em;
 }
 
@@ -45,9 +45,9 @@ div#table-of-contents {
     margin: 0.1em 30% 0.5em 1.5em;
 }
 div#text-table-of-contents {
-    background-color: #c0c0c0;
+    background-color: #a0a2a0;
     padding: 0.1em;
-    border: 1px dotted black;
+    border: 1px dotted #303030;
 }
 
 /* 見出し */
@@ -64,10 +64,10 @@ h2 {
     border-bottom: 3px solid #c07070;
 }
 h3 {
-    border-bottom: 2px dotted black;
+    border-bottom: 2px dotted #303030;
 }
 h4 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #303030;
 }
 h5 {
     border-bottom: 1px solid #c0c0c0;
@@ -121,20 +121,14 @@ pre {
 
 pre.src {
     color: #f0f0d0;
-    background-color: #111111;
-    border-top: 2px solid #404040;
-    border-left: 2px solid #404040;
-    border-bottom: 2px solid #404040;
-    border-right: 2px solid #404040;
+    background-color: #515151;
+    border: 2px solid #404040;
 }
 
 pre.example {
     color: #202020;
-    background-color: #e0e0e0;
-    border-top: 2px solid #705050;
-    border-left: 2px solid #705050;
-    border-bottom: 2px solid #d0a0a0;
-    border-right: 2px solid #d0a0a0;
+    background-color: #a9a7a5;
+    border: 2px solid #404040;
 }
 
 /* テーブル */
@@ -143,13 +137,13 @@ table {
 }
 thead {
     color: white;
-    background-color: #333333;
+    background-color: #303733;
 }
 tbody {
-    background-color: #111111;
+    background-color: #393a3a;
 }
 table, th, td {
-    border: 1px solid white;
+    border: 1px solid #a0a0a0;
 }
 th, td {
     padding: 0.5em;
