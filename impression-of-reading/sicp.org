@@ -5,5 +5,3 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
 * SICPのメモ
-
-

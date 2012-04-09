@@ -203,3 +203,9 @@ div#postamble p {
 p.creator {
     color: #b0a0a0;
 }
+
+/* 強調 */
+b {
+    font-size: large;
+    color: #f5d7d7;
+}
