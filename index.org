@@ -1,5 +1,5 @@
 #+AUTHOR: Yuuhi
-#+TITLE: 索引
+#+TITLE: もう飽きた
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
 #+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
@@ -22,4 +22,3 @@
 - [[./impression-of-reading/perfectJS.html][JavaScriptのこと]]
 - [[./impression-of-reading/sicp.html][SICP]]
 - [[http://yuuhik.github.com/YhjML/][EOPL]]
-

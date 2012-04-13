@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="４月の記録１"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-04-09 15:38:15 JST"/>
+<meta name="generated" content="2012-04-13 19:08:50 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -142,7 +142,25 @@
 <li><a href="#sec-9-8">9.8 TOEICの勉強は必須？</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10 10日</a></li>
+<li><a href="#sec-10">10 10日</a>
+<ul>
+<li><a href="#sec-10-1">10.1 Standard ECMA-262読む</a></li>
+<li><a href="#sec-10-2">10.2 Androidのツイッタークライアント作り</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11 11日</a>
+<ul>
+<li><a href="#sec-11-1">11.1 Androidアプリ</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12 12日</a>
+<ul>
+<li><a href="#sec-12-1">12.1 Androidの歴史</a></li>
+<li><a href="#sec-12-2">12.2 Android Twitter Client製作</a></li>
+<li><a href="#sec-12-3">12.3 Adapterパターンのことをよく調べておく．</a></li>
+</ul>
+</li>
+<li><a href="#sec-13">13 13日</a></li>
 </ul>
 </div>
 </div>
@@ -675,6 +693,7 @@ C-c &amp;で戻る？
 <p>
 <b>今度は寝坊しないように</b>
 </p>
+
 </div>
 </div>
 
@@ -686,11 +705,143 @@ C-c &amp;で戻る？
 
 
 </div>
+
+<div id="outline-container-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> Standard ECMA-262読む</h3>
+<div class="outline-text-3" id="text-10-1">
+
+<ul>
+<li>ECMAScript Language Specification
+</li>
+</ul>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-10-2" class="outline-3">
+<h3 id="sec-10-2"><span class="section-number-3">10.2</span> Androidのツイッタークライアント作り</h3>
+<div class="outline-text-3" id="text-10-2">
+
+<p>Twitter4jを使ったUserStreamへの対応のが分かった．
+</p>
+<ul>
+<li>ここ
+</li>
+</ul>
+
+<p><a href="http://www.adakoda.com/adakoda/2011/08/android-twitter4j-userstream.html">http://www.adakoda.com/adakoda/2011/08/android-twitter4j-userstream.html</a>
+</p>
+<ul>
+<li>Adapterパターン早急に覚える
+</li>
+</ul>
+
+<p>ListViewの操作のため
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 11日</h2>
+<div class="outline-text-2" id="text-11">
+
+
+
+
+<pre class="example">565 本当にあった怖い名無し :2007/10/20(土) 12:23:16 ID:ZlSlnPj40
+私は慄然たる思いで机の引出しから突如現れたその異形の物体を凝視した。
+それは大小の球体を組み合わせたとしか言い様の無い姿をしており、狂気じみた
+青色が純白の顔と腹部を縁取っていた。這いずり回るような冒涜的な足音で私に
+近付くと、何とも名状し難き声で私と私の子孫のおぞましき未来を語るのであった。
+また、それは時空を超越した底知れぬ漆黒の深淵に通じる袋状の器官を有しており、
+この世の物ならざる奇怪な装置を取り出しては、人々を混迷に陥れるのであった。
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Androidアプリ</h3>
+<div class="outline-text-3" id="text-11-1">
+
+<p>ListViewで，一番上にスムーズにアイテムを追加する方法が分からん．
+描画のタイミングの操作とか，notifyDataSetChangedメソッドを呼び出しても更新がすぐに反映されない問題．
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> 12日</h2>
+<div class="outline-text-2" id="text-12">
+
+
+</div>
+
+<div id="outline-container-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> Androidの歴史</h3>
+<div class="outline-text-3" id="text-12-1">
+
+<p>2005年にGoogleがAndroid.Inc.というスタートアップを買収．
+2008年にAndroid1.0がリリース．
+Androidはオープンソース．
+Android自体はLinuxカーネル2.6をベースとするオペレーティングシステム／プラットフォーム
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-2" class="outline-3">
+<h3 id="sec-12-2"><span class="section-number-3">12.2</span> Android Twitter Client製作</h3>
+<div class="outline-text-3" id="text-12-2">
+
+<p>US対応のListActivityでsmoothScrollToPositionメソッドを使うとtouchでのスクロールに難が出
+ると思い込んでいたがそんなことはなかった．
+</p>
+<ul>
+<li>ListViewとListActivityと
+</li>
+</ul>
+
+
+<p>
+ここの説明が一番良い感じ？
+<a href="http://d.hatena.ne.jp/shimobayashi/20110319/1300516097">http://d.hatena.ne.jp/shimobayashi/20110319/1300516097</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12-3" class="outline-3">
+<h3 id="sec-12-3"><span class="section-number-3">12.3</span> <span class="todo TODO"> TODO</span> Adapterパターンのことをよく調べておく．</h3>
+<div class="outline-text-3" id="text-12-3">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> 13日</h2>
+<div class="outline-text-2" id="text-13">
+
+
+</div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-04-09 15:38:15 JST</p>
+<p class="date">Date: 2012-04-13 19:08:50 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

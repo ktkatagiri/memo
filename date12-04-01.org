@@ -197,5 +197,55 @@ C-c &で戻る？
 
 *今度は寝坊しないように*
 
+
 * 10日
+** Standard ECMA-262読む
+- ECMAScript Language Specification
+
+
+** Androidのツイッタークライアント作り
+Twitter4jを使ったUserStreamへの対応のが分かった．
+
+- ここ
+http://www.adakoda.com/adakoda/2011/08/android-twitter4j-userstream.html
+
+- Adapterパターン早急に覚える
+ListViewの操作のため
+
+* 11日
+#+begin_example
+565 本当にあった怖い名無し :2007/10/20(土) 12:23:16 ID:ZlSlnPj40
+私は慄然たる思いで机の引出しから突如現れたその異形の物体を凝視した。
+それは大小の球体を組み合わせたとしか言い様の無い姿をしており、狂気じみた
+青色が純白の顔と腹部を縁取っていた。這いずり回るような冒涜的な足音で私に
+近付くと、何とも名状し難き声で私と私の子孫のおぞましき未来を語るのであった。
+また、それは時空を超越した底知れぬ漆黒の深淵に通じる袋状の器官を有しており、
+この世の物ならざる奇怪な装置を取り出しては、人々を混迷に陥れるのであった。
+#+end_example
+
+** Androidアプリ
+ListViewで，一番上にスムーズにアイテムを追加する方法が分からん．
+描画のタイミングの操作とか，notifyDataSetChangedメソッドを呼び出しても更新がすぐに反映されない問題．
+
+
+
+* 12日
+** Androidの歴史
+2005年にGoogleがAndroid.Inc.というスタートアップを買収．
+2008年にAndroid1.0がリリース．
+Androidはオープンソース．
+Android自体はLinuxカーネル2.6をベースとするオペレーティングシステム／プラットフォーム
+
+** Android Twitter Client製作
+US対応のListActivityでsmoothScrollToPositionメソッドを使うとtouchでのスクロールに難が出
+ると思い込んでいたがそんなことはなかった．
+
+- ListViewとListActivityと
+
+ここの説明が一番良い感じ？
+http://d.hatena.ne.jp/shimobayashi/20110319/1300516097
+
+** TODO Adapterパターンのことをよく調べておく．
+
+* 13日
 
