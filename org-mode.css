@@ -33,7 +33,7 @@ h1.title {
     color: #eaeae7;
     background-color: #505050;
     text-align: left;
-    border: 3px solid #303030;
+    /* border: 3px solid #303030; */
     padding: 0.3em 1.0em;
 }
 
@@ -43,15 +43,18 @@ div#table-of-contents h2 {
 }
 div#table-of-contents {
     margin: 0.1em 30% 0.5em 1.5em;
+    display: none; /* 消す */
 }
 div#text-table-of-contents {
     background-color: #a0a2a0;
     padding: 0.1em;
     border: 1px dotted #303030;
+    display: none; /* 消す */
 }
 
 /* 見出し */
 h2, h3, h4, h5, h6 {
+    color: #ddd0d0;
     padding: 0.2em 0.3em;
 }
 h4, h5, h6 {
@@ -75,8 +78,14 @@ h5 {
 h6 {
     border-bottom: 1px dotted #c0c0c0;
 }
-span.section-number-2, span.section-number-3, span.section-number-4, span.section-number-5, span.section-number-6 {
+span.section-number-3, span.section-number-4, span.section-number-5, span.section-number-6 {
     color: #c05050;
+    display: none; /* 消す */
+}
+
+span.section-number-2 {
+    color: #c05050;
+    display: none; /* 消す */
 }
 
 /* 本文 */

@@ -249,3 +249,24 @@ http://d.hatena.ne.jp/shimobayashi/20110319/1300516097
 
 * 13日
 
+** tmuxのショートカット
+'Prefix [' でcopy-modeに移行
+'Prefix C-Space'で選択範囲指定
+'C-w'とかでコピー
+'Prefix ]'でペースト
+
+* 14日
+ 
+** VM環境でのOpenSUSEのセットアップ
+- 今回はKDEを選択
+- http://download.opensuse.org/repositories/devel:/languages:/haskell/openSUSE_Factory/ をリポジトリに追加．
+  Yastを使う．CUIからできたほうが良いので後から調べておく．
+- 今回は http://download.opensuse.org/repositories/devel:/languages:/haskell/openSUSE_11.4/ をリポジトリに追加した．
+何がちがう？
+
+- mongoDBはバイナリ持ってきて展開するだけで使える
+#+begin_example
+mkdir /data/db
+#+end_example
+が必要．
+
