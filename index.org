@@ -19,6 +19,7 @@
 - [[./index.html#][Emacsのこと]]
 - [[./index.html#][アルゴリズムとか]]
 - [[./index.html#][環境構築のこと]]
+- フラクタル
 
 ** 過去の記録(今はほとんど更新していない)
 - [[http://d.hatena.ne.jp/yuuhi10/][はてブ]]
@@ -28,3 +29,4 @@
 - [[./impression-of-reading/perfectJS.html][JavaScriptのこと]]
 - [[./impression-of-reading/sicp.html][SICP]]
 - [[http://yuuhik.github.com/YhjML/][EOPL]]
+

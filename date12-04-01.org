@@ -197,7 +197,6 @@ C-c &で戻る？
 
 *今度は寝坊しないように*
 
-
 * 10日
 ** Standard ECMA-262読む
 - ECMAScript Language Specification
@@ -226,7 +225,6 @@ ListViewの操作のため
 ** Androidアプリ
 ListViewで，一番上にスムーズにアイテムを追加する方法が分からん．
 描画のタイミングの操作とか，notifyDataSetChangedメソッドを呼び出しても更新がすぐに反映されない問題．
-
 
 
 * 12日
@@ -269,4 +267,113 @@ http://d.hatena.ne.jp/shimobayashi/20110319/1300516097
 mkdir /data/db
 #+end_example
 が必要．
+
+** オフ
+クロヤマさんと焼肉を食べた．
+美少女だった．
+
+* 15日
+** バーニングシップフラクタル
+- zn+1=(|Re{zn}|+i|Im{zn}|)2+C
+#+begin_src javascript
+
+#+end_src
+
+** JSFiddleのこと
+- JSFIDDLEとは
+#+begin_quote
+JsFiddle is a playground for web developers, a tool which may be used in many ways. One
+can use it as an online editor for snippets build from HTML, CSS and JavaScript. The
+code can then be shared with others, embedded on a blog, etc. Using this approach, 
+JavaScript developers can very easily isolate bugs. We aim to support all actively developed 
+frameworks - it helps with testing compatibility. (full Interview)
+#+end_quote
+http://doc.jsfiddle.net/
+
+JsFiddleはWeb開発者のための遊び場でツール．
+HTML，CSS，JavaScriptを書いて，その描画結果を簡単に確認できる．
+
+- JSFIDDLEのより詳しい使い方は以下に
+http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/fun-with-jsfiddle/
+
+- canvasが使えない？？？
+
+** canvasのこと
+-リファレンス
+ http://www.html5.jp/canvas/ref.html
+
+- canvasでフラクタルを描画する
+ http://kray.jp/blog/html5-canvas/
+
+再帰プログラムによるフラクタル描画は 
+http://codezine.jp/article/detail/73
+でわかりやすく説明されている．
+
+# - 簡単な例としてコッホ曲線
+
+
+
+
+* 15日
+
+** Portalというゲームが面白そう
+パズルゲーム？
+
+** zypperのこと
+- zypper
+http://en.opensuse.org/Zypper
+
+- コマンドの説明
+http://en.opensuse.org/Zypper/Usage http://ja.opensuse.org/Zypper/Usage/11.1
+
+- チートシート
+http://en.opensuse.org/Zypper/Usage#Cheat_sheet
+
+** Yastの
+パッケージリポジトリ 
+http://ja.opensuse.org/%E8%BF%BD%E5%8A%A0%E3%81%AE_YaST_%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%BB%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA
+
+** C++11の企画書が買える
+http://d.hatena.ne.jp/faith_and_brave/20120413/1334298652
+
+** MBAにXQuartz入れた．
+もともと入っていたX11が動かなくなったので，Stable: 2.7.1 - 2012.02.20 をインストール．
+ http://xquartz.macosforge.org/trac/wiki
+
+動かない．X11を使うアプリケーションが使えなくなっているなぜだろう．．？
+
+- 追記
+.xinitrcの中身コメントアウトしたら動いた．おわり
+
+** MBAでWindowsアプリケーションが動かしたい
+miku installerですばひびは動いた．
+
+** そういえば，Mac付属の辞書ってなんだっけ？
+Mac OS X 10.5 からは「大辞泉(国語辞書)」、「プログレッシブ英和・和英中辞典」、「類語例
+解辞典」、「Apple用語辞典」、「New Oxford American Dictionary(英英辞典)」、「Oxford Am
+erican Writes's Thesaurus(英語類語辞典)」、「Wikipedia」が初期インストールされている．
+
+** 小説家が着ていそうな防寒着
+半纏
+
+** OpenSUSEに素晴らしき日々インストールできない問題
+- udfのファイルシステムのDVDがマウントできなかった
+libudf0とudftoolsインストールして再起動したらマウントできたでござる
+
+** πは180°
+忘れかけてる．アタマヤバい．
+
+** TOEICの勉強しろ
+ぐるるるるしろ！
+
+** OpenSUSEでのmozcインストール方法
+M17Nのリポジトリを追加する．
+#+begin_quote
+M17N は、多言語化: 多言語サポート関係のパッケージをアップデートします。 
+#+end_quote
+http://download.opensuse.org/repositories/M17N/openSUSE_11.4/
+
+zypperでインストール．
+インプットメソッドの設定の方法は後から調べる
+
 
