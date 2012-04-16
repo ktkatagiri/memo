@@ -1,0 +1,8 @@
+#+AUTHOR: Yuuhi
+#+TITLE: TOEIC対策まとめ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 名詞，形容詞の形
+
