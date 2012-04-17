@@ -226,7 +226,6 @@ ListViewの操作のため
 ListViewで，一番上にスムーズにアイテムを追加する方法が分からん．
 描画のタイミングの操作とか，notifyDataSetChangedメソッドを呼び出しても更新がすぐに反映されない問題．
 
-
 * 12日
 ** Androidの歴史
 2005年にGoogleがAndroid.Inc.というスタートアップを買収．
@@ -275,8 +274,17 @@ mkdir /data/db
 * 15日
 ** バーニングシップフラクタル
 - zn+1=(|Re{zn}|+i|Im{zn}|)2+C
-#+begin_src javascript
 
+- バーニングシップ・フラクタル
+http://aquioux.net/blog/coding/study/%E3%83%90%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%83%E3%83%97%E3%83%BB%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB/
+
+- マンデルブロ集合のx,yを絶対値にするだけ
+#+begin_src javascript -n
+x = Math.abs(x);
+y = Math.abs(y);
+zx = x * x - y * y + a;
+zy = 2 * x * y + b;
+if(zx * zx + zy * zy > 4) break;
 #+end_src
 
 ** JSFiddleのこと
@@ -311,11 +319,7 @@ http://codezine.jp/article/detail/73
 
 # - 簡単な例としてコッホ曲線
 
-
-
-
-* 15日
-
+* 16日
 ** Portalというゲームが面白そう
 パズルゲーム？
 
@@ -360,9 +364,6 @@ erican Writes's Thesaurus(英語類語辞典)」、「Wikipedia」が初期イ�
 - udfのファイルシステムのDVDがマウントできなかった
 libudf0とudftoolsインストールして再起動したらマウントできたでござる
 
-** πは180°
-忘れかけてる．アタマヤバい．
-
 ** TOEICの勉強しろ
 ぐるるるるしろ！
 
@@ -376,4 +377,10 @@ http://download.opensuse.org/repositories/M17N/openSUSE_11.4/
 zypperでインストール．
 インプットメソッドの設定の方法は後から調べる
 
+** Tほげの申し込み
+水曜昼までに！！！！
+明日に必ず書類提出
+
+** コッホ曲線
+http://sorauta.bufsiz.jp/Fractal/koch.html
 

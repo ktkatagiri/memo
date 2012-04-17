@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="４月の記録１"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-04-16 17:00:59 JST"/>
+<meta name="generated" content="2012-04-18 00:23:50 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -178,7 +178,7 @@
 <li><a href="#sec-15-3">15.3 canvasのこと</a></li>
 </ul>
 </li>
-<li><a href="#sec-16">16 15日</a>
+<li><a href="#sec-16">16 16日</a>
 <ul>
 <li><a href="#sec-16-1">16.1 Portalというゲームが面白そう</a></li>
 <li><a href="#sec-16-2">16.2 zypperのこと</a></li>
@@ -189,9 +189,10 @@
 <li><a href="#sec-16-7">16.7 そういえば，Mac付属の辞書ってなんだっけ？</a></li>
 <li><a href="#sec-16-8">16.8 小説家が着ていそうな防寒着</a></li>
 <li><a href="#sec-16-9">16.9 OpenSUSEに素晴らしき日々インストールできない問題</a></li>
-<li><a href="#sec-16-10">16.10 πは180°</a></li>
-<li><a href="#sec-16-11">16.11 TOEICの勉強しろ</a></li>
-<li><a href="#sec-16-12">16.12 OpenSUSEでのmozcインストール方法</a></li>
+<li><a href="#sec-16-10">16.10 TOEICの勉強しろ</a></li>
+<li><a href="#sec-16-11">16.11 OpenSUSEでのmozcインストール方法</a></li>
+<li><a href="#sec-16-12">16.12 Tほげの申し込み</a></li>
+<li><a href="#sec-16-13">16.13 コッホ曲線</a></li>
 </ul>
 </li>
 </ul>
@@ -805,7 +806,6 @@ C-c &amp;で戻る？
 <p>ListViewで，一番上にスムーズにアイテムを追加する方法が分からん．
 描画のタイミングの操作とか，notifyDataSetChangedメソッドを呼び出しても更新がすぐに反映されない問題．
 </p>
-
 </div>
 </div>
 
@@ -951,13 +951,28 @@ Android自体はLinuxカーネル2.6をベースとするオペレーティン�
 
 <ul>
 <li>zn+1=(|Re{zn}|+i|Im{zn}|)2+C
+
+</li>
+<li>バーニングシップ・フラクタル
+</li>
+</ul>
+
+<p><a href="http://aquioux.net/blog/coding/study/バーニングシップ・フラクタル/">http://aquioux.net/blog/coding/study/%E3%83%90%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%83%E3%83%97%E3%83%BB%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB/</a>
+</p>
+<ul>
+<li>マンデルブロ集合のx,yを絶対値にするだけ
 </li>
 </ul>
 
 
 
 
-<pre class="src src-javascript"></pre>
+<pre class="src src-javascript"><span class="linenr">1:  </span>x = Math.abs(x);
+<span class="linenr">2:  </span>y = Math.abs(y);
+<span class="linenr">3:  </span>zx = x * x - y * y + a;
+<span class="linenr">4:  </span>zy = 2 * x * y + b;
+<span class="linenr">5:  </span><span style="color: #00ffff;">if</span>(zx * zx + zy * zy &gt; 4) <span style="color: #00ffff;">break</span>;
+</pre>
 
 
 </div>
@@ -1028,18 +1043,14 @@ HTML，CSS，JavaScriptを書いて，その描画結果を簡単に確認でき
 でわかりやすく説明されている．
 </p>
 
-
-
-
 </div>
 </div>
 
 </div>
 
 <div id="outline-container-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> 15日</h2>
+<h2 id="sec-16"><span class="section-number-2">16</span> 16日</h2>
 <div class="outline-text-2" id="text-16">
-
 
 
 </div>
@@ -1173,18 +1184,8 @@ erican Writes's Thesaurus(英語類語辞典)」、「Wikipedia」が初期イ�
 </div>
 
 <div id="outline-container-16-10" class="outline-3">
-<h3 id="sec-16-10"><span class="section-number-3">16.10</span> πは180°</h3>
+<h3 id="sec-16-10"><span class="section-number-3">16.10</span> TOEICの勉強しろ</h3>
 <div class="outline-text-3" id="text-16-10">
-
-<p>忘れかけてる．アタマヤバい．
-</p>
-</div>
-
-</div>
-
-<div id="outline-container-16-11" class="outline-3">
-<h3 id="sec-16-11"><span class="section-number-3">16.11</span> TOEICの勉強しろ</h3>
-<div class="outline-text-3" id="text-16-11">
 
 <p>ぐるるるるしろ！
 </p>
@@ -1192,9 +1193,9 @@ erican Writes's Thesaurus(英語類語辞典)」、「Wikipedia」が初期イ�
 
 </div>
 
-<div id="outline-container-16-12" class="outline-3">
-<h3 id="sec-16-12"><span class="section-number-3">16.12</span> OpenSUSEでのmozcインストール方法</h3>
-<div class="outline-text-3" id="text-16-12">
+<div id="outline-container-16-11" class="outline-3">
+<h3 id="sec-16-11"><span class="section-number-3">16.11</span> OpenSUSEでのmozcインストール方法</h3>
+<div class="outline-text-3" id="text-16-11">
 
 <p>M17Nのリポジトリを追加する．
 </p><blockquote>
@@ -1211,14 +1212,34 @@ erican Writes's Thesaurus(英語類語辞典)」、「Wikipedia」が初期イ�
 zypperでインストール．
 インプットメソッドの設定の方法は後から調べる
 </p>
+</div>
 
+</div>
+
+<div id="outline-container-16-12" class="outline-3">
+<h3 id="sec-16-12"><span class="section-number-3">16.12</span> Tほげの申し込み</h3>
+<div class="outline-text-3" id="text-16-12">
+
+<p>水曜昼までに！！！！
+明日に必ず書類提出
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-16-13" class="outline-3">
+<h3 id="sec-16-13"><span class="section-number-3">16.13</span> コッホ曲線</h3>
+<div class="outline-text-3" id="text-16-13">
+
+<p><a href="http://sorauta.bufsiz.jp/Fractal/koch.html">http://sorauta.bufsiz.jp/Fractal/koch.html</a>
+</p>
 </div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-04-16 17:00:59 JST</p>
+<p class="date">Date: 2012-04-18 00:23:50 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
