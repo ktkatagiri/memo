@@ -384,3 +384,109 @@ zypperでインストール．
 ** コッホ曲線
 http://sorauta.bufsiz.jp/Fractal/koch.html
 
+* 17日
+
+* 18日
+* 19day
+** 変換規則を書くときのTeXの記述
+http://www.latex-cmd.com/equation/transform.html#forier01
+#+begin_example
+\[
+  G(f) = \mathcal{F}[g(t)]
+\]
+pre\[
+  F(s) = \mathcal{L}[f(t)]
+\]
+#+end_example
+
+* 20day
+飲み会であった．
+カラオケで歌って，その後麻雀をした．
+人生で始めて国士無双を和了った．
+
+* 21day
+
+* 22day
+** Ever17感想
+- 最終ルートまでクリアした．
+- 何を書いてもネタバレにつながりそう．
+- 評価が高い理由は分かった気がする．
+- 同じシナリオを何回も読まされるのは．．．
+- 5年くらい前にやればのめり込めたと思う．
+- スキップの遅さとかもあって，シナリオ中盤は無駄に時間を使わされる部分がある．
+
+** さよ教ほしい
+
+* 23day
+てあのお仕事のことを決めた．
+ボクは"あ"．
+
+** iso646.h
+http://www.wdic.org/w/TECH/iso646.h
+#+begin_quote
+ISO/IEC 646のように、Cの記述に必要な文字集合を欠く文字コード環境向けの代替表現マクロを定義するヘッダーファイル。
+#+end_quote
+
+** アセンブラの勉強はじめた
+
+
+* 24day
+
+** メインに使っていく(勉強していく)ものを決める
+*** OS(ディストリビューション)
+Mac OSX Lion, OpenSUSE, Debian, Android
+
+*** プログラミング言語(処理系)
+JavaScript(firefox, node.js), Java(Android), C++(Clang), Scheme(Gauche), Haskell, Ruby
+1.9, Lua\\
+LLVM, JVM
+
+*** データベース
+MySQL, SQLite, mongoDB
+
+*** Webアプリケーションフレームワーク
+Sinatra, Rails, 
+
+*** エディタ(IDE)
+Emacs, Eclipse
+
+*** バージョン管理
+Git
+
+*** マイコン
+H8マイコン，Arduino
+
+*** TODO これからやること
+ブレッドボード買う
+
+
+* 25day
+ねむい
+
+* 26day
+emacsにaojへのサブミット用のelisp導入した．\\
+http://82rensa.blogspot.jp/2012/01/emacsaoj.html
+
+** RubyでANSIカラーシーケンス
+http://d.hatena.ne.jp/keyesberry/20101107/p1
+
+
+* 27day
+** fluid-letのこと
+Schemeの動的なスコープをエミュレートするためのマクロ
+#+begin_src scheme
+(define x 100)
+(define (incrx)
+  (+ x 1))
+(fluid-let
+    ((x 0))
+  (incrx))
+#+end_src
+動的なスコープの先で使う変数xはあらかじめグローバルで宣言されている必要がある．
+
+マクロの実装は以下のページに
+http://srfi.schemers.org/srfi-15/srfi-15.html 
+
+* 28day
+
+

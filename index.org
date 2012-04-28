@@ -4,6 +4,51 @@
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
 #+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
 
+* はじめに
+- Twitter
+  - メイン垢
+    https://twitter.com/yuuhi111
+  - Bot兼サブ垢
+    https://twitter.com/yuuhi112
+
+- メイン環境
+  - MacBook Air 13-inch
+    - OS: Mac OSX 10.7.3 Lion
+    - CPU: Intel Core i5 1.7GHz
+    - メモリ: 4GB 1333 MHz DDR3
+    基本的にこの環境で生きている．Macを初めて触ったのは2011年の4月から．
+    Mac歴1年になる．なにか特別な事情がない限りこれからもMacをメインで使う．
+    
+  - Shuttleのベアボーンキットを組み立てたもの
+    - Linux機
+    - OpenSUSEがインストールしてある
+    昔は外部からアクセス可能なサーバとして動かしていたけど，もうやめた
+
+  - Thinkpad 121e
+    - 仕事でWindows環境が必要だったときがあったので買った．
+    - 安かったし，USキーボードだし，気に入っている．
+    - Windows環境が必要なくなったあとは，C# とかの勉強するのに使おうと思ったけど，結局エロゲ専用機に．．
+
+  - H8/3069F マイコンボード
+    - 秋月で買ったH8/3069Fネット対応LANボード(完成品) \\
+      12ステップで作る 組込みOS自作入門 http://kozos.jp/books/makeos/ を読むときにかったもの．
+       途中で投げているので，またいじり倒したい．
+
+  - DHD
+    - Androidが入ったすまーとふぉん．Twitterのクライアント作ってたけど，行き詰まっている．
+- 趣味
+  - ついったー
+  - 専門書を積むこと \\
+    人生もつんでる
+- 欲しい物 \\
+  Androidタブレット，iPad，恋人
+- 他に
+  - よく使う顔文字
+#+begin_example
+    (√・ヮ＜)ミ☆, _(º﹃º｣ ∠)_, ∩(＞◡＜*)∩, (º﹃º)
+#+end_example
+- エロゲのレビュー記事とか書きたい
+
 * コメント
 エリナぁ！！
 
