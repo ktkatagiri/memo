@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>ゆうひちゃんのBot作成</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="ゆうひちゃんのBot作成"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-03 07:16:12 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">ゆうひちゃんのBot作成</h1>
+
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>Botの機能</a>
+            </li>
+            <li>
+              <a href='#sec-2'>実装</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Botの機能</a></li>
+<li><a href="#sec-2">2 実装</a></li>
+<li><a href="#sec-3">3 ドキュメントの作成</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Botの機能</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>TwitterのBot
+</li>
+<li>UserStream対応
+</li>
+<li>TLの特定のハッシュタグや単語に反応
+<ul>
+<li>あいさつをする(名前を呼ぶ)
+<ul>
+<li>やめた
+</li>
+</ul>
+
+</li>
+<li>ツッコミを入れる
+<ul>
+<li>この辺のパターンはMySQLに保存しておく
+
+</li>
+</ul>
+
+</li>
+<li>自動でふぁぼる(条件を作成)
+<ul>
+<li>即ふぁぼ
+</li>
+<li>ちょっと遅れてふぁぼ
+</li>
+<li>ふぁぼ候補リストへの追加し，あとから手動ふぁぼ
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>リプライに反応
+<ul>
+<li>天気
+<ul>
+<li>APIはこれ <a href="http://weather.livedoor.com/weather_hacks/webservice.html">http://weather.livedoor.com/weather_hacks/webservice.html</a>
+</li>
+<li>東京の天気
+
+
+
+<pre class="example">([今日|明日]).*天気.*[教えて|おしえて]
+</pre>
+
+</li>
+</ul>
+
+</li>
+<li>リマインダー
+<ul>
+<li>期限とタスク名を言うと１時間前，10分前，その時間にリプライくれる
+
+
+
+<pre class="example">メモ[:：][\s　]*(\d+)\/(\d+)\s(\d+)\:(\d+)[\s　](.*)
+月，日，時間，分，タスクの内容
+</pre>
+
+</li>
+</ul>
+
+</li>
+<li>遅れて反応する
+
+</li>
+<li>yuuhi111からのリプライは特別扱いで何らかの命令を出せる
+<ul>
+<li>とは言ってもそんなに危なくない命令だけ
+</li>
+<li>TODOリストへの追加とかふぁぼ爆撃命令の設定とか
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>USの情報をDBに保存する(MySQLとsqlite3)
+<ul>
+<li>全保存モード(tweets)
+</li>
+<li>ふぁぼ履歴も(favs)
+
+</li>
+</ul>
+
+</li>
+<li>マルコフ連鎖を利用した文章を生成
+<ul>
+<li>乱数を元に時間を決めてつぶやく
+<ul>
+<li>時間の間隔を設定可能
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>特定の条件を満たした時に発動するイベントを登録可能
+<ul>
+<li>決められたディレクトリ内に，条件とイベントの内容を対で記述
+<ul>
+<li>Rubyか独自の書き方か？(今から決める)
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>フォロワーの情報を管理
+<ul>
+<li>MySQLに保存しておく
+</li>
+<li>6時間に一回フォロワーを確認
+<ul>
+<li>yuuhi111のフォロワーならば，yuuhi112でもフォローする
+</li>
+</ul>
+
+</li>
+<li>特定のリプライを送るとフォロワーの情報を覚える
+<ul>
+<li>2回目以降ならば以前の情報と照らしあわせて比較してくれる
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>アイコンを保存し，貯める
+<ul>
+<li>TLのアイコンを保存
+<ul>
+<li>すべてのIDのアイコンを保存済かどうかの情報を管理
+</li>
+<li>ファイルシステムで管理，ファイル名とscreen_idを関連付け
+</li>
+<li>TODO データベースの画像使う方法無いか調べる
+</li>
+</ul>
+
+</li>
+<li>TLの画像を保存
+<ul>
+<li>画像の保存は条件付きで保存
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>顔文字収集機構
+<ul>
+<li>正規表現やらいろいろ駆使して収集するの
+<ul>
+<li>括弧の割合とか？
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 実装</h2>
+<div class="outline-text-2" id="text-2">
+
+<ul>
+<li>Rubyで実装
+<ul>
+<li>Twitter gemも利用
+</li>
+</ul>
+
+</li>
+<li>データベースはMySQL
+</li>
+<li>mecabを利用(マルコフ連鎖)
+</li>
+<li>Linux Mint Debianで動いている
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> <span class="todo TODO"> TODO</span> ドキュメントの作成</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li>半分は自分用なのでそりなりに簡単で良い
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-03 07:16:12 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

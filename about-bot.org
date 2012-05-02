@@ -1,0 +1,98 @@
+#+AUTHOR: Yuuhi
+#+TITLE: ゆうひちゃんのBot作成
+#+LANGUAGE: ja
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>Botの機能</a>
+            </li>
+            <li>
+              <a href='#sec-2'>実装</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+
+* Botの機能
+  - TwitterのBot
+  - UserStream対応
+  - TLの特定のハッシュタグや単語に反応
+    - あいさつをする(名前を呼ぶ)
+      - やめた
+    - ツッコミを入れる
+      - この辺のパターンはMySQLに保存しておく
+
+    - 自動でふぁぼる(条件を作成)
+      - 即ふぁぼ
+      - ちょっと遅れてふぁぼ
+      - ふぁぼ候補リストへの追加し，あとから手動ふぁぼ
+
+  - リプライに反応
+    - 天気
+      - APIはこれ http://weather.livedoor.com/weather_hacks/webservice.html
+      - 東京の天気
+	#+begin_example
+	([今日|明日]).*天気.*[教えて|おしえて]
+	#+end_example
+    - リマインダー
+      - 期限とタスク名を言うと１時間前，10分前，その時間にリプライくれる
+	#+begin_example
+	メモ[:：][\s　]*(\d+)\/(\d+)\s(\d+)\:(\d+)[\s　](.*)
+	月，日，時間，分，タスクの内容
+	#+end_example
+    - 遅れて反応する
+
+    - yuuhi111からのリプライは特別扱いで何らかの命令を出せる
+      - とは言ってもそんなに危なくない命令だけ
+      - TODOリストへの追加とかふぁぼ爆撃命令の設定とか
+
+  - USの情報をDBに保存する(MySQLとsqlite3)
+    - 全保存モード(tweets)
+    - ふぁぼ履歴も(favs)
+
+  - マルコフ連鎖を利用した文章を生成
+    - 乱数を元に時間を決めてつぶやく
+      - 時間の間隔を設定可能
+
+  - 特定の条件を満たした時に発動するイベントを登録可能
+    - 決められたディレクトリ内に，条件とイベントの内容を対で記述
+      - Rubyか独自の書き方か？(今から決める)
+
+  - フォロワーの情報を管理
+    - MySQLに保存しておく
+    - 6時間に一回フォロワーを確認
+      - yuuhi111のフォロワーならば，yuuhi112でもフォローする
+    - 特定のリプライを送るとフォロワーの情報を覚える
+      - 2回目以降ならば以前の情報と照らしあわせて比較してくれる
+
+  - アイコンを保存し，貯める
+    - TLのアイコンを保存
+      - すべてのIDのアイコンを保存済かどうかの情報を管理
+      - ファイルシステムで管理，ファイル名とscreen\_idを関連付け
+      - TODO データベースの画像使う方法無いか調べる
+    - TLの画像を保存
+      - 画像の保存は条件付きで保存
+
+  - 顔文字収集機構
+    - 正規表現やらいろいろ駆使して収集するの
+      - 括弧の割合とか？
+
+* 実装
+  - Rubyで実装
+    - Twitter gemも利用
+  - データベースはMySQL
+  - mecabを利用(マルコフ連鎖)
+  - Linux Mint Debianで動いている
+
+* TODO ドキュメントの作成
+  - 半分は自分用なのでそりなりに簡単で良い

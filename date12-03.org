@@ -2,7 +2,27 @@
 #+TITLE: 2012年3月の記録
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>9日</a>
+            </li>
+            <li>
+              <a href='#sec-12'>20日</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
 
 * 9日
 はぁ．

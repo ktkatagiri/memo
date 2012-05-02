@@ -1,0 +1,8 @@
+#+AUTHOR: Yuuhi
+#+TITLE: XMLメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+
+* xpathのこと
+  http://www.w3schools.com/xpath/

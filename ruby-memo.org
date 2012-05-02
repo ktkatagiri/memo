@@ -2,9 +2,29 @@
 #+TITLE: Rubyメモ
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
-#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>上の方</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
 
 * Rubyでxmlを操作する
+http://www.nslabs.jp/ruby-rexml.rhtml
+- ここを読むのが一番良い
+http://www.germane-software.com/software/rexml/docs/tutorial.html
 
 * RubyでMySQLのデータベースにINSERT
 #+begin_src ruby -n
