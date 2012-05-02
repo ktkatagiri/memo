@@ -2,7 +2,6 @@
 #+TITLE: ４月の記録１
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
-#+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
 * 1日
@@ -418,75 +417,6 @@ pre\[
 
 ** さよ教ほしい
 
+
 * 23day
-てあのお仕事のことを決めた．
-ボクは"あ"．
 
-** iso646.h
-http://www.wdic.org/w/TECH/iso646.h
-#+begin_quote
-ISO/IEC 646のように、Cの記述に必要な文字集合を欠く文字コード環境向けの代替表現マクロを定義するヘッダーファイル。
-#+end_quote
-
-** アセンブラの勉強はじめた
-
-* 24day
-
-** メインに使っていく(勉強していく)ものを決める
-*** OS(ディストリビューション)
-Mac OSX Lion, OpenSUSE, Debian, Android
-
-*** プログラミング言語(処理系)
-JavaScript(firefox, node.js), Java(Android), C++(Clang), Scheme(Gauche), Haskell, Ruby
-1.9, Lua\\
-LLVM, JVM
-
-*** データベース
-MySQL, SQLite, mongoDB
-
-*** Webアプリケーションフレームワーク
-Sinatra, Rails, 
-
-*** エディタ(IDE)
-Emacs, Eclipse
-
-*** バージョン管理
-Git
-
-*** マイコン
-H8マイコン，Arduino
-
-*** TODO これからやること
-ブレッドボード買う
-
-* 25day
-ねむい
-
-* 26day
-emacsにaojへのサブミット用のelisp導入した．\\
-http://82rensa.blogspot.jp/2012/01/emacsaoj.html
-
-** RubyでANSIカラーシーケンス
-http://d.hatena.ne.jp/keyesberry/20101107/p1
-
-* 27day
-** fluid-letのこと
-Schemeの動的なスコープをエミュレートするためのマクロ
-#+begin_src scheme
-(define x 100)
-(define (incrx)
-  (+ x 1))
-(fluid-let
-    ((x 0))
-  (incrx))
-#+end_src
-動的なスコープの先で使う変数xはあらかじめグローバルで宣言されている必要がある．
-
-マクロの実装は以下のページに
-http://srfi.schemers.org/srfi-15/srfi-15.html 
-
-* 28day
-* 29day
-* 30day
-** ポート番号一覧
-http://ja.wikipedia.org/wiki/TCP%E3%82%84UDP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%83%9D%E3%83%BC%E3%83%88%E7%95%AA%E5%8F%B7%E3%81%AE%E4%B8%80%E8%A6%A7

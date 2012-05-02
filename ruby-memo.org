@@ -1,0 +1,82 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Rubyメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+
+* Rubyでxmlを操作する
+
+* RubyでMySQLのデータベースにINSERT
+#+begin_src ruby -n
+# -*- coding: utf-8 -*-
+require "rexml/document"
+require 'rexml/streamlistener'
+require "pp"
+
+xml_file_name = "yuuhi.xml"
+
+doc = nil
+
+class TextListener
+  include REXML::StreamListener
+
+  def initialize(stmt)
+    @tweet = {}
+    @stmt = stmt
+    @stack = []
+  end
+
+  # attrs ハッシュ
+  # 属性がないときは、{}
+  def tag_start(name, attrs)
+    @stack.push name
+  end
+
+  def tag_end(name)
+    @stmt.execute @tweet['id'], @tweet['time'], @tweet['text'] if name == 'tweet'
+    @stack.pop
+  end
+
+  def text(content)
+    if @stack.last == 'id'
+      @tweet['id'] = content
+      puts "id: #{content}"
+    end
+    if @stack.last == 'time'
+      @tweet['time'] = content
+      puts "time: #{content}"
+    end
+    if @stack.last == 'text'
+      @tweet['text'] = content
+      puts "text: #{content}"
+    end
+  end
+end
+
+require 'mysql'
+mysql = Mysql.new "localhost", "username", "password", "database_name"
+
+mysql.query "SET NAMES utf8; "
+mysql.query "DROP TABLE IF EXISTS tweets; "
+mysql.query <<'EOQ'
+CREATE TABLE tweets (
+id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
+status_id varchar(25) NOT NULL,
+time varchar(25) NOT NULL,
+text varchar(150) NOT NULL
+) DEFAULT CHARACTER SET utf8;
+EOQ
+
+stmt = mysql.prepare "INSERT INTO tweets (status_id, time, text) VALUES (?,?,?) "
+
+textListener = TextListener.new(stmt)
+File.open(xml_file_name) {|xml_file|
+  REXML::Parsers::StreamParser.new(xml_file, textListener).parse
+}
+#+end_src
+
+** 文字コード
+#+begin_src ruby
+str.force_encoding("UTF-8").encode('UTF-8').encode("UTF-16", :invalid => :replace, :replace => '').encode("UTF-8")
+#+end_src
+

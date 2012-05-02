@@ -2,6 +2,7 @@
 #+TITLE: もう飽きた
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
 
 * はじめに
@@ -16,7 +17,7 @@
     - OS: Mac OSX 10.7.3 Lion
     - CPU: Intel Core i5 1.7GHz
     - メモリ: 4GB 1333 MHz DDR3
-    基本的にこの環境で生きている．Macを初めて触ったのは2011年の4月から．
+    基本的にこの環境で生きている．Macを初めて触ったのは2011年の4月．
     Mac歴1年になる．なにか特別な事情がない限りこれからもMacをメインで使う．
     
   - Shuttleのベアボーンキットを組み立てたもの
@@ -63,7 +64,9 @@
 - [[./index.html#][Webとかその辺]]
 - [[./index.html#][Emacsのこと]]
 - [[./index.html#][アルゴリズムとか]]
-- [[./index.html#][環境構築のこと]]
+- [[./ruby-memo.html][Rubyメモ]]
+- [[./database.html][データベースのこと]]
+- [[./env.html][環境構築のこと]]
 - フラクタル
 
 ** 過去の記録(今はほとんど更新していない)

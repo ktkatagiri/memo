@@ -1,0 +1,152 @@
+#+AUTHOR: Yuuhi
+#+TITLE: データベースのことで調べたこと考えたことをずらずらと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-mode.css">
+
+* 主にMySQLのことを調べて，使い方を書く
+
+* ユーザの管理
+- ユーザの表示
+#+begin_example
+select User, Host FROM mysql.user;
+#+end_example
+- 追加
+#+begin_example
+create database hoge;
+GRANT ALL on hoge.* to yuuhi@localhost;
+#+end_example
+
+* RubyからMySQLとかに繋ぐ場合
+#+begin_example
+gem install mysql
+#+end_example
+でおきる問題．
+#+begin_example
+sudo aptitude install libmysqlclient-dev
+sudo aptitude install libmysql-ruby
+#+end_example
+で
+#+begin_example
+gem install mysql
+#+end_example
+
+#+begin_example
+# データベース統一インターフェース
+gem install dbi
+gem install dbd-mysql
+gem install dbd-pg
+gem install dbd-sqlite3
+#+end_example
+
+* エラーログの場所
+#+begin_example
+~/log/mysql/error-log.err
+#+end_example
+にある
+
+* テスト環境はMac，本番環境はOpenSUSE
+
+** OpenSUSEでMySQLが動かない．．．
+#+begin_example
+> rcmysql start
+cat: /etc/my.cnf: Permission denied
+chown: changing ownership of `/var/run/mysql': Operation not permitted
+cat: /etc/my.cnf: Permission denied
+chown: changing ownership of `/var/run/mysql': Operation not permitted
+tee: /var/run/mysql/tmpdir: Permission denied
+chown: changing ownership of `/var/tmp/mysql.KNAGa3': Operation not permitted
+Can't create secure /var/tmp/mysql.KNAGa3
+#+end_example
+こんな感じで．
+#+begin_example
+> mysqld       
+120430  4:26:02 [Warning] Can't create test file /var/lib/mysql/linux-z5ho.lower-test
+120430  4:26:02 [Warning] Can't create test file /var/lib/mysql/linux-z5ho.lower-test
+120430  4:26:02 [Note] Plugin 'ndbcluster' is disabled.
+120430  4:26:02 [ERROR] mysqld: Can't find file: './mysql/plugin.frm' (errno: 13)
+120430  4:26:02 [ERROR] Can't open the mysql.plugin table. Please run mysql_upgrade to create it.
+120430  4:26:02 [ERROR] mysqld: File '/var/lib/mysql/maria_log_control' not found (Errcode: 13)
+120430  4:26:02 [ERROR] mysqld: Got error 'Can't open file' when trying to use maria control file '/var/lib/mysql/maria_log_control'
+120430  4:26:02 [ERROR] Plugin 'MARIA' init function returned error.
+120430  4:26:02 [ERROR] Plugin 'MARIA' registration as a STORAGE ENGINE failed.
+InnoDB: The InnoDB memory heap is disabled
+InnoDB: Mutexes and rw_locks use GCC atomic builtins
+InnoDB: Compressed tables use zlib 1.2.5
+120430  4:26:02  InnoDB: Initializing buffer pool, size = 128.0M
+120430  4:26:02  InnoDB: Completed initialization of buffer pool
+120430  4:26:02  InnoDB: Operating system error number 13 in a file operation.
+InnoDB: The error means mysqld does not have the access rights to
+InnoDB: the directory.
+InnoDB: File name ./ibdata1
+InnoDB: File operation call: 'create'.
+InnoDB: Cannot continue operation.
+#+end_example
+#+begin_example
+> mysqld_safe
+120430 04:26:48 mysqld_safe Logging to '/var/lib/mysql/linux-z5ho.err'.
+120430 04:26:48 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+/usr/bin/mysqld_safe: line 101: /var/lib/mysql/linux-z5ho.err: Permission denied
+/usr/bin/mysqld_safe: line 138: /var/lib/mysql/linux-z5ho.err: Permission denied
+120430 04:26:48 mysqld_safe mysqld from pid file /var/lib/mysql/linux-z5ho.pid ended
+/usr/bin/mysqld_safe: line 101: /var/lib/mysql/linux-z5ho.err: Permission denied
+#+end_example
+
+こちらの知識不足もあるのだろうけど，もうOpenSUSEでの運用やめようかと．．\\
+-> 最後にソースからMySQLインストールしてみて決める
+
+* MySQLのインストール
+たしか，homebrewでインストールした．
+#+begin_example
+% brew install mongodb
+#+end_example
+
+#+begin_example
+% mysqld
+% mysql -u root -p
+mysql> SELECT User, Host FROM mysql.user;
+mysql> create database twitterDB;
+mysql> GRANT ALL ON twitterDB.* to yuuhi@localhost IDENTIFIED BY 'passwd';
+Query OK, ..........
+
+mysql> mysqld_safe --log-error=$HOME/log/mysql/error-log
+mysql> mysql.server stop
+#+end_example
+
+* Ubuntuで
+#+begin_example
+% sudo apt-get install mysql-server
+% sudo service mysql start
+#+end_example
+
+* Linux Mintにて
+#+begin_example
+default-character-set=utf8
+skip-character-set-client-handshake
+#+end_example
+がないと動かない
+
+- 下記のようにmy.cnfに追加
+#+begin_example
+[client]
+default-character-set = utf8
+
+[mysqld]
+character-set-server = utf8
+skip-character-set-client-handshake
+
+[mysqldump]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+#+end_example
+
+#+begin_example
+% sudo /etc/init.d/mysql restart
+#+end_example
+
+* mongoDBのこと
+http://www.mongodb.org/
+

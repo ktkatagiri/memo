@@ -2,13 +2,13 @@
 
 /* 文書全体 */
 html {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     font-size: 10pt;
 }
 body {
     color: #dfdfdf;
-    /* background-color: #333735; */
-    background-image: url("./sc.png");
+    background-color: #333735;
+    /* background-image: url("./sc.png"); */
     line-height: 1.3;  /* IE 8 では "1.3" と "130%" と "1.3em" とで <h1> などの出力が異なるので注意 */
     margin: 2%;
 }

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>データベースのことで調べたこと考えたことをずらずらと</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="データベースのことで調べたこと考えたことをずらずらと"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-02 17:50:37 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">データベースのことで調べたこと考えたことをずらずらと</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 主にMySQLのことを調べて，使い方を書く</a></li>
+<li><a href="#sec-2">2 ユーザの管理</a></li>
+<li><a href="#sec-3">3 RubyからMySQLとかに繋ぐ場合</a></li>
+<li><a href="#sec-4">4 エラーログの場所</a></li>
+<li><a href="#sec-5">5 テスト環境はMac，本番環境はOpenSUSE</a>
+<ul>
+<li><a href="#sec-5-1">5.1 OpenSUSEでMySQLが動かない．．．</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6 MySQLのインストール</a></li>
+<li><a href="#sec-7">7 Ubuntuで</a></li>
+<li><a href="#sec-8">8 Linux Mintにて</a></li>
+<li><a href="#sec-9">9 mongoDBのこと</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 主にMySQLのことを調べて，使い方を書く</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> ユーザの管理</h2>
+<div class="outline-text-2" id="text-2">
+
+<ul>
+<li>ユーザの表示
+</li>
+</ul>
+
+
+
+
+<pre class="example">select User, Host FROM mysql.user;
+</pre>
+
+<ul>
+<li>追加
+</li>
+</ul>
+
+
+
+
+<pre class="example">create database hoge;
+GRANT ALL on hoge.* to yuuhi@localhost;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> RubyからMySQLとかに繋ぐ場合</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+
+<pre class="example">gem install mysql
+</pre>
+
+<p>
+でおきる問題．
+</p>
+
+
+<pre class="example">sudo aptitude install libmysqlclient-dev
+sudo aptitude install libmysql-ruby
+</pre>
+
+<p>
+で
+</p>
+
+
+<pre class="example">gem install mysql
+</pre>
+
+
+
+<pre class="example"># データベース統一インターフェース
+gem install dbi
+gem install dbd-mysql
+gem install dbd-pg
+gem install dbd-sqlite3
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> エラーログの場所</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+
+<pre class="example">~/log/mysql/error-log.err
+</pre>
+
+<p>
+にある
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> テスト環境はMac，本番環境はOpenSUSE</h2>
+<div class="outline-text-2" id="text-5">
+
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> OpenSUSEでMySQLが動かない．．．</h3>
+<div class="outline-text-3" id="text-5-1">
+
+
+
+
+<pre class="example">&gt; rcmysql start
+cat: /etc/my.cnf: Permission denied
+chown: changing ownership of `/var/run/mysql': Operation not permitted
+cat: /etc/my.cnf: Permission denied
+chown: changing ownership of `/var/run/mysql': Operation not permitted
+tee: /var/run/mysql/tmpdir: Permission denied
+chown: changing ownership of `/var/tmp/mysql.KNAGa3': Operation not permitted
+Can't create secure /var/tmp/mysql.KNAGa3
+</pre>
+
+<p>
+こんな感じで．
+</p>
+
+
+<pre class="example">&gt; mysqld       
+120430  4:26:02 [Warning] Can't create test file /var/lib/mysql/linux-z5ho.lower-test
+120430  4:26:02 [Warning] Can't create test file /var/lib/mysql/linux-z5ho.lower-test
+120430  4:26:02 [Note] Plugin 'ndbcluster' is disabled.
+120430  4:26:02 [ERROR] mysqld: Can't find file: './mysql/plugin.frm' (errno: 13)
+120430  4:26:02 [ERROR] Can't open the mysql.plugin table. Please run mysql_upgrade to create it.
+120430  4:26:02 [ERROR] mysqld: File '/var/lib/mysql/maria_log_control' not found (Errcode: 13)
+120430  4:26:02 [ERROR] mysqld: Got error 'Can't open file' when trying to use maria control file '/var/lib/mysql/maria_log_control'
+120430  4:26:02 [ERROR] Plugin 'MARIA' init function returned error.
+120430  4:26:02 [ERROR] Plugin 'MARIA' registration as a STORAGE ENGINE failed.
+InnoDB: The InnoDB memory heap is disabled
+InnoDB: Mutexes and rw_locks use GCC atomic builtins
+InnoDB: Compressed tables use zlib 1.2.5
+120430  4:26:02  InnoDB: Initializing buffer pool, size = 128.0M
+120430  4:26:02  InnoDB: Completed initialization of buffer pool
+120430  4:26:02  InnoDB: Operating system error number 13 in a file operation.
+InnoDB: The error means mysqld does not have the access rights to
+InnoDB: the directory.
+InnoDB: File name ./ibdata1
+InnoDB: File operation call: 'create'.
+InnoDB: Cannot continue operation.
+</pre>
+
+
+<pre class="example">&gt; mysqld_safe
+120430 04:26:48 mysqld_safe Logging to '/var/lib/mysql/linux-z5ho.err'.
+120430 04:26:48 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+/usr/bin/mysqld_safe: line 101: /var/lib/mysql/linux-z5ho.err: Permission denied
+/usr/bin/mysqld_safe: line 138: /var/lib/mysql/linux-z5ho.err: Permission denied
+120430 04:26:48 mysqld_safe mysqld from pid file /var/lib/mysql/linux-z5ho.pid ended
+/usr/bin/mysqld_safe: line 101: /var/lib/mysql/linux-z5ho.err: Permission denied
+</pre>
+
+
+<p>
+こちらの知識不足もあるのだろうけど，もうOpenSUSEでの運用やめようかと．．<br/>
+-&gt; 最後にソースからMySQLインストールしてみて決める
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> MySQLのインストール</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>たしか，homebrewでインストールした．
+</p>
+
+
+<pre class="example">% brew install mongodb
+</pre>
+
+
+
+<pre class="example">% mysqld
+% mysql -u root -p
+mysql&gt; SELECT User, Host FROM mysql.user;
+mysql&gt; create database twitterDB;
+mysql&gt; GRANT ALL ON twitterDB.* to yuuhi@localhost IDENTIFIED BY 'passwd';
+Query OK, ..........
+
+mysql&gt; mysqld_safe --log-error=$HOME/log/mysql/error-log
+mysql&gt; mysql.server stop
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Ubuntuで</h2>
+<div class="outline-text-2" id="text-7">
+
+
+
+
+<pre class="example">% sudo apt-get install mysql-server
+% sudo service mysql start
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Linux Mintにて</h2>
+<div class="outline-text-2" id="text-8">
+
+
+
+
+<pre class="example">default-character-set=utf8
+skip-character-set-client-handshake
+</pre>
+
+<p>
+がないと動かない
+</p>
+<ul>
+<li>下記のようにmy.cnfに追加
+</li>
+</ul>
+
+
+
+
+<pre class="example">[client]
+default-character-set = utf8
+
+[mysqld]
+character-set-server = utf8
+skip-character-set-client-handshake
+
+[mysqldump]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+</pre>
+
+
+
+<pre class="example">% sudo /etc/init.d/mysql restart
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> mongoDBのこと</h2>
+<div class="outline-text-2" id="text-9">
+
+<p><a href="http://www.mongodb.org/">http://www.mongodb.org/</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-02 17:50:37 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
