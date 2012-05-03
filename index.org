@@ -35,6 +35,7 @@
     https://twitter.com/yuuhi111
   - Bot兼サブ垢
     https://twitter.com/yuuhi112
+    - [[./about-bot.html][Botの機能を説明]]
 
 - メイン環境
   - MacBook Air 13-inch

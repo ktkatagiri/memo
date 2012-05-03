@@ -1,0 +1,24 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Emacsメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>あなたのことが好きです！付き合ってください！！</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>はじめに</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+
+** Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html
