@@ -1,0 +1,63 @@
+#+AUTHOR: Yuuhi
+#+TITLE: プログラミングの基礎固めのために
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 数学的な考え方
+** 資料
+- プログラマの数学
+http://www.amazon.co.jp/dp/4797329734
+
+** 条件分岐と論理
+** 繰り返しと数学的帰納法
+*** 0のこと
+- 我々が普段一番よく使っているアラビア数字は位取り記数法によって数を表している．
+- 大きな問題を小さなまとまりに分けて問題を解く．
+
+*** 命題論理
+- 命題: 正しいか正しくないかを判断できる文
+  - 命題は必ず真偽(true/false)のどちらかになる
+
+- 一般化
+#+begin_quote
+論理学で、さまざまな事物に共通する性質を抽象し、一つの概念にまとめること。
+概括。
+普遍化。
+#+end_quote
+大辞泉より
+
+- 順列，組み合わせ
+  - ダブリを意識する
+  - 置換
+    - n!
+  - 順列
+    - _{n}P_{k}
+    - n! / (n - k)!
+  - 組み合わせ
+    - 順序を考えて数えて，あとから重複度で割る
+    - _{n}C_{k} = _{n}P_{k} / _{k}P_{k}
+    - (n! / (n - k)!) / k! = n! / (n - k)! * k!
+
+* アルゴリズムのこと
+** 資料
+- プログラミングコンテストチャレンジブック
+秋葉 拓哉 (著), 岩田 陽一 (著), 北川 宜稔 (著) 
+http://www.amazon.co.jp/dp/4839931992
+
+** 全探索
+** 貪欲法
+** 動的計画法
+** データ構造
+** グラフ
+
+** 数学的な問題
+** ２分探索
+** ネットワークフロー
+** ゲーム
+
+* AOJとか
+** リンク
+- http://judge.u-aizu.ac.jp/onlinejudge/
+

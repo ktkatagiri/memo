@@ -1,0 +1,14 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Javaの勉強
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 資料
+** Web
+- http://www5c.biglobe.ne.jp/~ecb/java/java00.html
+
+* Javaクラスローダーのこと
+- http://ja.wikipedia.org/wiki/Java%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC
+

@@ -1,0 +1,14 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 再読パタヘネ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 趣旨
+- 昔，パラパラとページを眺めただけで読んだ気になっていたパタヘネをじっくりと読む直す
+- 早く読み終われば，ヘネパタ読みに移るにゃにゃーん！！
+
+* パタヘネ上
+
+* パタヘネ下

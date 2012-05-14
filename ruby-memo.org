@@ -20,7 +20,6 @@
     </div>
 #+end_html
 
-
 * Rubyでxmlを操作する
 http://www.nslabs.jp/ruby-rexml.rhtml
 - ここを読むのが一番良い
@@ -99,4 +98,10 @@ File.open(xml_file_name) {|xml_file|
 #+begin_src ruby
 str.force_encoding("UTF-8").encode('UTF-8').encode("UTF-16", :invalid => :replace, :replace => '').encode("UTF-8")
 #+end_src
-
+   
+* Rubyでクローラー作りたい
+- 役に立ちそうなサイト
+  - http://d.hatena.ne.jp/kitamomonga/20081209/kaisetsu_for_ver_0_9_ruby_www_mechanize
+    
+* fluentdをmongodbで
+** TODO URL: http://d.hatena.ne.jp/mizchi/20120226/1330196807

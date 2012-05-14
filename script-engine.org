@@ -1,0 +1,48 @@
+#+AUTHOR: Yuuhi
+#+TITLE: スクリプトエンジン製作メモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li><a href='#sec-1'>資料</a></li>
+            <li><a href='#sec-2'>やること</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* 資料
+- 本
+  - スクリプトエンジン プログラミング 坂本 千尋 (著)
+    - http://www.amazon.co.jp/dp/4797347627
+
+* 全体の構造
+** なんのために作るか？
+- ドメイン特化，マイコンなど制限がある環境用，アプリケーション(Emacsなど)用の組み込み言語，趣味
+- とりあえずの目標
+  - Qtを使えるようにしたい
+  - Arduinoで動く
+  - H8マイコンで動く
+  - Scheme風の言語
+  - ゲームエンジンをつくってその組み言語として
+
+** トランスレータのこと
+トランスレータとは，compilerが実行ファイル(バイナリ，機械語)を生成するのに対して，
+
+** フロントエンドとバックエンド
+
+* 字句解析
+* 構文解析
+* bison/flex
+* 環境構築
+* BASIC風言語の作成
+
+

@@ -1,0 +1,17 @@
+#+AUTHOR: Yuuhi
+#+TITLE: GUIプログラミングのこと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* Qtのこと
+** リンク集
+- Qt http://qt.nokia.com/title-jp
+- Qt Reference Documentation http://www.kde.gr.jp/~ichi/qt/
+
+* node-qtと言うのを入れてみた
+#+begin_example
+npm install node-gyp #これがないと失敗する
+npm install node-qt
+#+end_example

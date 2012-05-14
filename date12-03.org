@@ -520,9 +520,7 @@ image_src = "http://www.gravatar.com/avatar/#{hash}"
 
 でいける．そもそもこのサービスがなんなのかよく分からない．Githubのアイコンを表示させるときに登録させられたけど．．
 
-
 ** A Normal Fromとは？
-
 
 ** Ajaxとは？
 再確認．
@@ -627,7 +625,6 @@ http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2FManual4#i5
 - 32bitOSでのmongoDBの問題
 MySQLに移行予定
 
-
 ** convertコマンドを思い出せ
 #+begin_example
 convert [ options ... ] input_file output_file
@@ -635,7 +632,5 @@ convert [ options ... ] input_file output_file
 
 * 22日
 寝た．
-
-
 
 

@@ -1,0 +1,45 @@
+#+AUTHOR: Yuuhi
+#+TITLE: JavaScriptのこと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* クライアントサイドJavaScript
+
+* サーバーサイドJavaScript
+** node.js http://nodejs.jp/
+- ドキュメント http://nodejs.jp/nodejs.org_ja/api/
+
+** 導入編
+- かなり前にやったのでもう忘れた
+
+** Expressのこと
+- http://d.hatena.ne.jp/tilfin/20110926/1317014251
+#+begin_example
+npm install -g express
+#+end_example
+
+** Twitter Streaming API叩く
+- http://kray.jp/blog/node-js-twitter-streaming-api/
+- 
+  #+begin_example
+  % npm install http-basic-auth
+  #+end_example
+  がうまくいかない
+  
+- Twitter Stream関連
+  - http://d.hatena.ne.jp/sfujiwara/20100621/1277090751#tb
+  - http://d.hatena.ne.jp/yssk22/20100822/1282465422
+  - 
+
+- 捕捉
+  - Base64のこと http://ja.wikipedia.org/wiki/Base64
+
+- ここのが新しくて良さ気
+  - http://d.hatena.ne.jp/replication/20120318/1332044327
+
+  - できた
+    - ntwitter https://github.com/AvianFlu/ntwitter
+      - これをつかうと簡単

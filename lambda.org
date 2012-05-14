@@ -1,0 +1,20 @@
+#+AUTHOR: Yuuhi
+#+TITLE: ラムダ計算のこと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* 資料
+- 資料
+  計算論 計算可能性とラムダ計算, 高橋 正子 (著)  http://www.amazon.co.jp/dp/4764901846
+
+* はじめに
+- 計算とはなにか云々
+
+* 数学的な用語，記法，必要とされる知識
+集合，直積，関数などの概念
+** 関数と部分関数
+集合Xの元にYの元を対応させる関数f:X→Yで表す．
+Xをfの定義域dom(f)，f(X)={f(x)|x∈X}をfの値域range(f)と呼ぶ．
+特にf(X)=Yのとき，fをXからYの上への関数と呼ぶ．

@@ -9,7 +9,7 @@
     <div class='navbar navbar-fixed-top'>
       <div class='navbar-inner'>
         <div class='container'>
-          <a class='brand' href='/memo/index.html'>あなたのことが好きです！付き合ってください！！</a>
+          <a class='brand' href='./index.html'>トップへ戻る</a>
           <ul class='nav'>
             <li>
               <a href='#sec-1'>はじめに</a>
@@ -20,5 +20,170 @@
     </div>
 #+end_html
 
+* EmacsからAOJへのサブミット
+- http://82rensa.blogspot.jp/2012/01/emacsaoj.html
+* Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html
+* EmacsでJavaの開発環境を整える
+  - 普通はEclipseを使うが，書き捨てのコードをパパっとJavaで書きたいとき
+    - RubyとかSchemeとか付けばええやん
+      - 静的型付け言語だし？
+	- C++は？
+	  - めんどい
+    - https://github.com/espenhw/malabar-mode
+      - ここを変える
+	https://github.com/espenhw/malabar-mode/issues/74
+      #+begin_example
+      <maven.version>3.0.4-SNAPSHOT</maven.version>
+      #+end_example
+      http://d.hatena.ne.jp/smotokezuru/20100418/1271565315
+      - オプションはつけなくてもイケるかも
+	#+begin_example
+	-Dmaven.test.skip=true
+	#+end_example
+    - 
+    #+begin_src lisp
+      (add-to-list 'load-path "~/.emacs.d/elisp/malabar-1.5-SNAPSHOT/lisp/")
+      (require 'cedet)
+      ;; (semantic-load-enable-minimum-features) ;; or enable more if you wish
+      (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+      				        global-semanticdb-minor-mode
+      				        global-semantic-idle-summary-mode
+				        global-semantic-mru-bookmark-mode))
+      (semantic-mode 1)
+      (require 'malabar-mode)
+      (setq malabar-groovy-lib-dir "/path/to/malabar/lib")
+      (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+    #+end_src
 
-** Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html
+    - http://b0r0nji.blogspot.jp/2011/12/emacsjavamalabar-mode.html
+
+* Emacsで英和辞典
+- http://d.hatena.ne.jp/tomoya/20091218/1261138091
+- 辞書.appの例
+#+begin_src lisp
+;; 辞書.app
+;; http://d.hatena.ne.jp/tomoya/20091218/1261138091
+(defvar dict-bin "/Users/katagiri/srcs/commandline-dictionary-app/src/dict"
+  "dict 実行ファイルのパス")
+
+(defun temp-cancel-read-only (function &optional jaspace-off)
+  "eval temporarily cancel buffer-read-only
+&optional t is turn of jaspace-mode"
+  (let ((read-only-p nil)
+	(jaspace-mode-p nil))
+    (when jaspace-off
+      (when jaspace-mode
+	(jaspace-mode)
+	(setq jaspace-mode-p t)))
+    (when buffer-read-only
+      (toggle-read-only)
+      (setq read-only-p t))
+    (eval function)
+    (when read-only-p
+      (toggle-read-only))
+    (when jaspace-mode-p
+      (jaspace-mode))))
+
+(defun ns-popup-dictionary ()
+   "マウスカーソルの単語を Mac の辞書でひく"
+   (interactive)
+   (let ((word (substring-no-properties (thing-at-point 'word)))
+	 (old-buf (current-buffer))
+	 (dict-buf (get-buffer-create "*dictionary.app*"))
+	 (dict))
+     (when (and mark-active transient-mark-mode)
+       (setq word (buffer-substring-no-properties (region-beginning) (region-end))))
+     (set-buffer dict-buf)
+     (erase-buffer)
+     (call-process dict-bin
+		   nil "*dictionary.app*" t word
+		   "Japanese-English" "Japanese" "Japanese Synonyms")
+     (setq dict (buffer-string))
+     (set-buffer old-buf)
+     (when (not (eq (length dict) 0))
+       (temp-cancel-read-only '(popup-tip dict :margin t :scroll-bar t) t)
+       ;; (temp-cancel-read-only '(popup-tip dict :margin t :scroll-bar t))
+       )))
+
+(defvar dict-timer nil)
+(defvar dict-delay 0.1)
+;; (defvar dict-delay 5.0)
+(defun dict-timer ()
+  (when (and (not (minibufferp))
+	     (and mark-active transient-mark-mode))
+    (ns-popup-dictionary)))
+(setq dict-timer (run-with-idle-timer dict-delay dict-delay 'dict-timer))
+#+end_src
+
+* Emacs+英辞郎+sdicで快適な環境づくり
+- 参考URL: http://d.hatena.ne.jp/kyagi/20090515/1242379726 http://d.hatena.ne.jp/higepon/20090125/1232872431 http://nox-insomniae.ddo.jp/insomnia/2009/01/eijiro-emacs.html
+#+begin_src ruby
+# -*- coding: utf-8 -*-
+
+def make_key(key)
+  head = key.clone
+  key.tr!('A-Z', 'a-z')
+  key.sub!(/\s+/, ' ')
+#  key.sub!(/ \+\d+/, '')
+  ret = ""
+  if head != key
+    ret = "<H>#{head}</H>"
+  end
+  ret + "<K>#{key}</K>"
+end
+
+$stdin.each do |line|
+  line.gsub!('&', '&amp;')
+  line.gsub!('<', '&lt;')
+  line.gsub!('>', '&gt;')
+  line.gsub!(' \ ', '&lf;  ')
+  key, content  = line.split(' /// ')
+  puts make_key(key) + content.chomp
+end
+#+end_src
+
+#+begin_example
+% cat Eijiro128.txt Ryaku28.txt| nkf -w8| ruby gene.rb > eijirou.sdic
+% cat Waei128.txt| nkf -w8| ruby gene.rb > waeijirou.sdic
+% ls /usr/local/share/dict
+# ディレクトリがなかったら
+% mkdir /usr/local/share/dict
+% (sudo) cp eijirou.sdic waeijirou.sdic /usr/local/share/dict
+#+end_example
+
+#+begin_src lisp
+;; 英辞郎 - 辞書 http://d.hatena.ne.jp/higepon/20090125/1232872431
+(autoload 'sdic-describe-word "sdic" "英単語の意味を調べる" t nil)
+(global-set-key "\C-cw" 'sdic-describe-word)
+(autoload 'sdic-describe-word-at-point "sdic" "カーソルの位置の英単語の意味を調べる" t nil)
+(global-set-key "\C-cW" 'sdic-describe-word-at-point)
+
+(setq sdic-eiwa-dictionary-list
+      '((sdicf-client "/usr/local/share/dict/eijirou.sdic")))
+(setq sdic-waei-dictionary-list
+      '((sdicf-client "/usr/local/share/dict/waeijirou.sdic")))
+(setq sdic-default-coding-system 'utf-8-unix)
+
+; 検索結果表示バッファで引いた単語をハイライト表示する http://d.hatena.ne.jp/kyagi/20090515/1242379726
+(defadvice sdic-search-eiwa-dictionary (after highlight-phrase (arg))
+    (highlight-phrase arg "hi-yellow"))
+(defadvice sdic-search-waei-dictionary (after highlight-phrase (arg))
+    (highlight-phrase arg "hi-yellow"))
+(ad-activate 'sdic-search-eiwa-dictionary)
+(ad-activate 'sdic-search-waei-dictionary)
+#+end_src
+
+#+begin_html
+<img src="./pics/emacs-dict.png" alt="辞書" />
+#+end_html
+
+* org-modeのこと
+- リファレンス http://www.network-theory.co.uk/docs/orgmode/PublishersPreface.html
+- 日本語のマニュアル http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual
+
+* expand-resion
+- http://d.hatena.ne.jp/syohex/20120117/1326814127
+* sense-expand-resion
+- http://emacs.g.hatena.ne.jp/k1LoW/20120321/1332321514
+
+  

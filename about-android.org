@@ -8,7 +8,7 @@
     <div class='navbar navbar-fixed-top'>
       <div class='navbar-inner'>
         <div class='container'>
-          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <a class='brand' href='./index.html'>ねこねここねこ</a>
           <ul class='nav'>
             <li>
               <a href='#sec-1'>Twitterクライアント</a>
@@ -21,3 +21,43 @@
       </div>
     </div>
 #+end_html
+
+* 資料
+** Web
+- 初心者に送る、はじめてのAndroidアプリ開発/小気味の良いアプリをつくるためのTIPS - shimobayashiの日記
+  - URL: http://d.hatena.ne.jp/shimobayashi/20110319/1300516097
+- http://d.hatena.ne.jp/androidprogram/20100715/1279153784
+- http://www.techmaru.net/wordpress/20110112/listviewfooter/
+- http://visible-true.blogspot.jp/2010/12/listview.html
+
+* 開発環境導入
+* Androidアプリ開発にあたっての基礎
+- インテント
+- アクティビティ
+
+
+* adbの使い方
+- 使えるデバイスの確認
+#+begin_example
+% adb devices
+List of devices attached
+HT0B4RX08083    device
+#+end_example
+
+- Shellを使う
+#+begin_example
+% adb shell
+#+end_example
+- Logcat
+#+begin_example
+% adb logcat
+# もしくは，adb shellの状態で
+% logcat
+#+end_example
+
+* Twitterクライアント作り
+** ListViewの扱い
+- ListViewで最後尾までスクロールしたら自動的に要素を追加読み込みするサンプル
+  http://visible-true.blogspot.jp/2010/12/listview.html
+- ：Tips 　ListView を使おう　～ 基礎編 ～　その１ - - Google Android -  　雑記帳
+  http://d.hatena.ne.jp/androidprogram/20100628/1277685225

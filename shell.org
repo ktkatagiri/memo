@@ -1,0 +1,25 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Androidアプリ作成
+#+LANGUAGE: ja
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>Twitterクライアント</a>
+            </li>
+            <li>
+              <a href='#sec-2'>戦略シミュレーションゲーム</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* diffとpatchコマンドを使い方

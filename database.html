@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="データベースのことで調べたこと考えたことをずらずらと"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-05-03 07:29:07 JST"/>
+<meta name="generated" content="2012-05-05 01:28:35 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -106,6 +106,9 @@
             <li>
               <a href='#sec-1'>MySQL</a>
             </li>
+            <li>
+              <a href='#sec-2'>MongoDB</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -116,35 +119,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 主にMySQLのことを調べて，使い方を書く</a></li>
-<li><a href="#sec-2">2 ユーザの管理</a></li>
-<li><a href="#sec-3">3 RubyからMySQLとかに繋ぐ場合</a></li>
-<li><a href="#sec-4">4 エラーログの場所</a></li>
-<li><a href="#sec-5">5 テスト環境はMac，本番環境はOpenSUSE</a>
+<li><a href="#sec-1">1 MySQL</a>
 <ul>
-<li><a href="#sec-5-1">5.1 OpenSUSEでMySQLが動かない．．．</a></li>
+<li><a href="#sec-1-1">1.1 主にMySQLのことを調べて，使い方を書く</a></li>
+<li><a href="#sec-1-2">1.2 ユーザの管理</a></li>
+<li><a href="#sec-1-3">1.3 RubyからMySQLとかに繋ぐ場合</a></li>
+<li><a href="#sec-1-4">1.4 エラーログの場所</a></li>
+<li><a href="#sec-1-5">1.5 テスト環境はMac，本番環境はOpenSUSE</a>
+<ul>
+<li><a href="#sec-1-5-1">1.5.1 OpenSUSEでMySQLが動かない．．．</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6 MySQLのインストール</a></li>
-<li><a href="#sec-7">7 Ubuntuで</a></li>
-<li><a href="#sec-8">8 Linux Mintにて</a></li>
-<li><a href="#sec-9">9 mongoDBのこと</a></li>
+<li><a href="#sec-1-6">1.6 MySQLのインストール</a>
+<ul>
+<li><a href="#sec-1-6-1">1.6.1 Ubuntuで</a></li>
+<li><a href="#sec-1-6-2">1.6.2 Linux Mintにて</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 mongoDBのこと</a>
+<ul>
+<li><a href="#sec-2-1">2.1 mongoDB導入編</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 Linux Mint</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2 RubyからmongoDBを使うには</a></li>
+<li><a href="#sec-2-3">2.3 mongoDBのデータのバックアップとリストア</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 主にMySQLのことを調べて，使い方を書く</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> MySQL</h2>
 <div class="outline-text-2" id="text-1">
 
 
 </div>
 
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 主にMySQLのことを調べて，使い方を書く</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
 </div>
 
-<div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> ユーザの管理</h2>
-<div class="outline-text-2" id="text-2">
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> ユーザの管理</h3>
+<div class="outline-text-3" id="text-1-2">
 
 <ul>
 <li>ユーザの表示
@@ -174,9 +200,9 @@ GRANT ALL on hoge.* to yuuhi@localhost;
 
 </div>
 
-<div id="outline-container-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> RubyからMySQLとかに繋ぐ場合</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> RubyからMySQLとかに繋ぐ場合</h3>
+<div class="outline-text-3" id="text-1-3">
 
 
 
@@ -215,9 +241,9 @@ gem install dbd-sqlite3
 
 </div>
 
-<div id="outline-container-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> エラーログの場所</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> エラーログの場所</h3>
+<div class="outline-text-3" id="text-1-4">
 
 
 
@@ -232,17 +258,16 @@ gem install dbd-sqlite3
 
 </div>
 
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> テスト環境はMac，本番環境はOpenSUSE</h2>
-<div class="outline-text-2" id="text-5">
-
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> テスト環境はMac，本番環境はOpenSUSE</h3>
+<div class="outline-text-3" id="text-1-5">
 
 
 </div>
 
-<div id="outline-container-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> OpenSUSEでMySQLが動かない．．．</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> OpenSUSEでMySQLが動かない．．．</h4>
+<div class="outline-text-4" id="text-1-5-1">
 
 
 
@@ -305,9 +330,9 @@ InnoDB: Cannot continue operation.
 
 </div>
 
-<div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> MySQLのインストール</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> MySQLのインストール</h3>
+<div class="outline-text-3" id="text-1-6">
 
 <p>たしか，homebrewでインストールした．
 </p>
@@ -330,13 +355,12 @@ mysql&gt; mysql.server stop
 </pre>
 
 
-</div>
 
 </div>
 
-<div id="outline-container-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Ubuntuで</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> Ubuntuで</h4>
+<div class="outline-text-4" id="text-1-6-1">
 
 
 
@@ -350,9 +374,9 @@ mysql&gt; mysql.server stop
 
 </div>
 
-<div id="outline-container-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Linux Mintにて</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> Linux Mintにて</h4>
+<div class="outline-text-4" id="text-1-6-2">
 
 
 
@@ -392,22 +416,116 @@ default-character-set = utf8
 </pre>
 
 
+
+</div>
+</div>
 </div>
 
 </div>
 
-<div id="outline-container-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> mongoDBのこと</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> mongoDBのこと</h2>
+<div class="outline-text-2" id="text-2">
 
 <p><a href="http://www.mongodb.org/">http://www.mongodb.org/</a>
 </p>
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> mongoDB導入編</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Linux Mint</h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+
+
+
+<pre class="example">sudo aptitude install mongodb
+</pre>
+
+<ul>
+<li>aptでインストールするとかってにデーモンまで起動してくれる
+  <a href="http://ubuntuforums.org/showthread.php?t=1715866">http://ubuntuforums.org/showthread.php?t=1715866</a>
+
+
+
+<pre class="example">ps -eF | grep 'mongo\|PIDThi
+</pre>
+
+<ul>
+<li>MySQLと同じく
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> RubyからmongoDBを使うには</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+
+
+<pre class="example">gem install mongo bson_ext
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> mongoDBのデータのバックアップとリストア</h3>
+<div class="outline-text-3" id="text-2-3">
+
+<ul>
+<li><a href="http://conol.co.jp/blog/archives/253">http://conol.co.jp/blog/archives/253</a>
+
+
+
+<pre class="example">//BSONファイルでデータを出力する
+mongodump -d &lt;DatabaseName&gt; -u &lt;username&gt; -p &lt;password&gt;
+//BSONファイルからデータをリストアする（全データ先に削除）
+mongorestore -d &lt;DatabaseName&gt; -u &lt;username&gt; -p &lt;password&gt; --drop &lt;BackupDataPath&gt;
+</pre>
+
+
+</li>
+<li>JSON形式でバックアップを取りたい場合には
+
+
+
+<pre class="example">//Jsonファイルにて特定コレクションを出力する
+mongoexport -d &lt;DatabaseName&gt; -c &lt;CollectionName&gt; -u &lt;username&gt; -p &lt;password&gt; -o &lt;fileName&gt;.json
+//Jsonファイルから特定コレクションみのデータを更新する
+mongoimport -d &lt;DatabaseName&gt; -c &lt;CollectionName&gt; -u &lt;username&gt; -p &lt;password&gt; &lt;fileName&gt;.json --upsert
+//Jsonファイルから特定コレクションの指定フィールドのみのデータを更新する
+mongoimport -d &lt;DatabaseName&gt; -c &lt;CollectionName&gt; -f image -u &lt;username&gt; -p &lt;password&gt; &lt;fileName&gt;.json --upsert
+</pre>
+
+</li>
+</ul>
+
+</div>
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-05-03 07:29:07 JST</p>
+<p class="date">Date: 2012-05-05 01:28:35 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

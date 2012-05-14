@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>コンパイラ製作メモ</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="コンパイラ製作メモ"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-10 11:51:30 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">コンパイラ製作メモ</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li><a href='#sec-1'>資料</a></li>
+            <li><a href='#sec-2'>やること</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 資料</a></li>
+<li><a href="#sec-2">2 やること</a></li>
+<li><a href="#sec-3">3 CPUアーキテクチャの設計</a></li>
+<li><a href="#sec-4">4 中間表現</a></li>
+<li><a href="#sec-5">5 作成言語の設計</a></li>
+<li><a href="#sec-6">6 Syntax Sugarで便利な構文を追加していく</a></li>
+<li><a href="#sec-7">7 何をPrimitiveにするか？</a></li>
+<li><a href="#sec-8">8 BNFのこと</a></li>
+<li><a href="#sec-9">9 Lambda Closureのこと</a></li>
+<li><a href="#sec-10">10 </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 資料</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>本
+<ul>
+<li>コンパイラ―原理・技法・ツール (Information &amp; Computing), A.V. エイホ
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/478191229X/">http://www.amazon.co.jp/dp/478191229X/</a>
+</li>
+<li>持っていない．高い．図書館で借りた．
+</li>
+</ul>
+
+</li>
+<li>コンパイラ (情報系教科書シリーズ), 湯浅 太一
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/4785620501/">http://www.amazon.co.jp/dp/4785620501/</a>
+</li>
+<li>持っている．買った．
+</li>
+</ul>
+
+</li>
+<li>最新コンパイラ構成技法 Andrew W. Appel (著), 神林 靖 (監修, 編集), 滝本 宗宏 (編集)
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/4798114685/">http://www.amazon.co.jp/dp/4798114685/</a>
+</li>
+<li>持っている．買った．
+</li>
+</ul>
+
+</li>
+<li>Compiling with Continuations, Andrew W. Appel (著)  <a href="http://www.amazon.co.jp/dp/052103311X">http://www.amazon.co.jp/dp/052103311X</a>
+<ul>
+<li>この本欲しいなぁ．Kindleで売ってるのかな．買おうか．高いが．．
+<ul>
+<li>しかも英語だし，すぐには読めない．やはり，英語の勉強は死ぬ気でヤラなければ．．
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>公開されている講義資料
+<ul>
+<li>コンパイラの作り方 (詳解) <a href="http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/">http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/</a>
+<ul>
+<li>この資料をメインにコンパイラ製作を進める<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>論文
+<ul>
+<li>3imp.pdf( Three implementation models for scheme ) <a href="http://www.cs.indiana.edu/~dyb/papers/3imp.pdf">http://www.cs.indiana.edu/~dyb/papers/3imp.pdf</a>
+<ul>
+<li>Schemeのインタプリタの実装方法を説明している
+<ul>
+<li>VM上で動くコードを吐き出してるので正確な意味でインタプリタか？
+<ul>
+<li>最近はJITなども普通になってきていて，インタプリタとコンパイラの境界を議論するのは不毛で意味のないことかもしれない
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>簡単に日本語で解説している <a href="http://route477.net/w/?Reading3imp.pdf">http://route477.net/w/?Reading3imp.pdf</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>中間表現など
+<ul>
+<li>Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> やること</h2>
+<div class="outline-text-2" id="text-2">
+
+<ul>
+<li>小さな言語の設計
+<ul>
+<li>Schemeのサブセットのようなもの
+<ul>
+<li>S式の言語
+</li>
+</ul>
+
+</li>
+<li>コンパイラはSchemeで記述する
+<ul>
+<li>Gaucheで動くように書く
+<ul>
+<li>Gauche <a href="http://practical-scheme.net/gauche/index-j.html">http://practical-scheme.net/gauche/index-j.html</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>仮想マシンの作成
+<ul>
+<li>マシン語にまでコンパイルできるコンパイラを作るには，
+</li>
+</ul>
+
+<p>  特定のアーキテクチャ(x86やH8など)の命令セットのこと知らなければならない
+</p><ul>
+<li>x86 <a href="http://ja.wikipedia.org/wiki/X86">http://ja.wikipedia.org/wiki/X86</a>
+</li>
+<li>H8 <a href="http://ja.wikipedia.org/wiki/H8">http://ja.wikipedia.org/wiki/H8</a>
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> CPUアーキテクチャの設計</h2>
+<div class="outline-text-2" id="text-3">
+
+<ol>
+<li>全ての変数のsizeが同じ
+<ul>
+<li>浮動小数点数も整数も同じsize
+</li>
+</ul>
+
+</li>
+<li>registerがたくさん
+</li>
+<li>3 operand register間命令が基本
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 中間表現</h2>
+<div class="outline-text-2" id="text-4">
+
+<ul>
+<li>CPS形式
+<ul>
+<li>末尾再帰の最適化などを行う
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 作成言語の設計</h2>
+<div class="outline-text-2" id="text-5">
+
+<ul>
+<li>拡張BNFで
+</li>
+</ul>
+
+
+
+
+<pre class="example">Expression ::= Id
+           | Contstant
+           | (if Expression Expression Expression)
+           | (let (Bind*) Expression)
+           | (Primsym Expression*)  ;; premitive call
+           | (Expresion Exprresion*)  ;; user-defined functions
+Bind       ::= (Id Exprssion)    ;; let-bind
+Definition ::= (define Id Expression)
+           | (define (Id Id*) Expression*) ;; toplevel definition |
+Constant   ::= Integer | Float | Boolean | '()
+Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2 | =2 | heap
+           |   record-ref | record-det! 
+</pre>
+
+
+<ul>
+<li>heap: memoryの割り当て
+</li>
+<li>record-ref: heapに割り当てられたrecordの参照(vector-refみたいな)，
+</li>
+<li>record-set!: はrecordの更新．
+</li>
+</ul>
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((r (heap 0 1 2 3)))
+  (record-set! r 0 10)
+  (+2 (record-ref r 0) (record-ref r 1)))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Syntax Sugarで便利な構文を追加していく</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>compilerはできる限り少ない機能のみをサポートしたい．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 何をPrimitiveにするか？</h2>
+<div class="outline-text-2" id="text-7">
+
+<p>よく考える必要がある(9章<sup><a class="footref" name="fnr.1.2" href="#fn.1">1</a></sup>)
+</p><ul>
+<li>この講義だと仮想CPUどうやって作ってるんだろう．FPGAかなぁ？
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> BNFのこと</h2>
+<div class="outline-text-2" id="text-8">
+
+<ul>
+<li>Webの情報
+<ul>
+<li>バッカス・ナウア記法 <a href="http://ja.wikipedia.org/wiki/バッカス・ナウア記法">http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AB%E3%82%B9%E3%83%BB%E3%83%8A%E3%82%A6%E3%82%A2%E8%A8%98%E6%B3%95</a>
+</li>
+<li>BNF記法入門 <a href="http://www.atmarkit.co.jp/fxml/ddd/ddd004/ddd004-bnf.html">http://www.atmarkit.co.jp/fxml/ddd/ddd004/ddd004-bnf.html</a>
+<ul>
+<li>どうでもいいけど，BNF記法って書き方気になる．BN記法か，BNFじゃないのか．．？
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Lambda Closureのこと</h2>
+<div class="outline-text-2" id="text-9">
+
+<ul>
+<li>まずはClosureを持たない言語のcompilerを実装する．
+  Closureを持つ持たないで何が違うかと言うと，「自由変数を持つ関数を許すかどうか」という
+  点であるらしい．例えば，局所関数定義を許さないこと．
+  C言語などでは，一度関数を抜けてしまえば，関数内の局所変数の値は残っていることが保証されない．
+  SchemeにおけるLambda式を考える．
+
+
+
+<pre class="example">(define (make-adder x)
+  (lambda (y) (+ x y)))
+</pre>
+
+<p>
+  この例で(lambda (y) (+ x y))において，
+  変数xはLambda式が起動してから束縛されるのではなく，
+  Lambda Closureが束縛されて以来ずっと値を保持している．
+</p></li>
+</ul>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> </h2>
+<div class="outline-text-2" id="text-10">
+
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> コンパイラの作り方 (詳解) <a href="http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/">http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/</a>
+</p></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-10 11:51:30 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

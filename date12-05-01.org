@@ -1,0 +1,100 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 5月の記録
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>1日</a>
+            </li>
+            <li>
+              <a href='#sec-15'>15日</a>
+            </li>
+            <li>
+              <a href='#sec-30'>30日</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* 1日
+* 2日
+* 3日
+* 4日
+- すばひびをOpenSUSEのwineで起動したらこうなった
+#+begin_html
+<img src="http://s1-03.twitpicproxy.com/photos/large/561437917.png?key=1498897" alt="すばひび" />
+#+end_html
+* 5日
+今日は土曜日．
+祝日こどもの日である．
+今日子作りをすると，2月--3月辺りに子供がうまれるらしい．
+十月十日だと3月10日くらい．
+
+- アパートに引きこもっていると，現在の昼夜逆転体質の改善は難しいと考え，陽に当たるため大学の行った．
+- 14:00くらいまでは意識があったが，その後デスクの上で寝てしまい気づいたら21:00だった．
+- 勉強をそこそこしたら，髪を切って，Optimus Padのカバーを買い，温泉に行こうと考えていたが，全部ダメだった．
+- 泣きたい．
+- 居眠り中の夢の内容も絶対に高得点をとらないといけないTOEICで，まったく結果を出せず，泣きそうになっているものだった．もう駄目ぽよ．
+
+* 6日
+** CPUの比較 http://www.cpubenchmark.net/
+** ps2pdf(日本語)が文字化ける
+  - http://d.hatena.ne.jp/khiker/20080329/ghostscript
+  - http://d.hatena.ne.jp/Askeladd/20120227#1330348265
+  - http://www.muskmelon.jp/?page_id=75
+    #+begin_example
+    # Ghostscriptのパス(日本語に対応)
+    export PATH=/Applications/Ghostscript.app:/Applications/Ghostscript.app/bin:$PATH
+    #+end_example
+    パス通したら文字化けせずにpdfできたよやっほい
+  
+** 秋月のDAC
+  - これ欲しい，次秋葉原行ったら必ず買おう
+    http://akizukidenshi.com/catalog/g/gK-05369/
+
+* 7日
+* 8日
+* 9日
+** Lispマシン
+- http://www.youtube.com/watch?v=BoHmf1YXI3k
+- http://msnyder.info/posts/2012/05/icloud-reminders-orgmode
+
+* 10日
+** Firefoxのロケーションバーにスキーム名を表示
+ http://mozilla-remix.seesaa.net/article/227679129.html
+#+begin_example
+about:configでbrowser.urlbar.trimURLsの値をfalseにする．
+#+end_example
+
+- URLのこと http://ja.wikipedia.org/wiki/Uniform_Resource_Locator
+#+begin_quote
+なお、httpの後のダブルスラッシュ //の2文字は有意義に使われる機会が少ない。2009年10月、URLの提案者であるティム・バーナーズ=リーは「できることなら取り除きたい」と発言している。
+#+end_quote
+  
+** Arduino届いたぞよ
+
+#+begin_html
+<img src="./pics/arduino.jpg" alt="Arduino" width=300 />
+#+end_html
+
+** H8マイコン
+#+begin_html
+<img src="http://d1-01.twitpicproxy.com/photos/large/370038454.jpg?key=1280768"  alt="h8" />
+#+end_html
+
+* 11日
+** Emacsから英辞郎つかえるようにした
+[[./emacs-memo.html][詳しい説明はEmacsメモのページで]]
+#+begin_html
+<img src="./pics/emacs-dict.png" alt="辞書" />
+#+end_html

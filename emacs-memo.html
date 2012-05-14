@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Emacsメモ"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-05-03 08:50:15 JST"/>
+<meta name="generated" content="2012-05-11 13:42:44 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -101,7 +101,7 @@
     <div class='navbar navbar-fixed-top'>
       <div class='navbar-inner'>
         <div class='container'>
-          <a class='brand' href='/memo/index.html'>あなたのことが好きです！付き合ってください！！</a>
+          <a class='brand' href='./index.html'>あなたのことが好きです！付き合ってください！！</a>
           <ul class='nav'>
             <li>
               <a href='#sec-1'>はじめに</a>
@@ -112,26 +112,319 @@
     </div>
 
 
-
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html</a></li>
+<li><a href="#sec-1">1 EmacsからAOJへのサブミット</a></li>
+<li><a href="#sec-2">2 Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html</a></li>
+<li><a href="#sec-3">3 EmacsでJavaの開発環境を整える</a></li>
+<li><a href="#sec-4">4 Emacsで英和辞典</a></li>
+<li><a href="#sec-5">5 Emacs+英辞郎+sdicで快適な環境づくり</a></li>
+<li><a href="#sec-6">6 org-modeのこと</a></li>
+<li><a href="#sec-7">7 expand-resion</a></li>
+<li><a href="#sec-8">8 sense-expand-resion</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-3">
-<h3 id="sec-1"><span class="section-number-3">1</span> Emacsで複数のShellを開く方法 <a href="http://at-aka.blogspot.jp/2006/07/emacs-subshell.html">http://at-aka.blogspot.jp/2006/07/emacs-subshell.html</a></h3>
-<div class="outline-text-3" id="text-1">
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> EmacsからAOJへのサブミット</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li><a href="http://82rensa.blogspot.jp/2012/01/emacsaoj.html">http://82rensa.blogspot.jp/2012/01/emacsaoj.html</a>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Emacsで複数のShellを開く方法 <a href="http://at-aka.blogspot.jp/2006/07/emacs-subshell.html">http://at-aka.blogspot.jp/2006/07/emacs-subshell.html</a></h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> EmacsでJavaの開発環境を整える</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li>普通はEclipseを使うが，書き捨てのコードをパパっとJavaで書きたいとき
+<ul>
+<li>RubyとかSchemeとか付けばええやん
+<ul>
+<li>静的型付け言語だし？
+<ul>
+<li>C++は？
+<ul>
+<li>めんどい
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li><a href="https://github.com/espenhw/malabar-mode">https://github.com/espenhw/malabar-mode</a>
+<ul>
+<li>ここを変える
+        <a href="https://github.com/espenhw/malabar-mode/issues/74">https://github.com/espenhw/malabar-mode/issues/74</a>
+
+
+
+<pre class="example">&lt;maven.version&gt;3.0.4-SNAPSHOT&lt;/maven.version&gt;
+</pre>
+
+<p>
+      <a href="http://d.hatena.ne.jp/smotokezuru/20100418/1271565315">http://d.hatena.ne.jp/smotokezuru/20100418/1271565315</a>
+</p><ul>
+<li>オプションはつけなくてもイケるかも
+
+
+
+<pre class="example">-Dmaven.test.skip=true
+</pre>
+
+</li>
+</ul>
+
+</li>
+<li>
+
+
+
+<pre class="src src-lisp">(add-to-list 'load-path <span style="color: #ffa07a;">"~/.emacs.d/elisp/malabar-1.5-SNAPSHOT/lisp/"</span>)
+(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">cedet</span>)
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">(semantic-load-enable-minimum-features) ;; or enable more if you wish</span>
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-mru-bookmark-mode))
+(semantic-mode 1)
+(<span style="color: #00ffff;">require</span> '<span style="color: #7fffd4;">malabar-mode</span>)
+(setq malabar-groovy-lib-dir <span style="color: #ffa07a;">"/path/to/malabar/lib"</span>)
+(add-to-list 'auto-mode-alist '(<span style="color: #ffa07a;">"\\.java\\'"</span> . malabar-mode))
+</pre>
+
+
+<ul>
+<li><a href="http://b0r0nji.blogspot.jp/2011/12/emacsjavamalabar-mode.html">http://b0r0nji.blogspot.jp/2011/12/emacsjavamalabar-mode.html</a>
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Emacsで英和辞典</h2>
+<div class="outline-text-2" id="text-4">
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/tomoya/20091218/1261138091">http://d.hatena.ne.jp/tomoya/20091218/1261138091</a>
+</li>
+<li>辞書.appの例
+</li>
+</ul>
+
+
+
+
+<pre class="src src-lisp"><span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">&#36766;&#26360;.app</span>
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">http://d.hatena.ne.jp/tomoya/20091218/1261138091</span>
+(<span style="color: #00ffff;">defvar</span> <span style="color: #eedd82;">dict-bin</span> <span style="color: #ffa07a;">"/Users/katagiri/srcs/commandline-dictionary-app/src/dict"</span>
+  <span style="color: #ffa07a;">"dict &#23455;&#34892;&#12501;&#12449;&#12452;&#12523;&#12398;&#12497;&#12473;"</span>)
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #87cefa;">temp-cancel-read-only</span> (function <span style="color: #98fb98;">&amp;optional</span> jaspace-off)
+  <span style="color: #ffa07a;">"eval temporarily cancel buffer-read-only</span>
+<span style="color: #ffa07a;">&amp;optional t is turn of jaspace-mode"</span>
+  (<span style="color: #00ffff;">let</span> ((read-only-p nil)
+        (jaspace-mode-p nil))
+    (<span style="color: #00ffff;">when</span> jaspace-off
+      (<span style="color: #00ffff;">when</span> jaspace-mode
+        (jaspace-mode)
+        (setq jaspace-mode-p t)))
+    (<span style="color: #00ffff;">when</span> buffer-read-only
+      (toggle-read-only)
+      (setq read-only-p t))
+    (eval function)
+    (<span style="color: #00ffff;">when</span> read-only-p
+      (toggle-read-only))
+    (<span style="color: #00ffff;">when</span> jaspace-mode-p
+      (jaspace-mode))))
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #87cefa;">ns-popup-dictionary</span> ()
+   <span style="color: #ffa07a;">"&#12510;&#12454;&#12473;&#12459;&#12540;&#12477;&#12523;&#12398;&#21336;&#35486;&#12434; Mac &#12398;&#36766;&#26360;&#12391;&#12402;&#12367;"</span>
+   (interactive)
+   (<span style="color: #00ffff;">let</span> ((word (substring-no-properties (thing-at-point 'word)))
+         (old-buf (current-buffer))
+         (dict-buf (get-buffer-create <span style="color: #ffa07a;">"*dictionary.app*"</span>))
+         (dict))
+     (<span style="color: #00ffff;">when</span> (and mark-active transient-mark-mode)
+       (setq word (buffer-substring-no-properties (region-beginning) (region-end))))
+     (set-buffer dict-buf)
+     (erase-buffer)
+     (call-process dict-bin
+                   nil <span style="color: #ffa07a;">"*dictionary.app*"</span> t word
+                   <span style="color: #ffa07a;">"Japanese-English"</span> <span style="color: #ffa07a;">"Japanese"</span> <span style="color: #ffa07a;">"Japanese Synonyms"</span>)
+     (setq dict (buffer-string))
+     (set-buffer old-buf)
+     (<span style="color: #00ffff;">when</span> (not (eq (length dict) 0))
+       (temp-cancel-read-only '(popup-tip dict <span style="color: #b0c4de;">:margin</span> t <span style="color: #b0c4de;">:scroll-bar</span> t) t)
+       <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">(temp-cancel-read-only '(popup-tip dict :margin t :scroll-bar t))</span>
+       )))
+
+(<span style="color: #00ffff;">defvar</span> <span style="color: #eedd82;">dict-timer</span> nil)
+(<span style="color: #00ffff;">defvar</span> <span style="color: #eedd82;">dict-delay</span> 0.1)
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">(defvar dict-delay 5.0)</span>
+(<span style="color: #00ffff;">defun</span> <span style="color: #87cefa;">dict-timer</span> ()
+  (<span style="color: #00ffff;">when</span> (and (not (minibufferp))
+             (and mark-active transient-mark-mode))
+    (ns-popup-dictionary)))
+(setq dict-timer (run-with-idle-timer dict-delay dict-delay 'dict-timer))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Emacs+英辞郎+sdicで快適な環境づくり</h2>
+<div class="outline-text-2" id="text-5">
+
+<ul>
+<li>参考URL: <a href="http://d.hatena.ne.jp/kyagi/20090515/1242379726">http://d.hatena.ne.jp/kyagi/20090515/1242379726</a> <a href="http://d.hatena.ne.jp/higepon/20090125/1232872431">http://d.hatena.ne.jp/higepon/20090125/1232872431</a> <a href="http://nox-insomniae.ddo.jp/insomnia/2009/01/eijiro-emacs.html">http://nox-insomniae.ddo.jp/insomnia/2009/01/eijiro-emacs.html</a>
+</li>
+</ul>
+
+
+
+
+<pre class="src src-ruby"><span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">-*- coding: utf-8 -*-</span>
+
+<span style="color: #00ffff;">def</span> <span style="color: #87cefa;">make_key</span>(key)
+  head = key.clone
+  key.tr!(<span style="color: #ffa07a;">'A-Z'</span>, <span style="color: #ffa07a;">'a-z'</span>)
+  key.sub!(<span style="color: #ffa07a;">/\s+/</span>, <span style="color: #ffa07a;">' '</span>)
+<span style="color: #ff7f24;">#  </span><span style="color: #ff7f24;">key.sub!(/ \+\d+/, '')</span>
+  ret = <span style="color: #ffa07a;">""</span>
+  <span style="color: #00ffff;">if</span> head != key
+    ret = <span style="color: #ffa07a;">"&lt;H&gt;</span><span style="color: #eedd82;">#{head}</span><span style="color: #ffa07a;">&lt;/H&gt;"</span>
+  <span style="color: #00ffff;">end</span>
+  ret + <span style="color: #ffa07a;">"&lt;K&gt;</span><span style="color: #eedd82;">#{key}</span><span style="color: #ffa07a;">&lt;/K&gt;"</span>
+<span style="color: #00ffff;">end</span>
+
+<span style="color: #eedd82;">$stdin</span>.each <span style="color: #00ffff;">do</span> |line|
+  line.gsub!(<span style="color: #ffa07a;">'&amp;'</span>, <span style="color: #ffa07a;">'&amp;amp;'</span>)
+  line.gsub!(<span style="color: #ffa07a;">'&lt;'</span>, <span style="color: #ffa07a;">'&amp;lt;'</span>)
+  line.gsub!(<span style="color: #ffa07a;">'&gt;'</span>, <span style="color: #ffa07a;">'&amp;gt;'</span>)
+  line.gsub!(<span style="color: #ffa07a;">' \ '</span>, <span style="color: #ffa07a;">'&amp;lf;  '</span>)
+  key, content  = line.split(<span style="color: #ffa07a;">' /// '</span>)
+  puts make_key(key) + content.chomp
+<span style="color: #00ffff;">end</span>
+</pre>
+
+
+
+<pre class="example">% cat Eijiro128.txt Ryaku28.txt| nkf -w8| ruby gene.rb &gt; eijirou.sdic
+% cat Waei128.txt| nkf -w8| ruby gene.rb &gt; waeijirou.sdic
+% ls /usr/local/share/dict
+# ディレクトリがなかったら
+% mkdir /usr/local/share/dict
+% (sudo) cp eijirou.sdic waeijirou.sdic /usr/local/share/dict
+</pre>
+
+
+
+<pre class="src src-lisp"><span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">&#33521;&#36766;&#37070; - &#36766;&#26360; http://d.hatena.ne.jp/higepon/20090125/1232872431</span>
+(autoload 'sdic-describe-word <span style="color: #ffa07a;">"sdic"</span> <span style="color: #ffa07a;">"&#33521;&#21336;&#35486;&#12398;&#24847;&#21619;&#12434;&#35519;&#12409;&#12427;"</span> t nil)
+(global-set-key <span style="color: #ffa07a;">"\C-cw"</span> 'sdic-describe-word)
+(autoload 'sdic-describe-word-at-point <span style="color: #ffa07a;">"sdic"</span> <span style="color: #ffa07a;">"&#12459;&#12540;&#12477;&#12523;&#12398;&#20301;&#32622;&#12398;&#33521;&#21336;&#35486;&#12398;&#24847;&#21619;&#12434;&#35519;&#12409;&#12427;"</span> t nil)
+(global-set-key <span style="color: #ffa07a;">"\C-cW"</span> 'sdic-describe-word-at-point)
+
+(setq sdic-eiwa-dictionary-list
+      '((sdicf-client <span style="color: #ffa07a;">"/usr/local/share/dict/eijirou.sdic"</span>)))
+(setq sdic-waei-dictionary-list
+      '((sdicf-client <span style="color: #ffa07a;">"/usr/local/share/dict/waeijirou.sdic"</span>)))
+(setq sdic-default-coding-system 'utf-8-unix)
+
+<span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">&#26908;&#32034;&#32080;&#26524;&#34920;&#31034;&#12496;&#12483;&#12501;&#12449;&#12391;&#24341;&#12356;&#12383;&#21336;&#35486;&#12434;&#12495;&#12452;&#12521;&#12452;&#12488;&#34920;&#31034;&#12377;&#12427; http://d.hatena.ne.jp/kyagi/20090515/1242379726</span>
+(<span style="color: #00ffff;">defadvice</span> <span style="color: #87cefa;">sdic-search-eiwa-dictionary</span> (after highlight-phrase (arg))
+    (highlight-phrase arg <span style="color: #ffa07a;">"hi-yellow"</span>))
+(<span style="color: #00ffff;">defadvice</span> <span style="color: #87cefa;">sdic-search-waei-dictionary</span> (after highlight-phrase (arg))
+    (highlight-phrase arg <span style="color: #ffa07a;">"hi-yellow"</span>))
+(ad-activate 'sdic-search-eiwa-dictionary)
+(ad-activate 'sdic-search-waei-dictionary)
+</pre>
+
+
+<img src="./pics/emacs-dict.png" alt="辞書" />
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> org-modeのこと</h2>
+<div class="outline-text-2" id="text-6">
+
+<ul>
+<li>リファレンス <a href="http://www.network-theory.co.uk/docs/orgmode/PublishersPreface.html">http://www.network-theory.co.uk/docs/orgmode/PublishersPreface.html</a>
+</li>
+<li>日本語のマニュアル <a href="http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual">http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual</a>
+</li>
+</ul>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> expand-resion</h2>
+<div class="outline-text-2" id="text-7">
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/syohex/20120117/1326814127">http://d.hatena.ne.jp/syohex/20120117/1326814127</a>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> sense-expand-resion</h2>
+<div class="outline-text-2" id="text-8">
+
+<ul>
+<li><a href="http://emacs.g.hatena.ne.jp/k1LoW/20120321/1332321514">http://emacs.g.hatena.ne.jp/k1LoW/20120321/1332321514</a>
+</li>
+</ul>
+
 
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-05-03 08:50:15 JST</p>
+<p class="date">Date: 2012-05-11 13:42:44 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

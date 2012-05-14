@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>コンパイラ製作メモ</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="コンパイラ製作メモ"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-13 06:20:47 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">コンパイラ製作メモ</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li><a href='#sec-1'>資料</a></li>
+            <li><a href='#sec-2'>やること</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 このページのこと</a></li>
+<li><a href="#sec-2">2 資料</a></li>
+<li><a href="#sec-3">3 コンパイラ概要</a></li>
+<li><a href="#sec-4">4 字句解析</a></li>
+<li><a href="#sec-5">5 </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページのこと</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>コンパイラ製作メモが実際にコンパイラを作りながら必要な資料をまとめる
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 資料</h2>
+<div class="outline-text-2" id="text-2">
+
+<ul>
+<li>本
+<ul>
+<li>コンパイラ―原理・技法・ツール (Information &amp; Computing), A.V. エイホ
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/478191229X/">http://www.amazon.co.jp/dp/478191229X/</a>
+</li>
+<li>持っていない．高い．図書館で借りた．
+</li>
+</ul>
+
+</li>
+<li>コンパイラ (情報系教科書シリーズ), 湯浅 太一
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/4785620501/">http://www.amazon.co.jp/dp/4785620501/</a>
+</li>
+<li>持っている．買った．
+</li>
+</ul>
+
+</li>
+<li>最新コンパイラ構成技法 Andrew W. Appel (著), 神林 靖 (監修, 編集), 滝本 宗宏 (編集)
+<ul>
+<li>URL: <a href="http://www.amazon.co.jp/dp/4798114685/">http://www.amazon.co.jp/dp/4798114685/</a>
+</li>
+<li>持っている．買った．
+</li>
+</ul>
+
+</li>
+<li>Compiling with Continuations, Andrew W. Appel (著)  <a href="http://www.amazon.co.jp/dp/052103311X">http://www.amazon.co.jp/dp/052103311X</a>
+<ul>
+<li>この本欲しいなぁ．Kindleで売ってるのかな．買おうか．高いが．．
+<ul>
+<li>しかも英語だし，すぐには読めない．やはり，英語の勉強は死ぬ気でヤラなければ．．
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>公開されている講義資料
+<ul>
+<li>コンパイラの作り方 (詳解) <a href="http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/">http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/</a>
+<ul>
+<li>この資料をメインにコンパイラ製作を進める<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>論文
+<ul>
+<li>3imp.pdf( Three implementation models for scheme ) <a href="http://www.cs.indiana.edu/~dyb/papers/3imp.pdf">http://www.cs.indiana.edu/~dyb/papers/3imp.pdf</a>
+<ul>
+<li>Schemeのインタプリタの実装方法を説明している
+<ul>
+<li>VM上で動くコードを吐き出してるので正確な意味でインタプリタか？
+<ul>
+<li>最近はJITなども普通になってきていて，インタプリタとコンパイラの境界を議論するのは不毛で意味のないことかもしれない
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>簡単に日本語で解説している <a href="http://route477.net/w/?Reading3imp.pdf">http://route477.net/w/?Reading3imp.pdf</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>中間表現など
+<ul>
+<li>Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+<p>
+主に「コンパイラ (情報系教科書シリーズ), 湯浅 太一」URL: <a href="http://www.amazon.co.jp/dp/4785620501/">http://www.amazon.co.jp/dp/4785620501/</a>
+を使って勉強する．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> コンパイラ概要</h2>
+<div class="outline-text-2" id="text-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 字句解析</h2>
+<div class="outline-text-2" id="text-4">
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> </h2>
+<div class="outline-text-2" id="text-5">
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> DEFINITION NOT FOUND: fn:comp<sub>with</sub><sub>cont</sub>
+</p></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-13 06:20:47 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+#+AUTHOR: Yuuhi
+#+TITLE: コンパイラ製作メモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li><a href='#sec-1'>資料</a></li>
+            <li><a href='#sec-2'>やること</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* このページのこと
+- コンパイラ製作メモが実際にコンパイラを作りながら必要な資料をまとめる
+* 資料
+- 本
+  - コンパイラ―原理・技法・ツール (Information & Computing), A.V. エイホ
+    - URL: http://www.amazon.co.jp/dp/478191229X/
+    - 持っていない．高い．図書館で借りた．
+  - コンパイラ (情報系教科書シリーズ), 湯浅 太一
+    - URL: http://www.amazon.co.jp/dp/4785620501/
+    - 持っている．買った．
+  - 最新コンパイラ構成技法 Andrew W. Appel (著), 神林 靖 (監修, 編集), 滝本 宗宏 (編集)
+    - URL: http://www.amazon.co.jp/dp/4798114685/
+    - 持っている．買った．
+  - Compiling with Continuations, Andrew W. Appel (著)  http://www.amazon.co.jp/dp/052103311X
+    - この本欲しいなぁ．Kindleで売ってるのかな．買おうか．高いが．．
+      - しかも英語だし，すぐには読めない．やはり，英語の勉強は死ぬ気でヤラなければ．．
+
+- 公開されている講義資料
+  - コンパイラの作り方 (詳解) http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/
+    - この資料をメインにコンパイラ製作を進める[fn:comp_with_cont]
+
+- 論文
+  - 3imp.pdf( Three implementation models for scheme ) http://www.cs.indiana.edu/~dyb/papers/3imp.pdf
+    - Schemeのインタプリタの実装方法を説明している
+      - VM上で動くコードを吐き出してるので正確な意味でインタプリタか？
+	- 最近はJITなども普通になってきていて，インタプリタとコンパイラの境界を議論するのは不毛で意味のないことかもしれない
+
+    - 簡単に日本語で解説している http://route477.net/w/?Reading3imp.pdf
+
+- 中間表現など
+  - Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
+
+
+主に「コンパイラ (情報系教科書シリーズ), 湯浅 太一」URL: http://www.amazon.co.jp/dp/4785620501/
+を使って勉強する．
+
+* コンパイラ概要
+
+* 字句解析
+* 文法
+* 構文解析
+* 意味解析
+* コード生成
+* 最適化
+

@@ -1,0 +1,54 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Arduinoメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+
+* 資料
+- HP http://arduino.cc/
+- Arduino のすすめ http://n.mtng.org/ele/arduino/
+
+* 写真
+#+begin_html
+<img src="./pics/arduino2.jpg" alt="Hello World!" width=300 />
+#+end_html
+
+* LEDをスイッチを押す毎にLEDを付ける，消すの状態を入れ替える
+#+begin_src c
+// Example2
+const int LED = 13; // LEDが接続されているボタン
+const int BUTTON = 7; // プッシュボタンが接続されているボタン
+
+int val = 0; // 入力ピンの状態がこの変数pinに記憶される
+int state = 0; // LEDの状態0ならオフ．1ならオン
+
+void setup(){
+  pinMode(LED, OUTPUT);
+  pinMode(BUTTON, INPUT);
+}
+
+void loop(){
+  val = digitalRead(BUTTON);
+  
+  if (val == HIGH) {
+    state = 1 - state;
+    // 入力はHIGHか？
+    if (state == 1) {
+      digitalWrite(LED, HIGH);
+    } else {
+      digitalWrite(LED, LOW);
+    }
+    delay(500);
+  }
+  // 入力はHIGHか？
+  if (state == 1) {
+    digitalWrite(LED, HIGH);
+  } else {
+    digitalWrite(LED, LOW);
+  }
+
+}
+#+end_src
+

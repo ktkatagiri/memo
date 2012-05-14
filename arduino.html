@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>Arduinoメモ</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Arduinoメモ"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-14 07:26:33 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Arduinoメモ</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 資料</a></li>
+<li><a href="#sec-2">2 写真</a></li>
+<li><a href="#sec-3">3 LEDをスイッチを押す毎にLEDを付ける，消すの状態を入れ替える</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 資料</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>HP <a href="http://arduino.cc/">http://arduino.cc/</a>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 写真</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<img src="./pics/arduino2.jpg" alt="Hello World!" width=300 />
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> LEDをスイッチを押す毎にLEDを付ける，消すの状態を入れ替える</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+
+<pre class="src src-c"><span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">Example2</span>
+<span style="color: #00ffff;">const</span> <span style="color: #98fb98;">int</span> <span style="color: #eedd82;">LED</span> = 13; <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">LED&#12364;&#25509;&#32154;&#12373;&#12428;&#12390;&#12356;&#12427;&#12508;&#12479;&#12531;</span>
+<span style="color: #00ffff;">const</span> <span style="color: #98fb98;">int</span> <span style="color: #eedd82;">BUTTON</span> = 7; <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#12503;&#12483;&#12471;&#12517;&#12508;&#12479;&#12531;&#12364;&#25509;&#32154;&#12373;&#12428;&#12390;&#12356;&#12427;&#12508;&#12479;&#12531;</span>
+
+<span style="color: #98fb98;">int</span> <span style="color: #eedd82;">val</span> = 0; <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#20837;&#21147;&#12500;&#12531;&#12398;&#29366;&#24907;&#12364;&#12371;&#12398;&#22793;&#25968;pin&#12395;&#35352;&#25014;&#12373;&#12428;&#12427;</span>
+<span style="color: #98fb98;">int</span> <span style="color: #eedd82;">state</span> = 0; <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">LED&#12398;&#29366;&#24907;0&#12394;&#12425;&#12458;&#12501;&#65294;1&#12394;&#12425;&#12458;&#12531;</span>
+
+<span style="color: #98fb98;">void</span> <span style="color: #87cefa;">setup</span>(){
+  pinMode(LED, OUTPUT);
+  pinMode(BUTTON, INPUT);
+}
+
+<span style="color: #98fb98;">void</span> <span style="color: #87cefa;">loop</span>(){
+  val = digitalRead(BUTTON);
+
+  <span style="color: #00ffff;">if</span> (val == HIGH) {
+    state = 1 - state;
+    <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#20837;&#21147;&#12399;HIGH&#12363;&#65311;</span>
+    <span style="color: #00ffff;">if</span> (state == 1) {
+      digitalWrite(LED, HIGH);
+    } <span style="color: #00ffff;">else</span> {
+      digitalWrite(LED, LOW);
+    }
+    delay(500);
+  }
+  <span style="color: #ff7f24;">// </span><span style="color: #ff7f24;">&#20837;&#21147;&#12399;HIGH&#12363;&#65311;</span>
+  <span style="color: #00ffff;">if</span> (state == 1) {
+    digitalWrite(LED, HIGH);
+  } <span style="color: #00ffff;">else</span> {
+    digitalWrite(LED, LOW);
+  }
+
+}
+</pre>
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-14 07:26:33 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

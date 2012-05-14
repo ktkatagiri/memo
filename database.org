@@ -14,15 +14,19 @@
             <li>
               <a href='#sec-1'>MySQL</a>
             </li>
+            <li>
+              <a href='#sec-2'>MongoDB</a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
 #+end_html
 
-* 主にMySQLのことを調べて，使い方を書く
+* MySQL
+** 主にMySQLのことを調べて，使い方を書く
 
-* ユーザの管理
+** ユーザの管理
 - ユーザの表示
 #+begin_example
 select User, Host FROM mysql.user;
@@ -33,7 +37,7 @@ create database hoge;
 GRANT ALL on hoge.* to yuuhi@localhost;
 #+end_example
 
-* RubyからMySQLとかに繋ぐ場合
+** RubyからMySQLとかに繋ぐ場合
 #+begin_example
 gem install mysql
 #+end_example
@@ -55,15 +59,14 @@ gem install dbd-pg
 gem install dbd-sqlite3
 #+end_example
 
-* エラーログの場所
+** エラーログの場所
 #+begin_example
 ~/log/mysql/error-log.err
 #+end_example
 にある
 
-* テスト環境はMac，本番環境はOpenSUSE
-
-** OpenSUSEでMySQLが動かない．．．
+** テスト環境はMac，本番環境はOpenSUSE
+*** OpenSUSEでMySQLが動かない．．．
 #+begin_example
 > rcmysql start
 cat: /etc/my.cnf: Permission denied
@@ -111,8 +114,9 @@ InnoDB: Cannot continue operation.
 こちらの知識不足もあるのだろうけど，もうOpenSUSEでの運用やめようかと．．\\
 -> 最後にソースからMySQLインストールしてみて決める
 
-* MySQLのインストール
-たしか，homebrewでインストールした．
+** MySQLのインストール
+- たしか，homebrewでインストールした．
+- http://d.hatena.ne.jp/okboy/20101120/p1
 #+begin_example
 % brew install mongodb
 #+end_example
@@ -129,13 +133,13 @@ mysql> mysqld_safe --log-error=$HOME/log/mysql/error-log
 mysql> mysql.server stop
 #+end_example
 
-* Ubuntuで
+*** Ubuntuで
 #+begin_example
 % sudo apt-get install mysql-server
 % sudo service mysql start
 #+end_example
 
-* Linux Mintにて
+*** Linux Mintにて
 #+begin_example
 default-character-set=utf8
 skip-character-set-client-handshake
@@ -162,6 +166,42 @@ default-character-set = utf8
 % sudo /etc/init.d/mysql restart
 #+end_example
 
+
 * mongoDBのこと
 http://www.mongodb.org/
 
+** mongoDB導入編
+*** Linux Mint
+#+begin_example
+sudo aptitude install mongodb
+#+end_example
+- aptでインストールするとかってにデーモンまで起動してくれる
+  http://ubuntuforums.org/showthread.php?t=1715866
+  #+begin_example
+  ps -eF | grep 'mongo\|PIDThi
+  #+end_example
+  - MySQLと同じく
+    
+** RubyからmongoDBを使うには
+#+begin_example
+gem install mongo bson_ext
+#+end_example
+
+** mongoDBのデータのバックアップとリストア
+  - http://conol.co.jp/blog/archives/253
+    #+begin_example
+    //BSONファイルでデータを出力する
+    mongodump -d <DatabaseName> -u <username> -p <password>
+    //BSONファイルからデータをリストアする（全データ先に削除）
+    mongorestore -d <DatabaseName> -u <username> -p <password> --drop <BackupDataPath>
+    #+end_example
+
+  - JSON形式でバックアップを取りたい場合には
+    #+begin_example
+    //Jsonファイルにて特定コレクションを出力する
+    mongoexport -d <DatabaseName> -c <CollectionName> -u <username> -p <password> -o <fileName>.json
+    //Jsonファイルから特定コレクションみのデータを更新する
+    mongoimport -d <DatabaseName> -c <CollectionName> -u <username> -p <password> <fileName>.json --upsert
+    //Jsonファイルから特定コレクションの指定フィールドのみのデータを更新する
+    mongoimport -d <DatabaseName> -c <CollectionName> -f image -u <username> -p <password> <fileName>.json --upsert
+    #+end_example

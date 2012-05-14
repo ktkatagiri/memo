@@ -99,6 +99,11 @@
       #+begin_example
       [　\s]*([A-Za-z]+)[　\s]*
       #+end_example
+  - リマインダー機能
+    - 特定のタグを付けて
+      #+begin_example
+      $remind
+      #+end_example
 
 * 実装
   - Rubyで実装

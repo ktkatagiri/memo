@@ -1,0 +1,15 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Node.jsのこと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* node.jsを使ってWebサービスを構築し，公開する
+** どのようなアプリを作るか，アイデアをずらずらと
+   - Twitterと連携する．
+     - Twitterのアカウントの情報を解析するアプリ既にいくつかある．
+       - URL: http://whotwi.com/
+
+

@@ -1,0 +1,17 @@
+#+AUTHOR: Yuuhi
+#+TITLE: H8マイコンで組み込みOSとか
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* リンク集
+- http://monoist.atmarkit.co.jp/mn/kw/h8_basic.html
+- http://hijiri3.s65.xrea.com/sorekore/develop/h8/01_redboot.htm
+
+* Arduinoのこと
+** 日本語リファレンス
+   - http://www.musashinodenpa.com/arduino/ref/
+** Links
+   - http://blog.ii-tripod.com/?eid=1181347
+     
