@@ -95,6 +95,7 @@
 - [[./compiler.html][compiler製作メモ]]
 - [[./programming-memo.html][プログラミング基礎固めも]]
 - [[./arduino.html][Arduinoのメモ]]
+- [[./lambda.html][Lambda計算]]
 
 ** 過去の記録(今はほとんど更新していない)
 - [[http://d.hatena.ne.jp/yuuhi10/][はてブ]]

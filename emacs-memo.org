@@ -63,7 +63,7 @@
 #+begin_src lisp
 ;; 辞書.app
 ;; http://d.hatena.ne.jp/tomoya/20091218/1261138091
-(defvar dict-bin "/Users/katagiri/srcs/commandline-dictionary-app/src/dict"
+(defvar dict-bin "~/srcs/commandline-dictionary-app/src/dict"
   "dict 実行ファイルのパス")
 
 (defun temp-cancel-read-only (function &optional jaspace-off)
