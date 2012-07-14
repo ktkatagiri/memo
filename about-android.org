@@ -30,7 +30,14 @@
 - http://www.techmaru.net/wordpress/20110112/listviewfooter/
 - http://visible-true.blogspot.jp/2010/12/listview.html
 
+** アイコン
+- http://android-ui-utils.googlecode.com/hg/asset-studio/dist/index.html
+
 * 開発環境導入
+http://blog.flatlabs.net/20100429_115034/
+http://www.adakoda.com/android/000220.html
+
+
 * Androidアプリ開発にあたっての基礎
 - インテント
 - アクティビティ
@@ -55,9 +62,87 @@ HT0B4RX08083    device
 % logcat
 #+end_example
 
+* twitter4j
+http://www.adakoda.com/adakoda/2011/08/android-twitter4j-userstream.html
+
 * Twitterクライアント作り
 ** ListViewの扱い
 - ListViewで最後尾までスクロールしたら自動的に要素を追加読み込みするサンプル
   http://visible-true.blogspot.jp/2010/12/listview.html
 - ：Tips 　ListView を使おう　～ 基礎編 ～　その１ - - Google Android -  　雑記帳
   http://d.hatena.ne.jp/androidprogram/20100628/1277685225
+
+
+- http://d.hatena.ne.jp/tomorrowkey/20111203/1322924557
+
+
+- AsyncTaskの使い方
+http://labs.techfirm.co.jp/android/cho/1079
+
+- twitter4jでuserstreamにリプライ全部流れるの防止
+https://groups.google.com/forum/?fromgroups#!topic/twitter4j-j/xw4Zh8SBaUo
+- twitter4j
+https://sites.google.com/site/elekmole/twitter4jtop/streaming-api-method/userstreamlistener
+
+
+- ここはとても重要
+http://d.hatena.ne.jp/shuji_w6e/20090701/1246459813
+
+* Twitterクライアント作りアイデア
+- ListItemクリック時の反応
+  - 選択したアイテムの色を変える
+  - メニュー
+    - fav
+    - reply
+    - retweet
+    - ユーザープロフィール
+
+- メニュー
+  - 一定時間毎にListViewを更新
+  - トップへ移動
+  - つぶやく
+
+  - Mentionsリスト
+  - その他
+  - 設定
+    - ミュート設定
+      - ミュートユーザリスト
+      - 片思いの色変える
+
+
+- UserStreemの扱い
+  - 接続状態か，切断状態かを見てすぐに分かるように
+  - REST APIで叩いた時にちゃんとマージできるように，LinkedList<Status>2つを受け取って，マージするメソッドをじっそうする．(StatusIDと投稿時間を使う)
+
+- Userタイムラインは見られるようにする
+  - プロフィール閲覧用のページ
+  - Listすたっく
+
+* ListViewのカスタマイズ
+http://labs.techfirm.co.jp/android/cho/751
+http://d.hatena.ne.jp/d-kami/20100621/1277141611
+http://www.javaroad.jp/java_collection2.htm
+http://sepiandroid.blog100.fc2.com/blog-entry-31.html
+http://d.hatena.ne.jp/sy-2010/20100126/1264478774
+http://ichitcltk.hustle.ne.jp/gudon/modules/pico_rd/index.php?content_id=69
+http://www.binzume.net/diary/2011-03-19:A3
+
+* 画面遷移
+http://labs.appshelf.info/2011/06/03/288/ \\
+http://android.keicode.com/basics/ui-viewflipper.php \\
+http://sakplus.jp/2011/02/26/overridependingtransition/
+
+
+
+* なぜワーカースレッドをつかわないといけないのか？
+** Woker Threadとは
+Wokerとは，名前の通り「仕事をする人」という意味．
+Woker Threadが仕事を一つずつ取りに行き，処理を行う．
+仕事がなかったら，新しい仕事が届くまで待つ．
+
+Woker ThreadのことをBackground Threadと呼ぶこともある．
+ワーカースレッドをたくさん保持している場所のほうに注目し，
+Thread Poolと呼ぶこともある．
+
+
+

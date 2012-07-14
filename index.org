@@ -9,7 +9,7 @@
     <div class='navbar navbar-fixed-top'>
       <div class='navbar-inner'>
         <div class='container'>
-          <a class='brand' href='/memo/index.html'>あなたのことが好きです！付き合ってください！！</a>
+          <a class='brand' href='./index.html'>あなたのことが好きです！付き合ってください！！</a>
           <ul class='nav'>
             <li>
               <a href='#sec-1'>はじめに</a>
@@ -30,61 +30,89 @@
 #+end_html
 
 * はじめに
-- Twitter
+** [[http://d.hatena.ne.jp/yuuhi10/][はてダ]]
+** Twitter
   - メイン垢
     https://twitter.com/yuuhi111
   - Bot兼サブ垢
     https://twitter.com/yuuhi112
     - [[./about-bot.html][Botの機能を説明]]
 
-- メイン環境
-  - MacBook Air 13-inch
+** メイン環境
+*** MacBook Air 13-inch
+    - http://support.apple.com/kb/SP631?viewlocale=ja_JP&locale=ja_JP
     - OS: Mac OSX 10.7.3 Lion
     - CPU: Intel Core i5 1.7GHz
-    - メモリ: 4GB 1333 MHz DDR3
+    - Intel HD Graphics 3000プロセッサ（384MB DDR3 SDRAMをメインメモリと共有）
+    - メモリ: 4GB 1333 MHz DDR3 オンボードメモリ
     - 基本的にこの環境で生きている．
     - Macを初めて触ったのは2011年の4月
       - Mac歴1年になる．なにか特別な事情がない限りこれからもMacをメインで使うつもり
     
-  - Shuttleのベアボーンキットを組み立てたもの
+*** Shuttleのベアボーンキットを組み立てたもの
+    - http://www.shuttle-japan.jp/oldmodel/old-bare/sg41j1-plus
     - Linux機
-    - OpenSUSEがインストールしてある
-      - Linux Mint Debianに乗り換えた
-	- Botとか，情報収集用のスクリプトとか動いてる
+    - Linux Mint Debianがインストールしてある
+      - Arch Linuxに乗り換えたい
+      - Botとか，情報収集用のスクリプトとか動いてる
 
-  - Thinkpad 121e
-    - 仕事でWindows環境が必要だったときがあったので買った．
-    - 安かったし，USキーボードだし，気に入っている．
-    - Windows環境が必要なくなったあとは，C# とかの勉強するのに使おうと思ったけど，結局エロゲ専用機に．．
+*** Thinkpad 121e
+- 仕事でWindows環境が必要だったときがあったので買った．
+- 安かったし，USキーボードだし，気に入っている．
+- Windows環境が必要なくなったあとは，C# とかの勉強するのに使おうと思ったけど，結局エロゲ専用機に．．
+- SSDに載せ替えたい(薄さが7mmじゃないといけないので注意)
+  - http://shop.tsukumo.co.jp/goods/0649528757272/
 
-  - H8/3069F マイコンボード
-    - 秋月で買ったH8/3069Fネット対応LANボード(完成品) \\
-      12ステップで作る 組込みOS自作入門 http://kozos.jp/books/makeos/ を読むときにかったもの．
-       途中で投げているので，またいじり倒したい．
+*** マイコンボード
+**** H8/3069F マイコンボード
+  - 秋月で買ったH8/3069Fネット対応LANボード(完成品) \\
+    12ステップで作る 組込みOS自作入門 http://kozos.jp/books/makeos/ を読むときにかったもの．
+    途中で投げている．
 
-  - DHD
-    - Androidが入ったすまーとふぉん．Twitterのクライアント作ってたけど，行き詰まっている．
-- 趣味
-  - ついったー
-  - 専門書を積むこと \\
-    人生もつんでる
-- 欲しい物 \\
-  Androidタブレット，iPad，恋人
-- 他に
-  - よく使う顔文字
+**** Arduino UNO
+- http://www.amazon.co.jp/dp/B0025Y6C5G
+- Amazonで買った某はじめようキット
+#+begin_example
+Arduino Uno R3マイコンボード1個　P.16 (Arduino Duemilanove 328の後継機)
+ブレッドボード1個　P.35
+堅いジャンパワイヤ1セット　P.71
+柔らかいジャンパワイヤ10本セット　P.35
+タクトスイッチ1個　P.35
+CdSセル1個　P.52
+10kΩ抵抗2本　P.35, P.71
+1kΩ抵抗3本　P.71
+LED（赤）1個　P.24
+LED（緑）1個　P.71
+LED（青）1個　P.71
+加えて、 330Ω抵抗1本「Prototyping Lab」P.106
+#+end_example
+  - あと千石電商でLEDとか7セグとか買った
+
+*** スマートフォン
+**** DHD
+- http://mb.softbank.jp/mb/smartphone/product/001ht/
+- メイン機
+
+*** タブレット
+**** Optimus Pad L-06C
+- http://www.lg.com/jp/mobile-phones/all-phones/LG-Optimus-Pad-L-06C.jsp
+
+
+*** 欲しい物
+- amazon http://www.amazon.co.jp/registry/wishlist/32BLHXPJKX3XX/ref=cm_wl_rlist_go_o
+- iPad，録画サーバ(鼻毛，PT3)，SSD(x121eに載せる用の)
+*** よく使う顔文字
 #+begin_example
     (√・ヮ＜)ミ☆, _(º﹃º｣ ∠)_, ∩(＞◡＜*)∩, (º﹃º)
 #+end_example
 - エロゲのレビュー記事とか書きたい
-
-* コメント
-エリナぁ！！
 
 * 日記
 - [[./date12-03.html][2012-3-1]]
 - [[./date12-03-23.html][2012-3-23]]
 - [[./date12-04-01.html][2012-4-1]]
 - [[./date12-05-01.html][2012-5-1]]
+- [[./date12-06.html][2012-6-1]]
 
 * 技術メモ
 - [[./about-android.html][Androidアプリ開発]]
@@ -92,13 +120,17 @@
 - [[./ruby-memo.html][Rubyメモ]]
 - [[./database.html][データベースのこと]]
 - [[./env.html][環境構築のこと]]
-- [[./compiler.html][compiler製作メモ]]
 - [[./programming-memo.html][プログラミング基礎固めも]]
 - [[./arduino.html][Arduinoのメモ]]
-- [[./lambda.html][Lambda計算]]
-
-** 過去の記録(今はほとんど更新していない)
-- [[http://d.hatena.ne.jp/yuuhi10/][はてブ]]
+- [[./about-linux.html][Linuxのこと]]
+- [[./javascript.html][JavaScriptのこと]]
+- [[./java.html][Javaのこと]]
+- [[./gui.html][GUIのこと(主にQt)]]
+- [[./shell.html][シェルのこと]]
+- [[./firefox.html][Firefoxのこと]]
+- [[./haskell.html][Haskellのこと]]
+- [[./lisp.html][Lispのこと]]
+- [[./compiler.html][compiler製作メモ]]
   
 * 個別の記録
 - [[./impression-of-reading/486.html][486のこと]]

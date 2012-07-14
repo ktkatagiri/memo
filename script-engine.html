@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>スクリプトエンジン製作メモ</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="スクリプトエンジン製作メモ"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-05-14 23:04:05 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">スクリプトエンジン製作メモ</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li><a href='#sec-1'>資料</a></li>
+            <li><a href='#sec-2'>やること</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 資料</a></li>
+<li><a href="#sec-2">2 全体の構造</a>
+<ul>
+<li><a href="#sec-2-1">2.1 なんのために作るか？</a></li>
+<li><a href="#sec-2-2">2.2 トランスレータのこと</a></li>
+<li><a href="#sec-2-3">2.3 フロントエンドとバックエンド</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 字句解析</a></li>
+<li><a href="#sec-4">4 構文解析</a></li>
+<li><a href="#sec-5">5 bison/flex</a></li>
+<li><a href="#sec-6">6 環境構築</a></li>
+<li><a href="#sec-7">7 BASIC風言語の作成</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 資料</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>本
+<ul>
+<li>スクリプトエンジン プログラミング 坂本 千尋 (著)
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/4797347627">http://www.amazon.co.jp/dp/4797347627</a>
+</li>
+<li>Source: <a href="http://www.sbcr.jp/products/4797347623.html?sku=4797347623">http://www.sbcr.jp/products/4797347623.html?sku=4797347623</a>
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 全体の構造</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> なんのために作るか？</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ul>
+<li>ドメイン特化，マイコンなど制限がある環境用，アプリケーション(Emacsなど)用の組み込み言語，趣味
+</li>
+<li>とりあえずの目標
+<ul>
+<li>Qtを使えるようにしたい
+</li>
+<li>Arduinoで動く
+</li>
+<li>H8マイコンで動く
+</li>
+<li>Scheme風の言語
+</li>
+<li>ゲームエンジンをつくってその組み言語として
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> トランスレータのこと</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<p>トランスレータとは，compilerが実行ファイル(バイナリ，機械語)を生成するのに対して，
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> フロントエンドとバックエンド</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 字句解析</h2>
+<div class="outline-text-2" id="text-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 構文解析</h2>
+<div class="outline-text-2" id="text-4">
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> bison/flex</h2>
+<div class="outline-text-2" id="text-5">
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 環境構築</h2>
+<div class="outline-text-2" id="text-6">
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> BASIC風言語の作成</h2>
+<div class="outline-text-2" id="text-7">
+
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-05-14 23:04:05 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

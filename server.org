@@ -1,0 +1,6 @@
+
+
+* DDNS
+ http://ddo.jp/
+
+allowed

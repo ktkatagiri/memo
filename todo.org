@@ -1,0 +1,43 @@
+#+AUTHOR: Yuuhi
+#+TITLE: TODO
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップへ戻る</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>はじめに</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* Botの更新
+* Webスクレイピングなどのスクリプトを充実
+** 京王線の情報を入手
+http://www.keio.co.jp/unkou/unkou_pc.html
+** Bingの翻訳API
+** Wolfram|Alpha API
+ http://products.wolframalpha.com/developers/
+
+** データベースの設計
+
+* 英語学習ツールの自作
+** Emacsで動く
+
+* ブログのネタを考える
+** SICP
+** EOPL
+** QtでTwitterクライアント
+** AndroidでTwitterクライアント
+
+* 大学のタスク
+

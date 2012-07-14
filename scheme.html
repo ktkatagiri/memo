@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>Schemeメモ</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Schemeメモ"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-06-07 15:47:42 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Schemeメモ</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>上の方</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 資料・リンク</a></li>
+<li><a href="#sec-2">2 Scheme</a>
+<ul>
+<li><a href="#sec-2-1">2.1 funarg問題のこと</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 そもそも，funarg問題とは？</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 CPS変換のこと</a></li>
+<li><a href="#sec-4">4 (with-input-from-file filename procedure)</a></li>
+<li><a href="#sec-5">5 マクロの展開</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 資料・リンク</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>Gauche <a href="http://practical-scheme.net/gauche/index-j.html">http://practical-scheme.net/gauche/index-j.html</a>
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/4873113482/">http://www.amazon.co.jp/dp/4873113482/</a>
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Scheme</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> funarg問題のこと</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ul>
+<li>リンク: <a href="http://d.hatena.ne.jp/kazu-yamamoto/20071027/1193474111">http://d.hatena.ne.jp/kazu-yamamoto/20071027/1193474111</a>
+  <a href="http://www.jsk.t.u-tokyo.ac.jp/~inaba/soft4/soft4-oops/node5.html">http://www.jsk.t.u-tokyo.ac.jp/~inaba/soft4/soft4-oops/node5.html</a>
+</li>
+</ul>
+
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> そもそも，funarg問題とは？</h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+<p>関数をデータとして扱えるようにする場合に起きる問題．
+ラムダ式で与えられた関数の実行中に自由変数のあ扱いがはっきりしないために起きる問題．
+Common Lispなどでは関数閉包を明確に定義してこのような問題が起きないようにしている．
+</p>
+<ul>
+<li>最近の高級言語(JavaScript, Rubyなど)で高階関数を扱う場合は殆どの場合ラムダクロージャを使うことになっていて，もうこの問題が表面化することは少ない？
+</li>
+</ul>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> CPS変換のこと</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li><a href="http://www.iro.umontreal.ca/~boucherd/mslug/meetings/20041020/90-min-scc/90-min-scc.pdf">http://www.iro.umontreal.ca/~boucherd/mslug/meetings/20041020/90-min-scc/90-min-scc.pdf</a>
+</li>
+</ul>
+
+<p>宝箱
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> (with-input-from-file filename procedure)</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>filename を標準入力として開きます．
+procedure は引数なしの関数です．
+procedure から制御が戻るとファイルは閉じられます．
+これが一番便利が良いでしょう．
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">read-file</span> file-name)
+      (with-input-from-file file-name
+        (<span style="color: #00ffff;">lambda</span> ()
+          (<span style="color: #00ffff;">let</span> <span style="color: #87cefa;">loop</span>((ls1 '()) (c (read-char)))
+        (<span style="color: #00ffff;">if</span> (eof-object? c)
+            (list-&gt;string (reverse ls1))
+            (loop (cons c ls1) (read-char)))))))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> マクロの展開</h2>
+<div class="outline-text-2" id="text-5">
+
+<ul>
+<li>Gauche
+</li>
+</ul>
+
+
+
+
+<pre class="example">gosh&gt; (%macroexpand (use slib))
+(begin (with-module gauche (require "slib")) (import (slib)))
+</pre>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-06-07 15:47:42 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

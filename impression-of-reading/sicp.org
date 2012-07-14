@@ -2,6 +2,14 @@
 #+TITLE: SICPのメモ
 #+LANGUAGE: ja
 #+HTML: <meta content='no-cache' http-equiv='Pragma' />
-#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="../org-mode.css">
 
-* SICPのメモ
+* SICPを読む目的
+- 教育者，将軍はなんとか
+* SICPの目次
+1. 手続きによる抽象の構築
+2. データによる抽象の構築
+3. 標準部品化出力，オブジェクトおよび状態
+4. 超言語的抽象
+5. レジスタ計算機での計算
+   

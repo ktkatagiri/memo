@@ -105,3 +105,6 @@ str.force_encoding("UTF-8").encode('UTF-8').encode("UTF-16", :invalid => :replac
     
 * fluentdをmongodbで
 ** TODO URL: http://d.hatena.ne.jp/mizchi/20120226/1330196807
+
+* RubyのMechanizeを解説 for 1.0.0
+http://d.hatena.ne.jp/kitamomonga/20081209/kaisetsu_for_ver_0_9_ruby_www_mechanize

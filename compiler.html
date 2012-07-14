@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="コンパイラ製作メモ"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-05-14 15:07:59 JST"/>
+<meta name="generated" content="2012-07-14 15:48:10 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -98,18 +98,6 @@
 
 <meta content='no-cache' http-equiv='Pragma' />
 
-    <div class='navbar navbar-fixed-top'>
-      <div class='navbar-inner'>
-        <div class='container'>
-          <a class='brand' href='./index.html'>トップに戻る</a>
-          <ul class='nav'>
-            <li><a href='#sec-1'>資料</a></li>
-            <li><a href='#sec-2'>やること</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
 
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
@@ -117,13 +105,55 @@
 <ul>
 <li><a href="#sec-1">1 資料</a></li>
 <li><a href="#sec-2">2 やること</a></li>
-<li><a href="#sec-3">3 CPUアーキテクチャの設計</a></li>
-<li><a href="#sec-4">4 中間表現</a></li>
-<li><a href="#sec-5">5 作成言語の設計</a></li>
-<li><a href="#sec-6">6 Syntax Sugarで便利な構文を追加していく</a></li>
-<li><a href="#sec-7">7 何をPrimitiveにするか？</a></li>
-<li><a href="#sec-8">8 BNFのこと</a></li>
-<li><a href="#sec-9">9 Lambda Closureのこと</a></li>
+<li><a href="#sec-3">3 以下は，コンパイラの作り方 (詳解) http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/ とほぼ同じ</a></li>
+<li><a href="#sec-4">4 CPUアーキテクチャの設計</a></li>
+<li><a href="#sec-5">5 中間表現</a></li>
+<li><a href="#sec-6">6 作成言語の設計</a></li>
+<li><a href="#sec-7">7 Syntax Sugarで便利な構文を追加していく</a>
+<ul>
+<li><a href="#sec-7-1">7.1 Mini-Scheme(Lambda Closure無し) + Syntax Sugars</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8 何をPrimitiveにするか？</a></li>
+<li><a href="#sec-9">9 BNFのこと</a></li>
+<li><a href="#sec-10">10 Lambda Closureのこと</a></li>
+<li><a href="#sec-11">11 Mini-SchemeにLambda Clusureを導入した場合</a></li>
+<li><a href="#sec-12">12 Lambda closureとSyntax Sugerによるloops</a>
+<ul>
+<li><a href="#sec-12-1">12.1 なぜLambda Closureではなく，fixがprimitiveなのか？</a></li>
+</ul>
+</li>
+<li><a href="#sec-13">13 Lambda式をfixを使って定義</a></li>
+<li><a href="#sec-14">14 Let(revisit)</a></li>
+<li><a href="#sec-15">15 名前付きLet</a></li>
+<li><a href="#sec-16">16 do</a></li>
+<li><a href="#sec-17">17 構文解析器の作成</a></li>
+<li><a href="#sec-18">18 コンパイラ実装に用いる言語</a></li>
+<li><a href="#sec-19">19 Mini-Scheme<sub>Fix</sub>実現の概要</a>
+<ul>
+<li><a href="#sec-19-1">19.1 構文解析後は？</a></li>
+</ul>
+</li>
+<li><a href="#sec-20">20 変数および定数</a></li>
+<li><a href="#sec-21">21 組み込みのprimitive</a></li>
+<li><a href="#sec-22">22 条件分岐</a></li>
+<li><a href="#sec-23">23 局所関数定義</a></li>
+<li><a href="#sec-24">24 関数呼び出しおよび復帰</a></li>
+<li><a href="#sec-25">25 局所変数定義</a></li>
+<li><a href="#sec-26">26 Continuation Passing Style</a>
+<ul>
+<li><a href="#sec-26-1">26.1 文法</a></li>
+<li><a href="#sec-26-2">26.2 PRIMITIVE</a></li>
+<li><a href="#sec-26-3">26.3 APP</a></li>
+<li><a href="#sec-26-4">26.4 FIX</a></li>
+</ul>
+</li>
+<li><a href="#sec-27">27 CPSの特徴</a>
+<ul>
+<li><a href="#sec-27-1">27.1 実現のまとめ</a></li>
+</ul>
+</li>
+<li><a href="#sec-28">28 CPS変換</a></li>
 </ul>
 </div>
 </div>
@@ -165,11 +195,6 @@
 <li>Compiling with Continuations, Andrew W. Appel (著)  <a href="http://www.amazon.co.jp/dp/052103311X">http://www.amazon.co.jp/dp/052103311X</a>
 <ul>
 <li>この本欲しいなぁ．Kindleで売ってるのかな．買おうか．高いが．．
-<ul>
-<li>しかも英語だし，すぐには読めない．やはり，英語の勉強は死ぬ気でヤラなければ．．
-
-</li>
-</ul>
 
 </li>
 </ul>
@@ -183,9 +208,11 @@
 <li>コンパイラの作り方 (詳解) <a href="http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/">http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/</a>
 <ul>
 <li>この資料をメインにコンパイラ製作を進める<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
-
 </li>
 </ul>
+
+</li>
+<li><a href="http://www.mlab.im.dendai.ac.jp/compiler/hint1.html">http://www.mlab.im.dendai.ac.jp/compiler/hint1.html</a>
 
 </li>
 </ul>
@@ -196,30 +223,12 @@
 <li>3imp.pdf( Three implementation models for scheme ) <a href="http://www.cs.indiana.edu/~dyb/papers/3imp.pdf">http://www.cs.indiana.edu/~dyb/papers/3imp.pdf</a>
 <ul>
 <li>Schemeのインタプリタの実装方法を説明している
-<ul>
-<li>VM上で動くコードを吐き出してるので正確な意味でインタプリタか？
-<ul>
-<li>最近はJITなども普通になってきていて，インタプリタとコンパイラの境界を議論するのは不毛で意味のないことかもしれない
-
-</li>
-</ul>
-
-</li>
-</ul>
 
 </li>
 <li>簡単に日本語で解説している <a href="http://route477.net/w/?Reading3imp.pdf">http://route477.net/w/?Reading3imp.pdf</a>
-
 </li>
 </ul>
 
-</li>
-</ul>
-
-</li>
-<li>中間表現など
-<ul>
-<li>Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
 </li>
 </ul>
 
@@ -246,16 +255,6 @@
 
 </li>
 <li>コンパイラはSchemeで記述する
-<ul>
-<li>Gaucheで動くように書く
-<ul>
-<li>Gauche <a href="http://practical-scheme.net/gauche/index-j.html">http://practical-scheme.net/gauche/index-j.html</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
 
 </li>
 </ul>
@@ -263,15 +262,26 @@
 </li>
 <li>仮想マシンの作成
 <ul>
-<li>マシン語にまでコンパイルできるコンパイラを作るには，
+<li>仮想マシンの設計は資料に合うものにする
+    レジスタマシン
 </li>
 </ul>
 
-<p>  特定のアーキテクチャ(x86やH8など)の命令セットのこと知らなければならない
-</p><ul>
+</li>
+<li>マシン語にまでコンパイルできるコンパイラを作るには
+  特定のアーキテクチャ(x86やH8など)の命令セットのこと知らなければならないので面倒
+<ul>
 <li>x86 <a href="http://ja.wikipedia.org/wiki/X86">http://ja.wikipedia.org/wiki/X86</a>
 </li>
 <li>H8 <a href="http://ja.wikipedia.org/wiki/H8">http://ja.wikipedia.org/wiki/H8</a>
+
+</li>
+</ul>
+
+</li>
+<li>中間表現など
+<ul>
+<li>Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
 </li>
 </ul>
 
@@ -284,8 +294,17 @@
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> CPUアーキテクチャの設計</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> 以下は，コンパイラの作り方 (詳解) <a href="http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/">http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/</a> とほぼ同じ</h2>
 <div class="outline-text-2" id="text-3">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> CPUアーキテクチャの設計</h2>
+<div class="outline-text-2" id="text-4">
 
 <ol>
 <li>全ての変数のsizeが同じ
@@ -306,9 +325,9 @@
 
 </div>
 
-<div id="outline-container-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 中間表現</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 中間表現</h2>
+<div class="outline-text-2" id="text-5">
 
 <ul>
 <li>CPS形式
@@ -325,9 +344,9 @@
 
 </div>
 
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 作成言語の設計</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 作成言語の設計</h2>
+<div class="outline-text-2" id="text-6">
 
 <ul>
 <li>拡張BNFで
@@ -355,7 +374,7 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 <ul>
 <li>heap: memoryの割り当て
 </li>
-<li>record-ref: heapに割り当てられたrecordの参照(vector-refみたいな)，
+<li>record-ref: heapに割り当てられたrecordの参照(vector-refみたいもの)，
 </li>
 <li>record-set!: はrecordの更新．
 </li>
@@ -374,19 +393,38 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 
 </div>
 
-<div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Syntax Sugarで便利な構文を追加していく</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Syntax Sugarで便利な構文を追加していく</h2>
+<div class="outline-text-2" id="text-7">
 
 <p>compilerはできる限り少ない機能のみをサポートしたい．
 </p>
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Mini-Scheme(Lambda Closure無し) + Syntax Sugars</h3>
+<div class="outline-text-3" id="text-7-1">
+
+<p>最低限の構文しか用意していないMini-Scheme上では，Syntax Sugarsを使って多くの便利な機能を用意してやる．
+</p><ul>
+<li>Let*
+</li>
+<li>begin
+</li>
+<li>cond
+</li>
+</ul>
+
+
+</div>
 </div>
 
 </div>
 
-<div id="outline-container-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 何をPrimitiveにするか？</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 何をPrimitiveにするか？</h2>
+<div class="outline-text-2" id="text-8">
 
 <p>よく考える必要がある(9章<sup><a class="footref" name="fnr.1.2" href="#fn.1">1</a></sup>)
 </p><ul>
@@ -399,9 +437,9 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 
 </div>
 
-<div id="outline-container-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> BNFのこと</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> BNFのこと</h2>
+<div class="outline-text-2" id="text-9">
 
 <ul>
 <li>Webの情報
@@ -425,9 +463,9 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 
 </div>
 
-<div id="outline-container-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Lambda Closureのこと</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Lambda Closureのこと</h2>
+<div class="outline-text-2" id="text-10">
 
 <ul>
 <li>まずはClosureを持たない言語のcompilerを実装する．
@@ -461,6 +499,1196 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 </ul>
 
 
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Mini-SchemeにLambda Clusureを導入した場合</h2>
+<div class="outline-text-2" id="text-11">
+
+
+
+
+<pre class="example">Expression ::= Id
+           | Contstant
+           | (if Expression Expression Expression)
+           | (let (Bind*) Expression)
+           | (fix (Fbind*) Expression)
+           | (Primsym Expression*)  ;; premitive call
+           | (Expresion Exprresion*)  ;; user-defined functions
+Bind       ::= (Id Exprssion)    ;; let-bind
+Fbind      ::= (Id (Id*) Expression)    ;; fix-bind
+Definition ::= (define Id Expression)
+           | (define (Id Id*) Expression*) ;; toplevel definition |
+Constant   ::= Integer | Float | Boolean | '()
+Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2 | =2 | heap
+           | record-ref | record-det!
+</pre>
+
+
+<p>
+なにが変わったかというと，fixという構文が追加された点である．
+Fixは局所変数を導入しbodyを実行するという点でletに近いが導入されるのは関数に限られる．
+(MLのlet func &hellip;に近い)．
+例えば，
+</p>
+
+
+<pre class="src src-scheme">(fix ((even? (x) (<span style="color: #00ffff;">if</span> (= x 0) #t (odd? (- x 1))))
+      (odd? (x) (<span style="color: #00ffff;">if</span> (= x 0) #f (even? (- x 1)))))
+  (even? 10))
+</pre>
+
+<p>
+は正しい．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Lambda closureとSyntax Sugerによるloops</h2>
+<div class="outline-text-2" id="text-12">
+
+
+</div>
+
+<div id="outline-container-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> なぜLambda Closureではなく，fixがprimitiveなのか？</h3>
+<div class="outline-text-3" id="text-12-1">
+
+<ul>
+<li>fixは導入される関数に名前を付けることで再帰的な関数を自然に定義することを許している．
+</li>
+<li>Lambda Closureは単に何か適当な名前を生成してやれば簡単にsyntax sugarとして実現できる．
+<ul>
+<li>その意味でfixは，lambda closureを包含している．逆にletとlambda式を使ってfixを簡単に実現できるかというとそうじゃなくて，
+    再帰的な関数の定義ができない．
+</li>
+</ul>
+
+</li>
+<li>例えば，
+</li>
+</ul>
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((even? (x) (<span style="color: #00ffff;">if</span> (= x 0) #t (odd? (- x 1))))
+      (odd? (x) (<span style="color: #00ffff;">if</span> (= x 0) #f (even? (- x 1)))))
+  (even? 10))
+</pre>
+
+<p>
+としてしまうと，letのscpe ruleにより，これらはodd?, even?を再帰的な関数として実現できていない．
+再帰的な関数を局所的に定義できることはlambda式だけでなく，多くのloopをSyntax Sugarとして実現できることを表している．
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> Lambda式をfixを使って定義</h2>
+<div class="outline-text-2" id="text-13">
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">lambda</span> (param*) body) = (fix ((f (param*) body)) f)
+</pre>
+
+<p>
+ここでfはbodyおよび，paramに表れない名前であるとする．
+つまりlambda式は名前のない関数なので，fix構文でその関数に決して使われない名前を付けてやれば良い．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Let(revisit)</h2>
+<div class="outline-text-2" id="text-14">
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((var_0 exp_0)
+      ...
+      (var_n exp_n))
+  body)
+  =
+((<span style="color: #00ffff;">lambda</span> (var_0 ... var_n) body) exp_0 ... exp_n_)
+</pre>
+
+<ul>
+<li>注: optimizationを容易にするという観点でみたとき，letはessential syntaxとして特別扱いした方が良い．
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> 名前付きLet</h2>
+<div class="outline-text-2" id="text-15">
+
+<p>Schemeで繰り返しを行うためにしばしば使われるのがletを拡張した名前付きLet(named<sub>let</sub>)と呼ばれる機能である．
+例をあげると，
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> <span style="color: #87cefa;">loop</span> ((x init_x)
+           (y init_y))
+  body)
+</pre>
+
+<p>
+という形をしている．
+このとき，body部ではloopという名前の2引数関数を呼び出すことができる．
+</p>
+
+
+<pre class="src src-scheme">(loop exp_x exp_y) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">&#12371;&#12358;&#12356;&#12358;&#12424;&#12358;&#12395;</span>
+</pre>
+
+<p>
+呼ばれると，exp<sub>x</sub>, exp<sub>yをx</sub>, yの新しい値としてbody部の実行をやり直す．
+例えば，与えられたリストの全要素の積を求める名前付きletは，
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> <span style="color: #87cefa;">loop</span> ((rest l)
+           (prod 1))
+  (<span style="color: #00ffff;">cond</span> ((null? rest)
+         prod)
+        ((= 0 (car rest)) 0)
+        (<span style="color: #00ffff;">else</span> (loop (cdr rest)) (* prod (car rest)))))
+</pre>
+
+<p>
+となる．
+「let式は局所的な関数定義+apply」という見方を自然に拡張したもの．
+</p>
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((x ...) (y ...)) body)
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">&#12399;</span>
+(<span style="color: #00ffff;">lambda</span> (x y) body)
+</pre>
+
+<p>
+という局所的な関数を定義して，それに初期値をapplyしたが，名前付きletではその局所的な関数として，
+recursiveなものを許したことに相当する．fixを使って書けば，上記のloopは，
+</p>
+
+
+<pre class="src src-scheme">(fix ((loop (rest prod)
+        (<span style="color: #00ffff;">cond</span> ((null? rest)
+               prod)
+          ((= 0 (car rest)) 0)
+          (<span style="color: #00ffff;">else</span> (loop (cdr rest)) (* prod (car rest))))))
+  (loop l 1)
+</pre>
+
+
+<p>
+注：原文ではこうなっている
+</p>
+
+
+<pre class="src src-scheme"><span class="linenr">1:  </span>(fix ((loop (rest prod)
+<span class="linenr">2:  </span>        (<span style="color: #00ffff;">cond</span> ((null? rest)
+<span class="linenr">3:  </span>               prod)
+<span class="linenr">4:  </span>          ((= 0 (car l)) 0)
+<span class="linenr">5:  </span>          (<span style="color: #00ffff;">else</span> (loop (cdr rest)) (* prod (car l))))))
+<span class="linenr">6:  </span>  (loop l 1)
+</pre>
+
+<p>
+何が違うかと言うと，4,5行目のl．
+なぜ，自由変数lなのか？間違いか，私の理解が浅いのか？
+</p>
+<ul>
+<li>もちろん，名前付きletがあれば，名前なしのletはその一部とみなせる．
+</li>
+</ul>
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((x ...) (y ...)) body)
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">&#21516;&#12376;</span>
+(<span style="color: #00ffff;">let</span> <span style="color: #87cefa;">name</span> ((x ...) (y ...)) body) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">name&#12399;&#24335;&#20013;&#12395;&#12399;&#34920;&#12428;&#12394;&#12356;</span>
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> do</h2>
+<div class="outline-text-2" id="text-16">
+
+<ul>
+<li>略
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-17" class="outline-2">
+<h2 id="sec-17"><span class="section-number-2">17</span> 構文解析器の作成</h2>
+<div class="outline-text-2" id="text-17">
+
+<p>言語の表層が決まったので，構文解析ルーチン(parser)の製作をする．
+</p><ul>
+<li>読み込むべきプログラムはSchemeのsyntaxで書かれている．
+</li>
+<li>アルゴリズムの記述にSchemeを用いる．
+</li>
+</ul>
+
+
+<p>
+以下にSchemeの「式」を構文解析するための関数を述べる．実際にはtoplevelに現れる式(define &hellip;)を読み込むための関数を作らなくてはならない．
+式は，Schemeのread関数を使ってリストの形で読み込まれる．構文解析器はこのリストを入力として受け取り，結果としてparse treeを返す．
+</p>
+
+
+<pre class="src src-scheme"><span class="linenr"> 1:  </span>(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">parse-expr</span> e)
+<span class="linenr"> 2:  </span>  (<span style="color: #00ffff;">if</span> (terminal? e)
+<span class="linenr"> 3:  </span>      (parse-expr-terminal e) <span style="color: #ff7f24;">; </span><span style="color: #ff7f24;">parse thing like 1, 2, a</span>
+<span class="linenr"> 4:  </span>      (<span style="color: #00ffff;">let</span> ((expander (lookup-parser (car e) syntax-sugar-table)))
+<span class="linenr"> 5:  </span>        (<span style="color: #00ffff;">if</span> expander
+<span class="linenr"> 6:  </span>            (parse-expr (expander e)) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">expand E and then parse it again</span>
+<span class="linenr"> 7:  </span>            (<span style="color: #00ffff;">let</span> ((parser (lookup-parser (car e) expr-parse-table)))
+<span class="linenr"> 8:  </span>              (<span style="color: #00ffff;">if</span> parser
+<span class="linenr"> 9:  </span>                  (parser e) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">if or let</span>
+<span class="linenr">10:  </span>                  (parser-app e)))))))
+</pre>
+
+<p>
+入力された式は3つの場合がある．
+</p><ul>
+<li>変数，定数などのこれ以上分解できないterminal
+</li>
+<li>Syntax Sugar
+</li>
+<li>Primitive(+2とか)
+</li>
+<li>Essential Syntax(if, 関数呼び出し, let)
+</li>
+</ul>
+
+<p>構文解析器はまず，受け取った式がterminal(変数や式など，中に式を再帰的に含まない式)であるかどうかを検査する．
+そうならば，terminalをparseする関数を呼ぶ．でなければ，次にそれがsyntax-sugarとして定義されている構文かどうかを(car部を見て)検査する．
+もし，Syntax Sugarであれ適切な展開関数(各syntax sugarごとに定義)を呼び，展開された後の式を再びparserに入力する．
+それ以外は組み込みのprimitiveまたは，essential syntaxであり，それぞれ適切なparser(各syntaxごとに用意)を呼ぶ．
+</p>
+<p>
+Syntax Sugarを展開する関数の例として，lambda式を展開する例を示す．
+</p>
+
+
+<pre class="src src-scheme"><span class="linenr"> 1:  </span>(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">expand-let*</span> e)
+<span class="linenr"> 2:  </span>  (<span style="color: #00ffff;">let</span> ((binds (list-ref e 1))
+<span class="linenr"> 3:  </span>        (body (list-ref-cdr e 2)))
+<span class="linenr"> 4:  </span>    (<span style="color: #00ffff;">if</span> (null? binds)
+<span class="linenr"> 5:  </span>        `(<span style="color: #00ffff;">begin</span> ,@body)
+<span class="linenr"> 6:  </span>        (<span style="color: #00ffff;">let</span> ((bind-head (car binds))
+<span class="linenr"> 7:  </span>              (bind-rest (cdr binds)))
+<span class="linenr"> 8:  </span>          `(<span style="color: #00ffff;">let</span> (,bind-head)
+<span class="linenr"> 9:  </span>            (<span style="color: #00ffff;">let*</span> ,bind-rest
+<span class="linenr">10:  </span>              ,@body))))))
+</pre>
+
+<p>
+あれ？これ，let*の展開関数じゃ．．
+まぁとにかくこのような形でsyntax sugarを展開する関数をかく．
+このような関数はsyntax sugar毎に用意されている．
+</p>
+<p>
+次に，Essential Syntaxをparseする例として，ifを展開する式を示す．
+</p>
+
+
+<pre class="src src-scheme"><span class="linenr">1:  </span>(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">parse-expr-if</span> e)
+<span class="linenr">2:  </span>  (<span style="color: #00ffff;">let</span> ((condition (list-ref e 1))
+<span class="linenr">3:  </span>        (then-clause (list-ref e 2))
+<span class="linenr">4:  </span>        (else-clause
+<span class="linenr">5:  </span>          (<span style="color: #00ffff;">if</span> (list-ref-cdr e 3) (list-ref e 3) '())))
+<span class="linenr">6:  </span>    (make-expr-if (parse-expr condition)
+<span class="linenr">7:  </span>                  (parse-expr then-clause)
+<span class="linenr">8:  </span>                  (parse-expr else-clause))))
+</pre>
+
+<p>
+同様の関数が，applyおよびprimitiveに関してもある．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-18" class="outline-2">
+<h2 id="sec-18"><span class="section-number-2">18</span> コンパイラ実装に用いる言語</h2>
+<div class="outline-text-2" id="text-18">
+
+<p>compilerの実装のための言語はなんでもよいが，S式をparseするのであればLispやSchemeが楽なので，ここではSchemeを使う．
+あとからJavaScriptで書きなおす可能性あり．
+Scheme処理系はGaucheを使うことと決めた． <a href="http://practical-scheme.net/gauche/index-j.html">http://practical-scheme.net/gauche/index-j.html</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-19" class="outline-2">
+<h2 id="sec-19"><span class="section-number-2">19</span> Mini-Scheme<sub>Fix</sub>実現の概要</h2>
+<div class="outline-text-2" id="text-19">
+
+<p>Schemeの多くを包含する強力な言語が4つのEssential Syntaxからなる言語から導き出せる．
+その4つのEssential Syntaxとは
+</p><ul>
+<li>IF (条件分岐)
+</li>
+<li>Apply (関数呼び出し)
+</li>
+<li>Let (局所変数定義)
+</li>
+<li>Fix (局所関数定義)
+</li>
+<li>Primitive (組み込みのprimitive)
+</li>
+</ul>
+
+<p>ここでprimitiveは，target machineに依存した，machine命令またはその簡単な組み合わせで，多くのregisterを破壊せずに
+実現可能な機能の集合である．特に，fixは強力さのキモであり，これを元にlambda式，loopなどの数々の有用な構文を実現できる．
+また，letは意味的にはfixとapplyの組に還元することができるが，最適化を簡略化するためにEssential Syntaxとしている．
+</p>
+
+</div>
+
+<div id="outline-container-19-1" class="outline-3">
+<h3 id="sec-19-1"><span class="section-number-3">19.1</span> 構文解析後は？</h3>
+<div class="outline-text-3" id="text-19-1">
+
+<p>中間言語であるContinuation Passing Style(CPS)と呼ばれる形式に変換を行う．
+その上で解析を行い，実際にコードを生成する．
+Algorithmicには，Mini-SchemeからCPSへの変換規則を理解することが最初のステップとなる．
+Mini-SchemeからCPSへの変換はAssembly言語へ変換する前段階．
+まずはMini-SchemeのEssential Syntaxがどのようにmachine上で実行されるべきなのかを先に説明し，
+なにがGoalなのかをまず理解しよう．
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-20" class="outline-2">
+<h2 id="sec-20"><span class="section-number-2">20</span> 変数および定数</h2>
+<div class="outline-text-2" id="text-20">
+
+<p>変数は最終的にregister allocation pheaseにおいて，その変数の値を保持すべきregisterが割り当てられる．
+定数は通常machine命令にそのまま埋め込まれるが，命令に入りきらない大きな定数は一度registerにloadされる．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-21" class="outline-2">
+<h2 id="sec-21"><span class="section-number-2">21</span> 組み込みのprimitive</h2>
+<div class="outline-text-2" id="text-21">
+
+<p>例として次のような式を実行した時に何を起こすべきかを考える．
+</p>
+
+
+<pre class="example">(E (+ E0 E1))
+</pre>
+
+
+<ul>
+<li>E<sub>0</sub>, E<sub>1</sub>は足し算を受け取るoperandであり，Eは足された結果を「使う」式で，上の式全
+  体で，足し算を行う状況のtemplateを示す．
+</li>
+<li>MiniSchemeとassembly言語の大きなgapの一つは，Mini-Schemeはあらゆるoperationは任意の
+  <b>複雑な式をoperandとしてとれる</b> ．
+  一方，assembly言語ではoperation(足し算など)のoperandはregisterや定数などの単純なもので無くてはならない．
+  つまり，上の式を評価するときの問題は足し算を行う前に何とかしてE<sub>0</sub>やE<sub>1</sub>の値をregisterの上に載せて，
+  その後に足し算を行い，その結果をなんとかしてEに教えてやるという処理が必要となる．
+  生成するmachine後は以下のような感じに
+</li>
+</ul>
+
+
+
+
+<pre class="example">...
+E0 → t0 とする命令列
+...
+E1 → t1 とする命令列
+...
+t0 + t1 → t
+(+ E0 E1) = t の元でEを実行
+</pre>
+
+<p>
+その他の多くのprimitiveも同じような構造を持つ．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-22" class="outline-2">
+<h2 id="sec-22"><span class="section-number-2">22</span> 条件分岐</h2>
+<div class="outline-text-2" id="text-22">
+
+
+
+
+<pre class="example">(E (if (C T F)))
+</pre>
+
+<p>
+Cを評価した結果をどこかのregisterに載せ，その後にそのregisterの値に基づいて適切な方向へ分岐する．
+分岐した先ではそれぞれTまたはFの評価した値をどこかのregisterに載せそれをEに渡せば良い．
+</p>
+
+
+<pre class="example">...
+C → tc とする命令列
+...
+tc ≠ #f なら LTへ，そうでなければLFへ
+  LT: T → tとする命令列
+...
+    Jへ
+  LF: F → tとする命令列
+...
+    Jへ
+  J:  (if ...) = tとしてEを実行
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-23" class="outline-2">
+<h2 id="sec-23"><span class="section-number-2">23</span> 局所関数定義</h2>
+<div class="outline-text-2" id="text-23">
+
+<p>Mini-Scheme<sub>fix</sub>にあるfix式，局所的な自由変数を持つような関数を定義した時に何を起こせば良いかを考える．
+</p>
+
+
+<pre class="src src-scheme">(fix ((f (x) (+ x y))) ...)
+</pre>
+
+<p>
+この場合yが自由変数．
+再確認するとfの正体はfを実現するコードの番地および，自由変数であるyの値の組(レコード)であり，
+このレコードをClosureと読んでいる．したがって，生成すべきコードの列は以下のようになる．
+</p>
+
+
+<pre class="example">fのclosureをheapに作り，それ(へのpointer)をfとする
+    ... 部を実行
+</pre>
+
+
+<p>
+単純な物の見方として，toplevelの関数定義の羅列全体が一つのfixし器になっているとみなす．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-24" class="outline-2">
+<h2 id="sec-24"><span class="section-number-2">24</span> 関数呼び出しおよび復帰</h2>
+<div class="outline-text-2" id="text-24">
+
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">f</span> x y z)
+  (+ z (g x y)))
+</pre>
+
+<p>
+のような関数内において，(g x)への呼び出しを実行することを考える．ここでgは，fixで定義された関数である．
+machine毎に関数呼び出しの慣例は決まっている．ここでは第i parameterを第i registerに置くものとする．
+では次にfは何をするかというと，返ってきた戻り値とzを足し算しなくてはならない．しかしその時zはどこにあるかというと，
+fが呼ばれた時点ではzは第3registerにあったはず．
+しかしgから復帰した時点ではそれが残っているとは期待できない．
+一番単純な解決方法は， <b>関数を呼び出す側は復帰に必要な値をgに制御を移す前にmemoryに退避するというもの</b> ．
+そのmemoryへのponterもどこかにおいておく必要があり，それもまたconvention(しきたり)によって定める．
+とりあえず，第 -1 registerと呼ぶ．
+</p>
+<p>
+この <b>復帰後に必要な値を格納したrecord</b> をその呼び出しの， <b>continuation record</b> と呼ぶ．
+概念的にまとめると，関数呼び出しは
+</p>
+
+
+<pre class="example">continuation recordを作り，所定のregisterに格納
+戻り番地を所定のregisterに格納
+引数を第1register以降に並べる
+宛先にjump
+</pre>
+
+<p>
+で実行され，関数から戻るときは，
+</p>
+
+
+<pre class="example">渡されたcontinuation recordを所定のregisterにおく
+返り値を第1registerにおく
+戻り番地にjump
+</pre>
+
+<p>
+となる．
+上のような一連のことを計算機にやらせようとすると複雑なこととなる．
+人間にとっては感覚的に分かる話でも，計算機にやらせるとなるとべつ．
+この複雑さを解決する助けになるものとして，CPSという中間言語がある．
+CPS形式はどの値をcontinuation recordに格納すべきかをsyntactic(構文上の)な計算
+によって求めることを可能にしている．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-25" class="outline-2">
+<h2 id="sec-25"><span class="section-number-2">25</span> 局所変数定義</h2>
+<div class="outline-text-2" id="text-25">
+
+<p>例えば1変数の束縛を行うlet式である．
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">let</span> ((x E)) B)
+</pre>
+
+<p>
+を実行するときにスべきことは．
+</p><ul>
+<li>Eを評価して，register tに代入する
+</li>
+<li>B中の自由なxがtに入っているとしてBを実行
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-26" class="outline-2">
+<h2 id="sec-26"><span class="section-number-2">26</span> Continuation Passing Style</h2>
+<div class="outline-text-2" id="text-26">
+
+<p>Continuation Passing Style(CPS)の説明をする．
+新しいプログラミング言語を覚えるつもりで理解する．
+複雑に組み合わさった式の評価や，関数呼び出しがCPS上でどのように表現されるかを見ることである．
+Min-SchemeをどのようにCPS変換するかのalgorithmの話は次の章で説明する．
+またCPSをどのようにmachine命令にtranslateするかはそれ以降のテーマになる．
+</p>
+
+</div>
+
+<div id="outline-container-26-1" class="outline-3">
+<h3 id="sec-26-1"><span class="section-number-3">26.1</span> 文法</h3>
+<div class="outline-text-3" id="text-26-1">
+
+
+
+
+<pre class="example">OP   ::= ID | CONSTANT
+CPS  ::= (PRIMSYM [OP*] [ID*] [CPS*]) ;; primitives
+     | (FIXSYM (BIND*) CPS) ;; local function definion
+     | (APP OP (OP*)) ;; apply
+BIND ::= [ID (ID*) CPS]
+PRIMSYM  ::=  + | - | &gt;&gt; | &lt;&lt; | &lt; | &gt; | = 
+         | HEAP | STACK | POP | RECORD-REF | RECORD-SET!
+FIXSYM  ::= FIXH | FIXS
+</pre>
+
+
+<p>
+OPは命令(例えば足し算)のoperandとして使われる対象を指している．
+まず，最初に注目すべきなのはOPがIDまたはCONSTANTしか無いという点で，
+ここがMin-Schemeの「任意の式が値を持ちそれらを組み合わせてまた式ができる」というのと
+大きく違う．CPSはassembly言語に近いといえる．
+文法クラスCPSがCPSの命令を表しており，それには大きく分けて3種類ある．まず，
+CPS自体はMini-Schemeのように値を持たない．
+値を持つものはIDまたはCONSTANTだけであり，複雑な式の評価はOPに演算を施して変数にbindし，次の命令を実行して．．という風に行われる．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-26-2" class="outline-3">
+<h3 id="sec-26-2"><span class="section-number-3">26.2</span> PRIMITIVE</h3>
+<div class="outline-text-3" id="text-26-2">
+
+<p>まずは，primitiveの文法を見てみる
+</p>
+
+
+<pre class="src src-scheme">(PRIMSYM [OP*] [ID*] [CPS*]) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">primitives</span>
+</pre>
+
+<p>
+ここで，X*はXの任意個の並びを表す．PRIMSYMが実際の命令を規定し，それらには，+, -などの
+命令やRECORD-REFなどの命令が含まれる(これらもMin-Schemeのprimitive同様にmachine依存)．
+PRIMSYMのすぐ後ろに続くのがその命令への引数である．
+実際の引数の個数は命令毎に決まっている(任意個の引数もありえる)．
+その次の[ID*]は，命令の結果を格納する変数名を指定する．実際にはこのfieldには0個または1個の変数しか入らない．
+最後のfieldは再び任意のCPS命令の列を格納できるようになっている．
+これは命令の実行の後，実行すべきCPS命令列を格納したものであり，その命令の <b>continuation</b> と
+呼ぶ．実際にはこのcontinuationの数は1個または2個，branch命令の場合のみ2個(それぞれ成立，不成立に対応)，
+それ以外は1個である．例えば以下は，Xを2倍にして，tにbindし，それが10より大きいかどうかで分岐するCPSプログラムの断片．
+</p>
+
+
+<pre class="src src-scheme">(* [x 2] [t]
+   [(&lt; [t 10] []
+     [(... ) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">then part</span>
+      (... )])]) <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">else part</span>
+</pre>
+
+<p>
+CPSが制御の流れをただの命令の「並び」としてでなく，CPSの再帰的な式の構造によって明示的に表している
+点に注目せよ．
+このことはcompilerにとって必要な情報(例えば，プログラムのある時点での，今後使用する変数の集合)を
+求めるalgorithmを式の再帰的traverseにより単純に美しく書けることを可能にしている．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-26-3" class="outline-3">
+<h3 id="sec-26-3"><span class="section-number-3">26.3</span> APP</h3>
+<div class="outline-text-3" id="text-26-3">
+
+<p>次にAPPについてみる．
+</p>
+
+
+<pre class="src src-scheme">(APP OP (OP*))
+</pre>
+
+<p>
+これは，そのまま関数呼び出しを実行するためのもの．
+例えば，
+</p>
+
+
+<pre class="src src-scheme">(APP f (x y z))
+</pre>
+
+<p>
+は，x,y,zを引数として，fを呼び出す．
+しかし，Min-Schemeの関数呼び出しと違う点は <b>CPSのAPPはそれ自体では関数から戻るためのsetupなどをしないという点</b> ．
+よって，CPSのAPPは関数呼び出しと言うよりは， <b>値付きのgoto</b> と呼ぶべきだろう．
+関数呼び出しの最後のStep(引数を並べて宛先にjumpする)部分だけを行う命令であり，それ以前のsetup(つまりcontinationのsave)
+は，事前に行われなくてはならない．
+もう一つの注目点として，CPSのAPPはprimitiveと違ってcontinationをとらないことに注目する．
+これはAPPの仕事は宛先に値を渡して制御を移すことだけであることを反映している．
+このAPPには２つの役割があり，一つはMin-Schemeにおける関数呼び出しの最後の部分を実現するためのもの．
+もう一つは， <b>関数から戻るためにもAPPを使う</b> ということ．
+ <b>返り値を並べて戻り番地に制御を移す</b> ．これは <b>値付きgoto</b> そのものの動作を表している．
+全体としてはどのように単一化するかは，FIXと合わせて理解したい．
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-26-4" class="outline-3">
+<h3 id="sec-26-4"><span class="section-number-3">26.4</span> FIX</h3>
+<div class="outline-text-3" id="text-26-4">
+
+<p>最後にFIXである，FIXには2種類あり，それぞれFIX<sub>S</sub>, FIX<sub>H</sub>と書くが，さしあたっておなじものと考えて良い．
+</p>
+
+
+<pre class="src src-scheme">(FIX (BIND*) BIND)
+</pre>
+
+
+<p>
+これはBIND*に従って，局所関数を定義し，CPS以降を実行する．
+FIXもprimitive同様，再帰的な構造によって次に行うべき命令を指定している．
+</p>
+
+
+<pre class="src src-scheme">(FIX ([f (x) (+ [x 1] [y] [(...)])])
+  ...)
+</pre>
+
+<p>
+例えば上のコードは，fという関数を定義して，以降を実行している．fは引数xを受け取り，それに1を足して．．．という動作をする．
+ここで，FIXで定義される関数は自由変数を定義して良い．我々はまだCPSの自由変数を定義していないが，
+つまり，FIX式の外側で定義され，FIX式で定義される関数の内側で参照される変数があっても構わないということ．
+さて，APP同様FIXにも二つの使い道があり，一つ目はMin-Schemeのfixを実現することで，もう一つは先のAPPがreturnに使えるのと，対応し，
+ <b>関数呼び出しの際のcontinuationを作る</b> のに用いる．これは次の例を見たほうがはやい．
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">g</span> x y)
+  (+ x (f y)))
+</pre>
+
+
+<p>
+という文脈でfを呼び出すことを考える．
+それをCPSではFIXとAPPの組み合わせにより以下のように書く(便宜上，gもFIXを使って書いておく)．
+</p>
+
+
+
+<pre class="src src-scheme">(FIX ([g (k x y)
+  (FIX ([c (v) (+ [x v] [t] [(APP k (t))])])
+    (APP f (c y)))])
+  ..)
+</pre>
+
+
+<p>
+2行目のFIXが，fから戻った後のcontinuationを作っている部分である．作られているのは，
+vという1引数の関数である．これはfの返り値をvに受け取り，
+それをxに足して．．という動作をする．
+fは返り値を戻す時に，
+</p>
+
+
+<pre class="src src-scheme">(APP c (v))
+</pre>
+
+<p>
+という式を実行して，関数から復帰する．
+さて，continuationを作ったら実際にfをAPPを使って呼び出す．
+それは，
+</p>
+
+
+<pre class="src src-scheme">(APP f (c y))
+</pre>
+
+<p>
+である．注目すべきは，fが後できちんとcを呼び出すことができるように，作られたcが追加引数
+として渡されている点である．
+APPが呼び出しにも復帰にも使われている点，
+およびcontinuationも普通の関数もFIXを使って同様に定義される点に注意せよ．
+</p>
+<ul>
+<li>FIX<sub>S</sub>, FIX<sub>H</sub>のmachine code上での動作
+</li>
+</ul>
+
+<p>CPS命令の中で，FIXはやや抽象的で，実際の動作をイメージしづらいoperatorである．
+CPSのFIXも自由変数を含み得るので，
+</p>
+
+
+<pre class="src src-scheme">(FIX ([f (x y) E])
+  B)
+</pre>
+
+<p>
+を実行した時，fixの定義部(この場合E)に含まれる自由変数および，
+fを実現するコード番地からなるレコードを作る動作をする．
+それをfとして，Bを実行するというのが動作．
+</p>
+<p>
+したがって，FIXを実行するたびにどこかのmemoryが割り当てられなくてはいけない．
+そして，そのmemory管理の方式が必要となる．
+概念的に一番簡単なのは，Garbage Collected Heapを実装し，そこからmemoryを割り当て，
+必要なくなったらGCする方法．
+自作CPUだとGCがない．
+妥協案として，FIXを2種類用意している．
+一つはFIX<sub>H</sub>でこれはheapからレコードを割り当てる．
+もう一つはFIX<sub>S</sub>でこれは，stackからレコードを割り当て，
+定義された関数は一度しか呼ばれないという前提を元に，
+一度呼ばれたらそのmemoryをstackからpopする，というもの．
+そしてCPSに翻訳する際にはcontinuation recordにはFIX<sub>S</sub>を使う．<br/>
+ <b>Continuation recordがstackから割り当て/解放できるのはすぐにわかる</b> ？<br/>
+この方式でmemoryをほどほどに使うプログラムはそこそこのmemoryで動く．
+結果として得られる2つのFIXはmemory managementの方法を除けば同じものであり，特に
+CPSのレベルでの意味に違いは全くない．
+</p><ul>
+<li>この方式はAssemblyでGCを書きたくないからこその方式であって，既にCやC++などの言語処理系があるCPUではGCを実装する方が良い
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-27" class="outline-2">
+<h2 id="sec-27"><span class="section-number-2">27</span> CPSの特徴</h2>
+<div class="outline-text-2" id="text-27">
+
+<p>中間言語に望まれる性質は，
+</p><ul>
+<li>Compilerがcode生成／最適化に必要な情報を簡単なテキスト上の操作で抽出できる．
+</li>
+<li>最適化を簡単なtext上の操作として定式化できる
+</li>
+</ul>
+
+<p>ことである．
+ここでCPSがcomplierとってなぜ扱いやすいのかをいくつか例を用いて示す．
+</p><ul>
+<li>Inlining as Substitution
+</li>
+</ul>
+
+<p>SchemeやMLのような言語では関数呼び出しのinline展開が重要な最適化となる．
+例えば，
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">g</span> x)
+  (fix ((f (y) (+ y y)))
+    (+ (f (+ x 10)) 1)))
+</pre>
+
+<p>
+において，fの呼び出しを最適化したいと思ったとする．
+これは以下のようなCPSに変換される(便宜上，gもfixで定義)．
+</p>
+
+
+<pre class="src src-scheme">(FIX ([g (k x)
+  (FIX ([f (c y) (+ [y y] [t] [(APP c (t))])])
+    (+ [x 10] [s]
+       [(FIX ([d (t) (+ [t 1] [r] [(APP k (r))])])
+          (APP f (d s)))]))])
+ ...)
+</pre>
+
+<p>
+ここでfの呼び出しをinline展開することは，
+</p>
+
+
+<pre class="src src-scheme">(APP f (d s))
+</pre>
+
+<p>
+をFIXで定義されたfのbody，つまり
+</p>
+
+
+<pre class="src src-scheme">(+ [y y] [t] [(APP c (t))])
+</pre>
+
+<p>
+において，freeなparameterの出現を対応するargumentで置き換えれば良い．
+つまり，
+</p>
+
+
+<pre class="src src-scheme">(FIX ([f (c y) (+ [y y] [t] [(APP c (t))])])
+  (+ [x 10] [s]
+     [(FIX ([d (t) (+ [t 1] [r] [(APP k (r))])])
+        (+ [s s] [t] [(APP d (t))]])]))
+</pre>
+
+<p>
+である．
+</p>
+<p>
+ここで，この最適化を施したあと，fがもはやどこでもつかわれないと分かったならば，
+fの定義そのものを消去してしまっても良い．
+そして，さらにこの例の場合，
+</p>
+
+
+<pre class="src src-scheme">(APP d (t))
+</pre>
+
+<p>
+もinline展開できる．これを行なってさらに不必要な定義を取り除くと，
+</p>
+
+
+<pre class="src src-scheme">(+ [x 10] [s]
+   [(+ [s s] [t]
+       [(+ [t 1] [r]
+           [(APP k (r))])])])
+</pre>
+
+<p>
+となる．
+そして，substitutionは非常にやさしい操作である．
+Schemeにおいてもsubstitutionは優しい操作だが，残念ながらSchemeでは，
+</p>
+
+
+<pre class="example">Inlining = Substition
+</pre>
+
+<p>
+とならない． TODO
+</p>
+<ul>
+<li>"Live" Variable as "Free" Variable
+</li>
+</ul>
+
+<p>プログラム中のある時点で，「生きている変数」とは，その時点で値が定義されていて，
+今後使われる可能性がある変数のことである．
+これはcompilerにとってもっとも重要な情報の一つであり，
+ある関数呼び出しを行う場合に，memoryに退避すべきなのはその時点で生きている変数であり，
+また，register allocationを行う際にも，その時点での演算結果の保持場所として
+再利用可能なのは，もはや生きていない変数のregisterである．
+これはあらゆる言語で，何らかの形で定義されていなくてはならない概念である．
+逆にこの情報が簡単なsymbolicな操作で計算できる言語はcompilerにとって扱いやすい言語である．
+</p>
+<p>
+CPSはある命令のfree variableがそのままlive variableになっているという優れた特徴をもっている．
+Free Variableの定義はまだきちんと述べていないが，例からは容易に読み取れる．
+</p>
+
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">g</span> x)
+  (fix ((f (y) (+ y y)))
+    (+ (f (+ x 10)) 1)))
+</pre>
+
+<p>
+をCPS変換した．
+</p>
+
+
+<pre class="src src-scheme">(FIX ([g (k x)
+  (FIX ([f (c y) (+ [y y] [t] [(APP c (t))])])
+    (+ [x 10] [s]
+       [(FIX ([d (t) (+ [t 1] [r] [(APP k (r))])])
+          (APP f (d s)))]))])
+ ...)
+</pre>
+
+<p>
+の，dの定義
+</p>
+
+
+<pre class="src src-scheme">[d (t) (+ [t 1] [r] [(APP k (r))])]
+</pre>
+
+<p>
+に注目する．
+tはparameterなので束縛変数．
+rは式の中で定義されるのでやはり束縛変数．
+kは自由変数である．
+kはもともとgに渡されたcontinuationであった．
+</p>
+<p>
+実際これは，(f (+ x 10))の呼び出しを行う際にしなくてはならないことを良く表している．
+実現の概要で述べたように，関数呼び出し時に行わなくてはならないことは，関数復帰後に
+必要な変数をmemoryに退避することであり，この場合，関数復帰後に行うことは返り値に1を足して
+それをg自身のcallerに返すことだけだから結局g自身が戻るために必要な情報だけを
+退避しておけば良い．このdの自由変数がkのみからなる集合であるということがこのことを表している．
+そして自由変数の計算はやはり簡単な記号操作である．今までに見つかった束縛変数と自由変数の
+集合を保持しながら式を再帰的にたどっていき，束縛変数の集合に表れない変数が使われた時点で，
+それを自由変数に加えていけば良い．
+</p>
+<p>
+比較として，Schemeを見ていく，
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">app</span> f x g y)
+  (+ (f x) (g y)))
+</pre>
+
+<p>
+において，(f x)呼び出し時の生きている変数は何か？
+これは答えようのない問題であり，実際には足し算のoperandをどの順番で評価するかに依存する．
+(f x)を先に評価するのであれば，自由変数は，
+</p>
+
+
+<pre class="example">{g, y, (fのcontinuation)}
+</pre>
+
+<p>
+となるし，逆ならば
+</p>
+
+
+<pre class="example">{(g,y)の評価結果, (fのcontinuation)}
+</pre>
+
+<p>
+となる．Schemeは何らかのevaluation orderを仮定しない限り，生きている変数が定義できない
+言語である．
+</p>
+<p>
+次にtraditionalな中間言語である4つ組を見てみる．
+例えば，
+</p>
+
+
+<pre class="example">e = 0;
+for (i = 0; i &lt; n; i++) s = s + f(i);
+</pre>
+
+<p>
+から生成されるであろう，
+</p>
+
+
+<pre class="example">  s := 0
+  i := 0
+CHECK:
+  if (i &lt; n) goto END
+  r := f(i)
+  s := s + r
+  goto CHECK
+END
+</pre>
+
+<p>
+のような中間言語を見てみる．
+ここでf(i)の呼び出し時にsaveすべき変数，
+つまりその時点で生きている変数の集合を求めたい．
+</p>
+<p>
+生きている変数が何かを定義していないが，以後の命令をscanして必要とされる変数を追加して
+いけば良いことが分かる．例えば直後の命令を見ると，sが使われているので，sは実は生きている．
+rはその命令で定義されているので生きていない(というか生まれていない)．
+このように後ろのinstructionを見ながら使われている変数を加えていって済むのなら良いが，
+残念ながらそう話は簡単ではなく，goto CHECKがあるために，我々は命令列を後ろに戻らなくてはならない．すると，
+iやnも実は生きているということがわかる．そして，またたどっていって元の場所に戻ってきて．．．
+というようにややこしい．
+</p>
+<ul>
+<li>No "Hidden" State
+</li>
+</ul>
+
+<p>上の関数dの自由変数を求めた例で，結局自由変数はkであった．結論はdを定義するFIXを実行する際に，memoryにkおよびdのコード番地
+をmemoryに退避せよということ．
+これが実に自然に関数呼び出しに伴うsetupを行なっていることに注意して欲しい．
+実現の概要のところで，Min-Schemeの関数呼び出しを実行する際に何をmemoryに退避したら良いかについて，
+CPSを用いずに自然言語で複雑な議論を行ったことを思い出す．
+その際の複雑さの要因の一つに，関数呼び出しに伴って「暗黙に」渡されていながらもプログラムの
+表面に現れていない情報(戻り番地)があったことがあげられる．
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #00ffff;">define</span> (<span style="color: #87cefa;">g</span> x)
+  (fix ((f (y) (+ y y)))
+    (+ (f (+ x 10)) 1)))
+</pre>
+
+<p>
+において，gのcontinuationをfを呼び出す際に退避すべきだということは，注意深く実行の様子をイメージしない
+とわからない．CPSではその情報が自然にプログラムの表面に現れている．
+</p>
+
+</div>
+
+<div id="outline-container-27-1" class="outline-3">
+<h3 id="sec-27-1"><span class="section-number-3">27.1</span> 実現のまとめ</h3>
+<div class="outline-text-3" id="text-27-1">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Mini-Scheme</th><th scope="col" class="left">CPS</th><th scope="col" class="left">machine code</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">apply</td><td class="left">FIX<sub>s</sub>+APP</td><td class="left">continuation record creation + arguments marshaling + jump</td></tr>
+<tr><td class="left">return</td><td class="left">APP</td><td class="left">arguments (return value) machine  + jump</td></tr>
+<tr><td class="left">fix</td><td class="left">FIX<sub>H</sub></td><td class="left">closure record creation</td></tr>
+<tr><td class="left">if</td><td class="left">(eq? [#f C] [] (T E))</td><td class="left">eval cond + compare it with #f + branch</td></tr>
+<tr><td class="left">let</td><td class="left">depends</td><td class="left">eval bond forms and execute body</td></tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-28" class="outline-2">
+<h2 id="sec-28"><span class="section-number-2">28</span> CPS変換</h2>
+<div class="outline-text-2" id="text-28">
+
+<p>CPS変換によりMin-Schemeは関数定義を，対応するCPSの関数定義に変換する．
+例として
+</p>
+
+
+<pre class="src src-scheme">(+ (* a x) (* b y))
+</pre>
+
+<p>
+を取り上げる．
+</p>
+<p>
+目標はこれが以下のようなCPS式に変換されることである．
+</p>
+
+
+<pre class="example">(* [a x] [p]
+  [(* [b y] [q]
+      [(+ [p q] [r]
+          [(... user r ...)])])])
+</pre>
+
+<p>
+ここで (&hellip; user r&hellip;)とは(+ (* a x) (* b y))の値を使う式であり，
+Program Text上では，(+ (* a x) (* b y))の外側の式になる．もしそのような式がなければ，
+rの値を返り値として返すCPS式である．
+一般に，
+</p>
+
+
+<pre class="src src-scheme">(+ E0 E1)
+</pre>
+
+<p>
+を評価しようと思ったら
+</p>
+
+
+<pre class="src src-scheme">(<span style="color: #98fb98;">&lt;E0&#12434;p0&#12395;bind&#12377;&#12427;&#24335;&gt;</span>
+  (<span style="color: #98fb98;">&lt;E1&#12434;p1&#12395;bind&#12377;&#12427;&#24335;&gt;</span>
+    [(+ [p0 p1] [r]
+        [(...user r...)])]))
+</pre>
+
+
+<p>
+のようになるべきである．これはprimitive呼び出しに限らず，
+if文などの評価にも当てはまる原則で必要な部分をまず評価する式を並べて，
+その後にそれを使う式が継続として現れる．
+</p>
+
+
+
+
 
 
 <div id="footnotes">
@@ -475,7 +1703,7 @@ Primsym    ::= +2 | -2 | &gt;&gt;2 | &lt;&lt;2 | &lt;2 | &gt;2 | &lt;=2 | &gt;=2
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-05-14 15:07:59 JST</p>
+<p class="date">Date: 2012-07-14 15:48:10 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

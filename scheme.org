@@ -1,0 +1,63 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Schemeメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='/memo/index.html'>ねこねここねこ</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>上の方</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* 資料・リンク
+- Gauche http://practical-scheme.net/gauche/index-j.html
+  - http://www.amazon.co.jp/dp/4873113482/
+
+* Scheme
+** funarg問題のこと
+- リンク: http://d.hatena.ne.jp/kazu-yamamoto/20071027/1193474111
+  http://www.jsk.t.u-tokyo.ac.jp/~inaba/soft4/soft4-oops/node5.html
+*** そもそも，funarg問題とは？
+関数をデータとして扱えるようにする場合に起きる問題．
+ラムダ式で与えられた関数の実行中に自由変数のあ扱いがはっきりしないために起きる問題．
+Common Lispなどでは関数閉包を明確に定義してこのような問題が起きないようにしている．
+
+- 最近の高級言語(JavaScript, Rubyなど)で高階関数を扱う場合は殆どの場合ラムダクロージャを使うことになっていて，もうこの問題が表面化することは少ない？
+
+* CPS変換のこと
+- http://www.iro.umontreal.ca/~boucherd/mslug/meetings/20041020/90-min-scc/90-min-scc.pdf
+宝箱
+
+
+* (with-input-from-file filename procedure)
+filename を標準入力として開きます．
+procedure は引数なしの関数です．
+procedure から制御が戻るとファイルは閉じられます．
+これが一番便利が良いでしょう．
+#+begin_src scheme
+(define (read-file file-name)
+      (with-input-from-file file-name
+        (lambda ()
+          (let loop((ls1 '()) (c (read-char)))
+    	(if (eof-object? c)
+    	    (list->string (reverse ls1))
+    	    (loop (cons c ls1) (read-char)))))))
+#+end_src
+
+* マクロの展開
+- Gauche
+#+begin_example
+gosh> (%macroexpand (use slib))
+(begin (with-module gauche (require "slib")) (import (slib)))
+#+end_example

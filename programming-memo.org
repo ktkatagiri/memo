@@ -5,6 +5,11 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
+* 傾向
+- 私の傾向
+とりあえず，幾何系の問題にはとても弱い．
+ベクトル，行列といった基礎的な概念が理解できていない．
+
 * 数学的な考え方
 ** 資料
 - プログラマの数学
@@ -45,13 +50,14 @@ http://www.amazon.co.jp/dp/4797329734
 - プログラミングコンテストチャレンジブック
 秋葉 拓哉 (著), 岩田 陽一 (著), 北川 宜稔 (著) 
 http://www.amazon.co.jp/dp/4839931992
+- 各種アルゴリズムの C++ による実装
+ http://www.prefield.com/algorithm/
 
 ** 全探索
 ** 貪欲法
 ** 動的計画法
 ** データ構造
 ** グラフ
-
 ** 数学的な問題
 ** ２分探索
 ** ネットワークフロー
@@ -60,4 +66,38 @@ http://www.amazon.co.jp/dp/4839931992
 * AOJとか
 ** リンク
 - http://judge.u-aizu.ac.jp/onlinejudge/
+
+** 0010
+- 三角形の外接円の中心
+http://www.h6.dion.ne.jp/~jpe02_tn/ki-5.html
+https://github.com/tatesuke/tatesuke-aoj/wiki/0012
+
+- C++の書式
+http://www.math.meiji.ac.jp/~mk/labo/studying-C/Programing-in-C/node244.html
+
+** 0012
+   
+However, members of the committee are so busy maniacally developing 
+
+* 線形代数の知識が必要な問題を解くために
+- 高専の頃に学んだ内容が頭から吹き飛んでいる
+  - プログラミングに関係ある部分を復習しまとめている．
+
+- Ruby, Gnuplotなどを使って復習
+
+** ベクトル
+- 矢印，空間内の点
+
+** 行列
+- 空間から空間への写像
+
+** 行列式
+
+* Githubチュートリアル
+http://try.github.com/levels/1/challenges/1
+
+* Ocamlのプログラミング環境
+http://www.i.kyushu-u.ac.jp/~bannai/ocaml-intro/install.html
+
+[C-x C-e]とか，[C-c C-r]が使える．
 

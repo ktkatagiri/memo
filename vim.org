@@ -1,0 +1,4 @@
+
+* links
+** バイナリエディタとして使うには？
+http://mako-limone.blogspot.jp/2009/11/cui.html

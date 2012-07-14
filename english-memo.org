@@ -1,0 +1,187 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 英単語とかのメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="../org-mode.css">
+
+* 資料
+- 英単語
+  - DUO 3.0 [単行本] http://www.amazon.co.jp/dp/4900790052/
+-  http://www.alc.co.jp/
+** Emacsから英辞郎
+   - http://d.hatena.ne.jp/kyagi/20090515/1242379726
+** Emacsから辞書.app
+   - http://d.hatena.ne.jp/tomoya/20100103/1262482873
+
+* 英語勉強法
+  - 英単語をひたすら覚える
+    - 見る，書く，読む，テストする
+      - AndroidのアプリでTOEICの英単語を覚えるものがあったので活用している
+	- 一日50単語覚える
+
+* 単語
+perspective, 展望[名]
+concern, 関係する[動詞]
+experiment, 実験[名], 実験する[動詞]
+principle, 原理，原則[名]
+intuitively, 直感的に[副詞]
+performe, (任務などを)遂行する[動詞]
+canonical, 標準的な[形容詞]
+integrate, 平等になる[自動詞]
+interleaves,   【他動-1】～に白紙を綴じ込む、挟む，交互配置する
+requirement, 【名】要求されること、必要条件、要件、必需品
+redex, 【名】書き換え可能な部分式,または式の全体.
+
+extremely, 極端に[副詞]
+Function Pointers provide some extremely interesting, 
+efficient and elegant programming techniques.
+関数ポインタは、いくつかの非常に興味深いを提供
+効率的かつエレガントなプログラミング技法。
+
+correspond
+  【自動-1】一致する、合致する、対応する、該当する、相当する
+
+
+
+* 熟語
+rest of, 〜の残り
+
+
+I thought so
+えぐい
+
+corresponds
+
+
+Greg Pettyjohn, John Clements, Joe Marshall, Shriram Krishnamurthi, Matthias Felleisen
+
+In Proceedings of the tenth ACM SIGPLAN international conference on Functional programming.
+
+equipped
+  【形】装備された、設備が整った
+arbitrary
+  【形-1】〔個人の〕好み［判断］に任せた、任意の
+  【形-2】〔個人の〕気まぐれな、勝手な、恣意的な
+  【形-3】〔原則などによらない〕偶然による、無作為な
+  【形-4】《法律》専断的な◆法律によらず、裁判所や裁判官の専断によって判決を決めること。
+algebraic
+  【形】代数の［に関する・による］
+  【分節】al・ge・bra・ic
+
+Replacing
+representation
+  【名-1】表す［表現する・描写する］こと
+  【名-2】描写されたもの、肖像、絵画、彫刻
+  【名-3】〔事実や議論などの〕表明、説明
+unspecified
+  【形】特定［明示・指示・特記］されていない、詳細不明の
+
+trivial
+  【形-1】ささいな、取るに足りない、さまつな◆【語源】15世紀にラテン語のtrivialis（「trivium（中世の三学科）に関連した」という意味）からで、triviumがあまり重要な科目ではないと考えられたため。
+  ・Look at the important issues, not the trivial ones. ささいな問題ではなく、重要な問題を見なさい。
+  【形-2】普通の、平凡な
+  【形-3】《数学》自明な
+
+汎用的な
+within
+install
+
+
+間接アクセス
+immediate
+  【形-1】即時の、即刻の
+  【形-2】〔現在の〕すぐ前［後］の
+  【形-3】差し迫った、緊急の
+  ・The patient requires immediate treatment. 患者の容体は一刻を争います。
+  ・I saw immediate problems. 事態が差し迫っていることに気付いた。
+  【形-4】〔空間的に〕接近した、すぐそばの、周辺の
+  【形-5】〔関係などが〕直近の、すぐ次の
+  【形-6】〔効果などが〕直接の、じかの
+applications
+
+explicating
+greater
+
+emasculating
+Pragmatics
+
+Smalltalk
+Objective-C
+
+Objective
+objective
+  【名-1】目的、目標
+  ・Our objective is to win the game. われわれの目的は試合に勝つことだ。
+  ・All of our objectives have been fulfilled more than we expected. 私どもの目標はすべて期待していた以上に達成することができました。
+  【名-2】方針、対象
+  【名-3】《行政》基本方針
+  【名-4】《文法》目的格
+  【形-1】目的の、客観的な、客観の、客観性のある、事実に基づく、実在の
+  【形-2】《文法》目的格の
+  【形-3】《医》他覚的な
+
+* 現在形のこと
+現在形は不変の心理，習慣，「現在，過去，未来」
+
+縦
+横
+
+
+
+Our mechanism also has applications beyond software transactional memory.
+
+
+As noted, deadlock detection makes sense only for applications that have a meaningful way to recover from a failed lock acquisition.
+
+Software transactional memory and database systems are two significant domains in which the notion of an abort is well-defined. We now discuss these two in turn.
+
+Many modern STM implementations are subject,
+at least in principle,
+to deadlock. Early STMs were based on nonblocking algorithms.
+More recent efforts [6, 7, 5, 17] employ locks.
+To the extent that the papers describing these systems address deadlock,
+they seem to rely on carefully engineered timeouts.
+
+
+
+variety
+
+制御構造
+including
+facilities
+breadth
+
+presence
+notion
+rest
+represent
+general
+
+
+
+
+remains
+progress
+gained
+experience
+
+approximation
+  【名-1】近づくこと、接近
+  【名-2】似ていること、類似しているもの
+  【名-3】概算、見積もり
+  【名-4】《数学》近似値
+  【＠】アプロクシメイション、【変化】《複》approximations、【分節】
+  ap・prox・i・ma・tion
+mangle
+  【1-他動-1】〔切ったりたたいたりして～を〕ずたずたにする、めちゃくちゃにする、押しつぶす
+  ・The force of the collision mangled the back of my car. 追突の衝撃で私の車の後部がめちゃめちゃに壊れた。
+  【1-他動-2】〔下手な人が文章などを〕台無しにする、めちゃくちゃにする、駄目にする
+  【2-名-1】〔熱したローラーを使った〕しわ伸ばし機
+  【2-名-2】〈英〉洗濯物手動絞り機
+  【2-他動】～をしわ伸ばし機にかける
+  【＠】マングル、【変化】《動》mangles | mangling | mangled、【
+  分節】man・gle
+
+persistence
+thread

@@ -1,0 +1,24 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 英単語とかのメモ
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="../org-mode.css">
+
+* 資料
+- 英単語
+  - DUO 3.0 [単行本] http://www.amazon.co.jp/dp/4900790052/
+
+- 英単語
+  - 世界一わかりやすい英文法の授業 http://www.amazon.co.jp/dp/4806129461/
+  - Forestも買う http://www.amazon.co.jp/dp/4342010402/
+
+* 方針
+  決まった資料をとことん読む
+
+* 単語
+
+
+* 現在形のこと
+  現在形は不変の心理，習慣，「現在，過去，未来」
+

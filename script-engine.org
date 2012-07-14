@@ -23,6 +23,7 @@
 - 本
   - スクリプトエンジン プログラミング 坂本 千尋 (著)
     - http://www.amazon.co.jp/dp/4797347627
+    - Source: http://www.sbcr.jp/products/4797347623.html?sku=4797347623
 
 * 全体の構造
 ** なんのために作るか？

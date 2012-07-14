@@ -20,6 +20,10 @@
     </div>
 #+end_html
 
+* 興味深い資料
+- Emacsy: An Embeddable Emacs-like Library
+  http://www.kickstarter.com/projects/568774734/emacsy-an-embeddable-emacs
+
 * EmacsからAOJへのサブミット
 - http://82rensa.blogspot.jp/2012/01/emacsaoj.html
 * Emacsで複数のShellを開く方法 http://at-aka.blogspot.jp/2006/07/emacs-subshell.html
@@ -63,7 +67,7 @@
 #+begin_src lisp
 ;; 辞書.app
 ;; http://d.hatena.ne.jp/tomoya/20091218/1261138091
-(defvar dict-bin "~/srcs/commandline-dictionary-app/src/dict"
+(defvar dict-bin "/Users/katagiri/srcs/commandline-dictionary-app/src/dict"
   "dict 実行ファイルのパス")
 
 (defun temp-cancel-read-only (function &optional jaspace-off)
@@ -180,10 +184,122 @@ end
 * org-modeのこと
 - リファレンス http://www.network-theory.co.uk/docs/orgmode/PublishersPreface.html
 - 日本語のマニュアル http://hpcgi1.nifty.com/spen/index.cgi?OrgMode/Manual
-
+- 太字
+#+begin_example
+ *bold* ;; 前後に半角スペースが必要
+#+end_example
 * expand-resion
 - http://d.hatena.ne.jp/syohex/20120117/1326814127
 * sense-expand-resion
 - http://emacs.g.hatena.ne.jp/k1LoW/20120321/1332321514
-
   
+* 括弧の入力補助
+- Link
+  - 括弧の自動挿入の挙動をオレオレ設定できるflex-autopair.elで夢を叶える
+    - http://d.hatena.ne.jp/uk-ar/20120401/1333282805
+#+begin_src lisp
+(auto-install-from-url "https://raw.github.com/uk-ar/flex-autopair/master/flex-autopair.el")
+#+end_src
+下記を設定ファイルに追加
+#+begin_src lisp
+(require 'flex-autopair)
+(flex-autopair-mode 1)
+#+end_src
+
+* Emacsで英語翻訳機能を
+http://d.hatena.ne.jp/khiker/20070503/emacs_text_translator
+
+#+begin_src lisp
+(auto-install-from-emacswiki "text-translator-vars.el")
+(auto-install-from-emacswiki "text-translator-load.el")
+(auto-install-from-emacswiki "text-translator.el")
+#+end_src
+
+#+begin_src lisp
+(require 'text-translator)
+
+(global-set-key "\C-x\M-t" 'text-translator)
+(global-set-key "\C-x\M-T" 'text-translator-translate-last-string)
+
+;; プリフィックスキーを変更する場合.
+;; (setq text-translator-prefix-key "\M-n")
+
+;; 自動選択に使用する関数を設定
+(setq text-translator-auto-selection-func
+      'text-translator-translate-by-auto-selection-enja)
+;; グローバルキーを設定
+(global-set-key "\C-xt" 'text-translator-translate-by-auto-selection)
+#+end_src
+
+* twittering-mode導入
+https://github.com/hayamiz/twittering-mode/
+* C++の補完
+-  http://www.nomtats.com/2010/11/auto-completeelemacs.html
+
+* チップス
+「C-h f 関数名」で関数名で指定した関数の詳細を表示．
+** 別フレームを作る
+make-frameという関数(delete-frameもある)
+
+** フレーム間の移動
+http://2kr.blog87.fc2.com/blog-entry-437.html
+#+begin_example
+●ウィンドウ操作
+C-x 2 ウィンドウを上下２分割
+C-x 3 ウィンドウを左右２分割
+C-x 0(ゼロ) 現在キャレットがいるウィンドウを閉じる
+C-x o(オー) ウィンドウ間移動
+
+
+●フレーム操作
+C-x 5 2 新規フレームを開く
+C-x 5 0（ゼロ） フレームを閉じる
+C-x 5 o(オー) フレーム間移動
+#+end_example
+
+* 対話Shellの使い方
+http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html
+
+* Links
+Emacs Lisp の文字列操作まとめ
+http://emacs.g.hatena.ne.jp/kiwanami/20110809/1312877192
+** よく使う操作
+http://2kr.blog87.fc2.com/blog-entry-437.html
+
+* w3m-emacsの導入
+http://d.hatena.ne.jp/suttanipaata/20100913/1284327126
+** 動かない．．．
+http://blog.bitemyapp.com/2011/11/23/w3m-emacs-ubuntu.html
+http://am3-18-11.blogspot.jp/2012/06/emacs23emacs-w3m.html
+
+** 導入方法
+以下のURLの安定版をダウンロードする
+http://emacs-w3m.namazu.org/index-ja.html#download
+
+#+begin_example
+% wget http://emacs-w3m.namazu.org/emacs-w3m-1.4.4.tar.gz
+#+end_example
+
+そのままではemacs23に対応していないため，以下の操作を行い最新版をダウンロード
+#+begin_example
+% cvs -d :pserver:anonymous@cvs.namazu.org:/storage/cvsroot login
+CVS password:
+# パスワードは設定されていません．単に Enter/Return キーを押して下さい．
+% cvs -d :pserver:anonymous@cvs.namazu.org:/storage/cvsroot co emacs-w3m-csv
+#+end_example
+
+安定版のtarを解凍し，最新版のディレクトリをその中に上書き
+#+begin_example
+% tar xvzf emacs-w3m-1.4.4.tar.gz
+% cp -r emacs-w3m-csv/* emacs-w3m-1.4.4
+#+end_example
+
+#+begin_example
+% mv emacs-w3m-1.4.4 emacs-w3m
+% cd emacs-w3m
+% ./configure --prefix=なんとか
+% make
+#+end_example
+
+そして，emacs-w3mのディレクトリにパスを通せばおｋ
+

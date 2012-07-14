@@ -6,12 +6,25 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
-* クライアントサイドJavaScript
+* 仕様
+- ECMAの仕様書
+http://www.ecma-international.org/publications/standards/Ecma-262.htm
 
+* クライアントサイドJavaScript
 * サーバーサイドJavaScript
+** 資料・リンク
+- リファレンス
+http://nodejs.jp/nodejs.org_ja/docs/v0.2/api.html
+- node ninja
+http://node-ninja.com/
+- マニアックな金融系サイトをnode.jsとMongoDBで実装してみた（概要編） http://blog.8maki.jp/2011/01/marketgeek_nodejs_mongodb_outline.html
+- Felix's Node.js Style Guide http://popkirby.github.com/contents/nodeguide/style.html
+- ブラウザ上で動くnode.jsベースのTwitterクライアントOSS「Streamie」 http://phpspot.org/blog/archives/2011/02/nodejstwitteros.html
+- デバッグ
+http://d.hatena.ne.jp/replication/20111202/1322752174
+
 ** node.js http://nodejs.jp/
 - ドキュメント http://nodejs.jp/nodejs.org_ja/api/
-
 ** 導入編
 - かなり前にやったのでもう忘れた
 
@@ -43,3 +56,11 @@ npm install -g express
   - できた
     - ntwitter https://github.com/AvianFlu/ntwitter
       - これをつかうと簡単
+** アプリケーションのアイデア
+Postした時間帯とクライアントの種類(携帯端末か，PCか)とかから生活の健全さを予想して，数値化して比較するWebサービス
+
+** AtcoderがJS対応？
+http://arc001.contest.atcoder.jp/
+http://arc001.contest.atcoder.jp/submissions/22549
+
+

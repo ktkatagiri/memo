@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>6月の記録</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="6月の記録"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-07-14 15:39:06 JST"/>
+<meta name="author" content="Yuuhi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./org-mode.css">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">6月の記録</h1>
+
+
+<meta content='no-cache' http-equiv='Pragma' />
+
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>1日</a>
+            </li>
+            <li>
+              <a href='#sec-15'>15日</a>
+            </li>
+            <li>
+              <a href='#sec-30'>30日</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 nkfを使ってディレクトリ以下のファイルを文字コード変換する</a></li>
+<li><a href="#sec-2">2 X11をコンパイルするときのコマンド</a></li>
+<li><a href="#sec-3">3 持ってるベアボーンPC</a></li>
+<li><a href="#sec-4">4 lexerだけじゃダメ．Parserも必要</a></li>
+<li><a href="#sec-5">5 英論文を読む技術</a></li>
+<li><a href="#sec-6">6 Git</a></li>
+<li><a href="#sec-7">7 ThinkPadのSSD</a></li>
+<li><a href="#sec-8">8 Link Station</a>
+<ul>
+<li><a href="#sec-8-1">8.1 LionでLinkStation LS-CHLを使ってTimeMachineする道のり</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> nkfを使ってディレクトリ以下のファイルを文字コード変換する</h2>
+<div class="outline-text-2" id="text-1">
+
+<p><a href="http://d.hatena.ne.jp/kasahi/20070926/1190833699">http://d.hatena.ne.jp/kasahi/20070926/1190833699</a>
+</p>
+
+
+<pre class="example">$ nkf -Ew **/*.php.inc | nkf --guess
+UTF-8
+$ nkf -Ew --overwrite **/*.php.inc
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> X11をコンパイルするときのコマンド</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+<pre class="example">gcc xtest.c -I/usr/X11R6/include -L/usr/X11R6/lib -lX11
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 持ってるベアボーンPC</h2>
+<div class="outline-text-2" id="text-3">
+
+<p><a href="http://www.mustardseed.co.jp/products/shuttle/barebone/sg41j1.html">http://www.mustardseed.co.jp/products/shuttle/barebone/sg41j1.html</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> lexerだけじゃダメ．Parserも必要</h2>
+<div class="outline-text-2" id="text-4">
+
+<p><a href="http://d.hatena.ne.jp/language_and_engineering/20120619/p1">http://d.hatena.ne.jp/language_and_engineering/20120619/p1</a>
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 英論文を読む技術</h2>
+<div class="outline-text-2" id="text-5">
+
+<ul>
+<li>TOEIC550点以下の英語読めない人向け
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Git</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>入門Gitの方が読みやすい
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> ThinkPadのSSD</h2>
+<div class="outline-text-2" id="text-7">
+
+<p><a href="http://shop.tsukumo.co.jp/goods/0649528757272/">http://shop.tsukumo.co.jp/goods/0649528757272/</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Link Station</h2>
+<div class="outline-text-2" id="text-8">
+
+<p><a href="http://shop.tsukumo.co.jp/dir/201511000000000/?sort=price&amp;order=asc">http://shop.tsukumo.co.jp/dir/201511000000000/?sort=price&amp;order=asc</a>
+<a href="http://shop.tsukumo.co.jp/goods/0405887713010/201511000000000/">http://shop.tsukumo.co.jp/goods/0405887713010/201511000000000/</a>
+買おうか迷ってる
+</p>
+
+</div>
+
+<div id="outline-container-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> LionでLinkStation LS-CHLを使ってTimeMachineする道のり</h3>
+<div class="outline-text-3" id="text-8-1">
+
+<p> <a href="http://d.hatena.ne.jp/itohiroki/20111010/1318214347">http://d.hatena.ne.jp/itohiroki/20111010/1318214347</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-07-14 15:39:06 JST</p>
+<p class="author">Author: Yuuhi</p>
+<p class="creator">Org version 7.8.03 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

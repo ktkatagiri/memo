@@ -1,0 +1,29 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Linuxなどメモ
+#+LANGUAGE: ja
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+* links
+** CentOS
+http://ftp.jaist.ac.jp/pub/Linux/CentOS/
+** ArchLinux
+
+
+* 音声を鳴らす方法
+** /dev/dsp
+
+* ハードリンクとシンボリックリンクの違い
+http://cmd.misty.ne.jp/environment/03.html
+
+* 役に立つコマンド
+https://wiki.ubuntulinux.jp/UbuntuTips/FileHandling/RenameCommand
+
+* ntpサーバ
+#+begin_example
+NICT: ntp.nict.jp (133.243.238.{163,164,243,244}) 
+#+end_example
+http://www.asahi-net.or.jp/~mu6k-ski/ntp.html
+
+
+

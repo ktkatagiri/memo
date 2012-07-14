@@ -5,20 +5,6 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
 
-#+begin_html
-    <div class='navbar navbar-fixed-top'>
-      <div class='navbar-inner'>
-        <div class='container'>
-          <a class='brand' href='./index.html'>トップに戻る</a>
-          <ul class='nav'>
-            <li><a href='#sec-1'>資料</a></li>
-            <li><a href='#sec-2'>やること</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-#+end_html
-
 * 資料
 - 本
   - コンパイラ―原理・技法・ツール (Information & Computing), A.V. エイホ
@@ -32,46 +18,34 @@
     - 持っている．買った．
   - Compiling with Continuations, Andrew W. Appel (著)  http://www.amazon.co.jp/dp/052103311X
     - この本欲しいなぁ．Kindleで売ってるのかな．買おうか．高いが．．
-      - しかも英語だし，すぐには読めない．やはり，英語の勉強は死ぬ気でヤラなければ．．
 
 - 公開されている講義資料
   - コンパイラの作り方 (詳解) http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/
     - この資料をメインにコンパイラ製作を進める[fn:comp_with_cont]
+  - http://www.mlab.im.dendai.ac.jp/compiler/hint1.html
 
 - 論文
   - 3imp.pdf( Three implementation models for scheme ) http://www.cs.indiana.edu/~dyb/papers/3imp.pdf
     - Schemeのインタプリタの実装方法を説明している
-      - VM上で動くコードを吐き出してるので正確な意味でインタプリタか？
-	- 最近はJITなども普通になってきていて，インタプリタとコンパイラの境界を議論するのは不毛で意味のないことかもしれない
 
     - 簡単に日本語で解説している http://route477.net/w/?Reading3imp.pdf
-
-- 中間表現など
-  - Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
 
 * やること
 - 小さな言語の設計
   - Schemeのサブセットのようなもの
     - S式の言語
   - コンパイラはSchemeで記述する
-    - Gaucheで動くように書く
-      - Gauche http://practical-scheme.net/gauche/index-j.html
 
 - 仮想マシンの作成
-  - マシン語にまでコンパイルできるコンパイラを作るには，
-  特定のアーキテクチャ(x86やH8など)の命令セットのこと知らなければならない
+  - 仮想マシンの設計は資料に合うものにする
+    レジスタマシン
+- マシン語にまでコンパイルできるコンパイラを作るには
+  特定のアーキテクチャ(x86やH8など)の命令セットのこと知らなければならないので面倒
   - x86 http://ja.wikipedia.org/wiki/X86
   - H8 http://ja.wikipedia.org/wiki/H8
-  
-* CPUアーキテクチャの設計
-1. 全ての変数のsizeが同じ
-   - 浮動小数点数も整数も同じsize
-2. registerがたくさん
-3. 3 operand register間命令が基本
 
-* 中間表現
-- CPS形式
-  - 末尾再帰の最適化などを行う
+- 中間表現など
+  - Continuation-Passing StyleやA-Normal Formといった中間表現を学ぶ
 
 * 作成言語の設計
 - 拡張BNFで
@@ -91,7 +65,7 @@ Primsym    ::= +2 | -2 | >>2 | <<2 | <2 | >2 | <=2 | >=2 | =2 | heap
 #+end_example
 
 - heap: memoryの割り当て
-- record-ref: heapに割り当てられたrecordの参照(vector-refみたいな)，
+- record-ref: heapに割り当てられたrecordの参照(vector-refみたいもの)，
 - record-set!: はrecordの更新．
 #+begin_src scheme
 (let ((r (heap 0 1 2 3)))
@@ -101,37 +75,12 @@ Primsym    ::= +2 | -2 | >>2 | <<2 | <2 | >2 | <=2 | >=2 | =2 | heap
 
 * Syntax Sugarで便利な構文を追加していく
 compilerはできる限り少ない機能のみをサポートしたい．
+** Mini-Scheme(Lambda Closure無し) + Syntax Sugars
+最低限の構文しか用意していないMini-Scheme上では，Syntax Sugarsを使って多くの便利な機能を用意してやる．
+- Let*
+- begin
+- cond
 
 * 何をPrimitiveにするか？
 よく考える必要がある(9章[fn:comp_with_cont])
-- この講義だと仮想CPUどうやって作ってるんだろう．FPGAかなぁ？
-
-* BNFのこと
-- Webの情報
-  - バッカス・ナウア記法 http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AB%E3%82%B9%E3%83%BB%E3%83%8A%E3%82%A6%E3%82%A2%E8%A8%98%E6%B3%95
-  - BNF記法入門 http://www.atmarkit.co.jp/fxml/ddd/ddd004/ddd004-bnf.html
-    - どうでもいいけど，BNF記法って書き方気になる．BN記法か，BNFじゃないのか．．？
-
-* Lambda Closureのこと
-- まずはClosureを持たない言語のcompilerを実装する．
-  Closureを持つ持たないで何が違うかと言うと，「自由変数を持つ関数を許すかどうか」という
-  点であるらしい．例えば，局所関数定義を許さないこと．
-  C言語などでは，一度関数を抜けてしまえば，関数内の局所変数の値は残っていることが保証されない．
-  SchemeにおけるLambda式を考える．
-  #+begin_example
-  (define (make-adder x)
-    (lambda (y) (+ x y)))
-  #+end_example
-  この例で(lambda (y) (+ x y))において，
-  変数xはLambda式が起動してから束縛されるのではなく，
-  Lambda Closureが束縛されて以来ずっと値を保持している．
-
-  これが実装の上でどう影響するかというと，Schemeなどでは
-  #+begin_example
-  関数のコードのアドレス + 自由変数の値の組
-  #+end_example
-  で関数の表現をしないといけない．
-
-
-[fn:comp_with_cont] コンパイラの作り方 (詳解) http://www.is.s.u-tokyo.ac.jp/vu/96/cad/compilerresume/
 

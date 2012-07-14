@@ -24,6 +24,9 @@
 #+end_html
 
 * MySQL
+** 資料
+- Link
+  - libmysqlclientを使うプログラムはset namesをutf8であっても使ってはいけない http://blog.everqueue.com/chiba/2009/02/05/129/
 ** 主にMySQLのことを調べて，使い方を書く
 
 ** ユーザの管理
@@ -118,7 +121,7 @@ InnoDB: Cannot continue operation.
 - たしか，homebrewでインストールした．
 - http://d.hatena.ne.jp/okboy/20101120/p1
 #+begin_example
-% brew install mongodb
+% brew install mysql
 #+end_example
 
 #+begin_example

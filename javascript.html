@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="JavaScriptのこと"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-05-07 03:22:21 JST"/>
+<meta name="generated" content="2012-07-14 04:52:04 JST"/>
 <meta name="author" content="Yuuhi"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -104,11 +104,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 クライアントサイドJavaScript</a></li>
-<li><a href="#sec-2">2 サーバーサイドJavaScript</a>
+<li><a href="#sec-1">1 仕様</a></li>
+<li><a href="#sec-2">2 クライアントサイドJavaScript</a></li>
+<li><a href="#sec-3">3 サーバーサイドJavaScript</a>
 <ul>
-<li><a href="#sec-2-1">2.1 node.js http://nodejs.jp/</a></li>
-<li><a href="#sec-2-2">2.2 Twitter Streaming API叩く</a></li>
+<li><a href="#sec-3-1">3.1 資料・リンク</a></li>
+<li><a href="#sec-3-2">3.2 node.js http://nodejs.jp/</a></li>
+<li><a href="#sec-3-3">3.3 導入編</a></li>
+<li><a href="#sec-3-4">3.4 Expressのこと</a></li>
+<li><a href="#sec-3-5">3.5 Twitter Streaming API叩く</a></li>
+<li><a href="#sec-3-6">3.6 アプリケーションのアイデア</a></li>
+<li><a href="#sec-3-7">3.7 AtcoderがJS対応？</a></li>
 </ul>
 </li>
 </ul>
@@ -116,27 +122,87 @@
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> クライアントサイドJavaScript</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 仕様</h2>
 <div class="outline-text-2" id="text-1">
 
+<ul>
+<li>ECMAの仕様書
+</li>
+</ul>
 
+<p><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">http://www.ecma-international.org/publications/standards/Ecma-262.htm</a>
+</p>
 </div>
 
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> サーバーサイドJavaScript</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> クライアントサイドJavaScript</h2>
 <div class="outline-text-2" id="text-2">
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> サーバーサイドJavaScript</h2>
+<div class="outline-text-2" id="text-3">
 
 
 </div>
 
-<div id="outline-container-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> node.js <a href="http://nodejs.jp/">http://nodejs.jp/</a></h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 資料・リンク</h3>
+<div class="outline-text-3" id="text-3-1">
+
+<ul>
+<li>リファレンス
+</li>
+</ul>
+
+<p><a href="http://nodejs.jp/nodejs.org_ja/docs/v0.2/api.html">http://nodejs.jp/nodejs.org_ja/docs/v0.2/api.html</a>
+</p><ul>
+<li>node ninja
+</li>
+</ul>
+
+<p><a href="http://node-ninja.com/">http://node-ninja.com/</a>
+</p><ul>
+<li>マニアックな金融系サイトをnode.jsとMongoDBで実装してみた（概要編） <a href="http://blog.8maki.jp/2011/01/marketgeek_nodejs_mongodb_outline.html">http://blog.8maki.jp/2011/01/marketgeek_nodejs_mongodb_outline.html</a>
+</li>
+<li>Felix's Node.js Style Guide <a href="http://popkirby.github.com/contents/nodeguide/style.html">http://popkirby.github.com/contents/nodeguide/style.html</a>
+</li>
+<li>ブラウザ上で動くnode.jsベースのTwitterクライアントOSS「Streamie」 <a href="http://phpspot.org/blog/archives/2011/02/nodejstwitteros.html">http://phpspot.org/blog/archives/2011/02/nodejstwitteros.html</a>
+</li>
+<li>デバッグ
+</li>
+</ul>
+
+<p><a href="http://d.hatena.ne.jp/replication/20111202/1322752174">http://d.hatena.ne.jp/replication/20111202/1322752174</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> node.js <a href="http://nodejs.jp/">http://nodejs.jp/</a></h3>
+<div class="outline-text-3" id="text-3-2">
 
 <ul>
 <li>ドキュメント <a href="http://nodejs.jp/nodejs.org_ja/api/">http://nodejs.jp/nodejs.org_ja/api/</a>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 導入編</h3>
+<div class="outline-text-3" id="text-3-3">
+
+<ul>
+<li>かなり前にやったのでもう忘れた
 </li>
 </ul>
 
@@ -145,9 +211,29 @@
 
 </div>
 
-<div id="outline-container-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Twitter Streaming API叩く</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Expressのこと</h3>
+<div class="outline-text-3" id="text-3-4">
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/tilfin/20110926/1317014251">http://d.hatena.ne.jp/tilfin/20110926/1317014251</a>
+</li>
+</ul>
+
+
+
+
+<pre class="example">npm install -g express
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Twitter Streaming API叩く</h3>
+<div class="outline-text-3" id="text-3-5">
 
 <ul>
 <li><a href="http://kray.jp/blog/node-js-twitter-streaming-api/">http://kray.jp/blog/node-js-twitter-streaming-api/</a>
@@ -161,9 +247,71 @@
 
 <p>
   がうまくいかない
-</p></li>
+</p>
+</li>
+<li>Twitter Stream関連
+<ul>
+<li><a href="http://d.hatena.ne.jp/sfujiwara/20100621/1277090751#tb">http://d.hatena.ne.jp/sfujiwara/20100621/1277090751#tb</a>
+</li>
+<li><a href="http://d.hatena.ne.jp/yssk22/20100822/1282465422">http://d.hatena.ne.jp/yssk22/20100822/1282465422</a>
+</li>
+<li>
+
+</li>
 </ul>
 
+</li>
+<li>捕捉
+<ul>
+<li>Base64のこと <a href="http://ja.wikipedia.org/wiki/Base64">http://ja.wikipedia.org/wiki/Base64</a>
+
+</li>
+</ul>
+
+</li>
+<li>ここのが新しくて良さ気
+<ul>
+<li><a href="http://d.hatena.ne.jp/replication/20120318/1332044327">http://d.hatena.ne.jp/replication/20120318/1332044327</a>
+
+</li>
+<li>できた
+<ul>
+<li>ntwitter <a href="https://github.com/AvianFlu/ntwitter">https://github.com/AvianFlu/ntwitter</a>
+<ul>
+<li>これをつかうと簡単
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> アプリケーションのアイデア</h3>
+<div class="outline-text-3" id="text-3-6">
+
+<p>Postした時間帯とクライアントの種類(携帯端末か，PCか)とかから生活の健全さを予想して，数値化して比較するWebサービス
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> AtcoderがJS対応？</h3>
+<div class="outline-text-3" id="text-3-7">
+
+<p><a href="http://arc001.contest.atcoder.jp/">http://arc001.contest.atcoder.jp/</a>
+<a href="http://arc001.contest.atcoder.jp/submissions/22549">http://arc001.contest.atcoder.jp/submissions/22549</a>
+</p>
 
 </div>
 </div>
@@ -171,7 +319,7 @@
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2012-05-07 03:22:21 JST</p>
+<p class="date">Date: 2012-07-14 04:52:04 JST</p>
 <p class="author">Author: Yuuhi</p>
 <p class="creator">Org version 7.8.03 with Emacs version 23</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

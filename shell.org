@@ -1,5 +1,5 @@
 #+AUTHOR: Yuuhi
-#+TITLE: Androidアプリ作成
+#+TITLE: シェルスクリプトの倉庫
 #+LANGUAGE: ja
 #+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
 #+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
@@ -22,4 +22,61 @@
     </div>
 #+end_html
 
+* Shellスクリプトで正規表現を使う方法
+http://freebsd.g.hatena.ne.jp/py4s-tnk/20070728/1188319980
+
+
 * diffとpatchコマンドを使い方
+
+* nkfとlatexの
+if文での正規表現の使い方も覚えておこう
+#+begin_src sh
+#!/bin/bash
+
+for s in `ls`
+do
+    if expr "$s" : ".*\.tex" >/dev/null; then
+	echo $s"utf8->"$s
+	nkf -w8 $s > temp-$s
+	mv temp-$s $s
+    fi
+done
+
+platex main.tex ; dvipdfmx main.dvi ; open main.pdf
+#+end_src
+
+* rename
+#+begin_src sh
+#!/bin/bash
+
+for s in `ls`
+do
+    case $s in
+	$1.pdf) mv $1.pdf $2.pdf ;;
+	$1.dvi) mv $1.dvi $2.dvi ;;
+	$1.tex) mv $1.tex $2.tex ;;
+    esac
+done
+#+end_src
+
+* platex
+#+begin_src sh
+#!/bin/sh
+
+# このスクリプトは"./build.sh ファイル名 とすることでpdfを吐く"
+# ファイル名には拡張子を含めない
+
+name=$1
+(platex $name".tex" && platex $name".tex" && dvipdfmx $name".dvi" && open $name".pdf") || echo 'error!'
+
+rm *~
+rm *.aux
+rm *.bbl
+rm *.blg
+rm *.dvi
+# rm *.log
+rm *.lot
+rm *.lof
+rm *.toc
+# rm \#*\#
+#+end_src

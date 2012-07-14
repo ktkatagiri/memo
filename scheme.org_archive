@@ -1,0 +1,18 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/katagiri/Dropbox/private/notes/memo/scheme.org
+
+
+* そもそも，funarg問題とは？
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2012-05-25 金 03:16
+  :ARCHIVE_FILE: ~/Dropbox/private/notes/memo/scheme.org
+  :ARCHIVE_OLPATH: Scheme/funarg問題のこと
+  :ARCHIVE_CATEGORY: scheme
+  :END:
+関数をデータとして扱えるようにする場合に起きる問題．
+ラムダ式で与えられた関数の実行中に自由変数のあ扱いがはっきりしないために起きる問題．
+Common Lispなどでは関数閉包を明確に定義してこのような問題が起きないようにしている．
+離散数学
+

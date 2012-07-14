@@ -10,6 +10,13 @@
 - HP http://arduino.cc/
 - Arduino のすすめ http://n.mtng.org/ele/arduino/
 
+* Arduinoのこと
+** 日本語リファレンス
+   - http://www.musashinodenpa.com/arduino/ref/
+** Links
+   - http://blog.ii-tripod.com/?eid=1181347
+
+
 * 写真
 #+begin_html
 <img src="./pics/arduino2.jpg" alt="Hello World!" width=300 />
@@ -52,3 +59,9 @@ void loop(){
 }
 #+end_src
 
+* H8マイコンの資料
+** リンク集
+- http://monoist.atmarkit.co.jp/mn/kw/h8_basic.html
+- http://hijiri3.s65.xrea.com/sorekore/develop/h8/01_redboot.htm
+
+     

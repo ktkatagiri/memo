@@ -1,0 +1,65 @@
+#+AUTHOR: Yuuhi
+#+TITLE: 6月の記録
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+
+#+begin_html
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>トップに戻る</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>1日</a>
+            </li>
+            <li>
+              <a href='#sec-15'>15日</a>
+            </li>
+            <li>
+              <a href='#sec-30'>30日</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* nkfを使ってディレクトリ以下のファイルを文字コード変換する
+http://d.hatena.ne.jp/kasahi/20070926/1190833699
+#+begin_example
+$ nkf -Ew **/*.php.inc | nkf --guess
+UTF-8
+$ nkf -Ew --overwrite **/*.php.inc
+#+end_example
+
+* X11をコンパイルするときのコマンド
+#+begin_example
+gcc xtest.c -I/usr/X11R6/include -L/usr/X11R6/lib -lX11
+#+end_example
+
+* 持ってるベアボーンPC
+http://www.mustardseed.co.jp/products/shuttle/barebone/sg41j1.html
+
+* lexerだけじゃダメ．Parserも必要
+http://d.hatena.ne.jp/language_and_engineering/20120619/p1
+
+
+* 英論文を読む技術
+- TOEIC550点以下の英語読めない人向け
+
+* Git
+入門Gitの方が読みやすい
+
+* ThinkPadのSSD
+http://shop.tsukumo.co.jp/goods/0649528757272/
+
+* Link Station
+http://shop.tsukumo.co.jp/dir/201511000000000/?sort=price&order=asc
+http://shop.tsukumo.co.jp/goods/0405887713010/201511000000000/
+買おうか迷ってる
+
+** LionでLinkStation LS-CHLを使ってTimeMachineする道のり
+ http://d.hatena.ne.jp/itohiroki/20111010/1318214347
+

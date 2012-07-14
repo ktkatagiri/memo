@@ -1,0 +1,44 @@
+#+AUTHOR: Yuuhi
+#+TITLE: Lispのこと
+#+LANGUAGE: ja
+#+HTML: <meta content='no-cache' http-equiv='Pragma' />
+#+STYLE: <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-mode.css">
+#+begin_html
+<div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='brand' href='./index.html'>あなたのことが好きです！付き合ってください！！</a>
+          <ul class='nav'>
+            <li>
+              <a href='#sec-1'>はじめに</a>
+            </li>
+            <li>
+              <a href='#sec-3'>日記</a>
+            </li>
+            <li>
+              <a href='#sec-4'>技術めも</a>
+            </li>
+            <li>
+              <a href='#sec-5'>技術関係まとめ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+#+end_html
+
+* Links
+http://nhiro.org/learn_language/LISP-on-browser.html
+* Common Lispのプログラミング環境構築した
+- Quicklisp beta
+http://www.quicklisp.org/beta/
+
+* SLIMEの環境構築
+- SLIME: The Superior Lisp Interaction Mode for Emacs
+http://common-lisp.net/project/slime/
+
+* ドキュメント
+- The Common Lisp HyperSpec
+ http://www.lispworks.com/documentation/common-lisp.html
+
